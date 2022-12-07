@@ -3,6 +3,4 @@ const getOffset = (pageNum: string, pageLimit?:number) => {
     const offset = (parseInt(pageNum, 10) - 1) * limit;
     return offset;
   };
-  
-  export default getOffset;
-  
+export default getOffset;
