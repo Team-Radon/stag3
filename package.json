@@ -13,6 +13,16 @@
     "test:watch": "jest --watch",
     "prepare": "husky install"
   },
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/Team-Radon/stag3.git"
+	},
+	"keywords": ["web3","orbis","ceramic network","gitcoin passport"],
+	"author": "Team Radon",
+	"bugs": {
+		"url": "https://github.com/Team-Radon/stag3/issues/"
+	},
+	"homepage": "https://github.com/Team-Radon/stag3#readme",
   "dependencies": {
     "@types/node": "18.11.11",
     "@types/react": "18.0.26",
