@@ -8,7 +8,9 @@
         "plugin:react/recommended",
         "airbnb",
         "eslint:recommended",
-        "next"
+        "next/core-web-vitals",
+        "next",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -43,7 +45,7 @@
 		"semi": "off",
 		"comma-dangle": "off",
 		"react/jsx-one-expression-per-line": "off",
-		"arrow-body-style": 2,
+		"arrow-body-style": "off",
 		"indent": "off"
          // "@typescript-eslint/explicit-function-return-type": "off",
         // "import/no-extraneous-dependencies": "off",
