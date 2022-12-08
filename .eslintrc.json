@@ -52,6 +52,7 @@
 		"@typescript-eslint/semi": "off",
 		"@typescript-eslint/strict-boolean-expressions": "off",
 		"react/jsx-props-no-spreading": "off",
-		"@typescript-eslint/triple-slash-reference": "off"
+		"@typescript-eslint/triple-slash-reference": "off",
+		"@typescript-eslint/prefer-nullish-coalescing": "off"
 	}
 }
