@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "eslint:recommended",
+        "next"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-undef": "off",
+		"no-tabs": "off",
+		"react/function-component-definition": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/require-default-props": "off",
+		"import/extensions": "off",
+		"import/prefer-default-export": "off",
+		"no-console": "off",
+		"max-len": "off",
+		"quote-props": "off",
+		"jsx-a11y/anchor-is-valid": "off",
+		"import/no-cycle": "off",
+		"@typescript-eslint/indent": "off",
+		"no-multiple-empty-lines": "off",
+		"@typescript-eslint/semi": "off",
+		"semi": "off",
+		"comma-dangle": "off",
+		"react/jsx-one-expression-per-line": "off",
+		"arrow-body-style": 2,
+		"indent": "off"
+         // "@typescript-eslint/explicit-function-return-type": "off",
+        // "import/no-extraneous-dependencies": "off",
+		// "@typescript-eslint/strict-boolean-expressions": "off",
+    }
+}
