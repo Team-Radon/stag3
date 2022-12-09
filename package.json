@@ -29,6 +29,7 @@
 	},
 	"homepage": "https://github.com/Team-Radon/stag3#readme",
 	"dependencies": {
+		"@headlessui/react": "^1.7.5",
 		"@heroicons/react": "^2.0.13",
 		"@orbisclub/orbis-sdk": "^0.4.4-beta.41",
 		"@tanstack/react-query": "^4.19.1",
