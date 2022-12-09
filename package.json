@@ -31,6 +31,7 @@
 	"dependencies": {
 		"@heroicons/react": "^2.0.13",
 		"@orbisclub/orbis-sdk": "^0.4.4-beta.41",
+		"@tanstack/react-query": "^4.19.1",
 		"@types/node": "18.11.11",
 		"@types/react": "18.0.26",
 		"@types/react-dom": "18.0.9",
