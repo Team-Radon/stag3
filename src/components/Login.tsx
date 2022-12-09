@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable no-return-await */
-
 import { ReactNode } from 'react';
 import { User } from '../helpers/interfaces';
 import { useOrbis } from '../orbis/useOrbis';

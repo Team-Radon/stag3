@@ -41,9 +41,7 @@
 		"no-console": "off",
 		"max-len": "off",
 		"import/no-extraneous-dependencies": "off",
-		// "quote-props": "off",
-		// "react/button-has-type": "off",
-		// "react/jsx-props-no-spreading": "off",
+		"no-return-await": "off",
 		"jsx-a11y/anchor-is-valid": "off",
 		"import/no-cycle": "off",
 		"semi": "off",
@@ -51,8 +49,12 @@
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/semi": "off",
 		"@typescript-eslint/strict-boolean-expressions": "off",
+		"@typescript-eslint/no-misused-promises": "off",
 		"react/jsx-props-no-spreading": "off",
 		"@typescript-eslint/triple-slash-reference": "off",
-		"@typescript-eslint/prefer-nullish-coalescing": "off"
+		"@typescript-eslint/prefer-nullish-coalescing": "off",
+		"@typescript-eslint/return-await": "off",
+		"@typescript-eslint/naming-convention": "off",
+		"no-useless-escape": "off"
 	}
 }
