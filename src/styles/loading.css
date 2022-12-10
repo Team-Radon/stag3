@@ -21,6 +21,7 @@
 
 .loading svg path {
 	fill: var(--link-color);
+	fill: var(--accent-color);
 }
 
 .loading.overlay {

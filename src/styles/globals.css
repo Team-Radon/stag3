@@ -4,6 +4,7 @@
 
 [data-theme='light'] {
 	--primary-color: #384aff;
+	--accent-color: #4f46e5;
 	--bg-color: #e5e7eb;
 	--text-color: #374151;
 	--link-color: #444444;

@@ -16,7 +16,7 @@ export const UserProfileItem = ({ details }: { details: Details }) => {
           <AvatarUser details={details} size="32" />
         </div>
         <Link href="/" title={username} className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium text-gray-900 hover:text-indigo-600">{username}</p>
+          <p className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</p>
           <p className="truncate text-sm text-skin-text">{shorten(details?.metadata.address)}</p>
         </Link>
         <Button size="sm" icon={<PlusIcon className="h-4 w-4" />}>
