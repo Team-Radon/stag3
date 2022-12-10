@@ -1,6 +1,8 @@
+import { WalletIcon } from '@heroicons/react/24/outline';
 import { ReactNode } from 'react';
 import { User } from '../helpers/interfaces';
 import { useOrbis } from '../orbis/useOrbis';
+import { Button } from './UI/Button';
 
 interface ConnectOptions {
   provider: any
@@ -25,8 +27,12 @@ export const Login = ({ options, children }: { options: ConnectOptions, children
   };
 
   return (
-    <button type="submit" onClick={async () => await connect()}>
+    <Button
+      icon={<WalletIcon className="w-6 h-6" />}
+      className="uppercase"
+      onClick={async () => await connect()}
+    >
       {children}
-    </button>
+    </Button>
   );
 };

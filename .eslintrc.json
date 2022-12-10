@@ -55,6 +55,7 @@
 		"@typescript-eslint/prefer-nullish-coalescing": "off",
 		"@typescript-eslint/return-await": "off",
 		"@typescript-eslint/naming-convention": "off",
-		"no-useless-escape": "off"
+		"no-useless-escape": "off",
+		"react/no-array-index-key": "off"
 	}
 }

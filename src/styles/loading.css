@@ -1,0 +1,38 @@
+.loading span {
+	width: 100%;
+}
+
+.loading.sm svg {
+	width: 16px;
+	height: 16px;
+}
+
+.loading.md svg {
+	width: 34px;
+	height: 34px;
+}
+
+.loading svg {
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+}
+
+.loading svg path {
+	fill: var(--link-color);
+}
+
+.loading.overlay {
+	position: fixed;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	top: 0;
+	bottom: 80px;
+	left: 0;
+	right: 0;
+	width: 100%;
+}

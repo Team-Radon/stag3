@@ -27,4 +27,5 @@ export interface User {
   details: Details
   metadata: Metadata
   status: number
+  profile: Details
 }

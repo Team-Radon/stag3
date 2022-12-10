@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Orbis } from '@orbisclub/orbis-sdk';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ThemeProvider } from 'next-themes';
 import { OrbisContext } from '../orbis/useOrbis';
 
 const orbis = new Orbis();
@@ -27,7 +28,9 @@ export default function App ({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <OrbisContext.Provider value={orbis}>
-        <Component {...pageProps} />
+        <ThemeProvider defaultTheme="light">
+          <Component {...pageProps} />
+        </ThemeProvider>
       </OrbisContext.Provider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
