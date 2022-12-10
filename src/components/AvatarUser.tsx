@@ -10,7 +10,7 @@ export const AvatarUser = ({
   className = '',
   previewFile = undefined
 }: {
-  details: Details
+  details?: Details
   size?: string
   className?: string
   previewFile?: File | undefined

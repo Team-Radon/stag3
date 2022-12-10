@@ -29,6 +29,7 @@
 	},
 	"homepage": "https://github.com/Team-Radon/stag3#readme",
 	"dependencies": {
+		"@headlessui-float/react": "^0.10.0",
 		"@headlessui/react": "^1.7.5",
 		"@heroicons/react": "^2.0.13",
 		"@orbisclub/orbis-sdk": "^0.4.4-beta.41",
@@ -43,7 +44,8 @@
 		"next": "13.0.6",
 		"next-themes": "^0.2.1",
 		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react-dom": "18.2.0",
+		"zustand": "^4.1.5"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^13.0.6",

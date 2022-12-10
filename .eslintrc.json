@@ -56,6 +56,12 @@
 		"@typescript-eslint/return-await": "off",
 		"@typescript-eslint/naming-convention": "off",
 		"no-useless-escape": "off",
-		"react/no-array-index-key": "off"
+		"react/no-array-index-key": "off",
+		"jsx-a11y/click-events-have-key-events": "off",
+		"jsx-a11y/no-static-element-interactions": "off",
+		"@typescript-eslint/no-floating-promises": "off",
+		"no-nested-ternary": "off",
+		"react/display-name": "off",
+		"react/button-has-type": "off"
 	}
 }
