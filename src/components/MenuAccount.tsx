@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import type { Placement } from '@floating-ui/dom';
 import { useOrbis } from '../orbis/useOrbis';
 import { useAppStore } from '../store/useAppStore';
+import { Button } from './UI/Button';
 
 export const MenuAccount = ({
   children,
@@ -43,8 +44,10 @@ export const MenuAccount = ({
         zIndex={50}
         placement={placement}
       >
-        <Menu.Button className="button px-[22px] border border-skin-border bg-transparent text-skin-link text-[18px] rounded-[23px] h-[46px] flex items-center hover:border-skin-text">
-          {children}
+        <Menu.Button>
+          <Button primary size="md">
+            {children}
+          </Button>
         </Menu.Button>
         <Menu.Items className="overflow-hidden z-50 rounded-2xl border bg-skin-header-bg shadow-lg outline-none">
           <div className="no-scrollbar max-h-[300px] overflow-auto">
