@@ -10,6 +10,21 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
+    extend: {
+      colors: {
+        accent: '#4f46e5',
+        primary: 'var(--primary-color)',
+        'skin-border': 'var(--border-color)',
+        'skin-text': 'var(--text-color)',
+        'skin-link': 'var(--link-color)',
+        'skin-bg': 'var(--bg-color)',
+        'skin-block-bg': 'var(--block-bg)',
+        'skin-header-bg': 'var(--header-bg)',
+        'skin-heading': 'var(--heading-color)',
+        green: '#21b66f',
+        red: '#ff3856',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

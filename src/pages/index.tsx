@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Head from 'next/head'
-import Footer from '../components/Shared/Footer'
-import NavBar from '../components/Shared/NavBar'
-import Hero from '../components/Home/Hero'
-import Card from '../components/Shared/Card'
-import ProfileList from '../components/Sidebar/ProfileList'
+import { ProductItem } from '../components/ProductItem'
+import { ActiveUsers } from '../components/ActiveUsers'
+import Footer from '../components/Footer'
+import NavBar from '../components/NavBar'
+import Hero from '../components/Hero'
 
 const Home = () => (
   <>
@@ -14,18 +14,19 @@ const Home = () => (
       <meta name="description" content="Stage web3 projects" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="static min-h-screen bg-gray-200">
+    <div className="static min-h-screen">
       <NavBar />
       <main className="container mx-auto px-4 md:px-6 2xl:px-20">
         <Hero />
         <div className="space-y-10 lg:flex  lg:gap-20 lg:space-y-0">
           <ul className="list space-y-4 md:space-y-6 lg:w-2/3">
-            <Card />
-            <Card />
-            <Card />
+            <ProductItem />
+            <ProductItem />
+            <ProductItem />
+            <ProductItem />
           </ul>
           <div className="sidebar lg:w-1/3">
-            <ProfileList />
+            <ActiveUsers />
           </div>
         </div>
       </main>

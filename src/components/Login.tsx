@@ -1,32 +1,45 @@
+import { WalletIcon } from '@heroicons/react/24/outline';
 import { ReactNode } from 'react';
 import { User } from '../helpers/interfaces';
 import { useOrbis } from '../orbis/useOrbis';
+import { useAppStore } from '../store/useAppStore';
+import { Button } from './UI/Button';
 
 interface ConnectOptions {
-  provider: any
   chain: 'ethereum' | 'solana'
   lit?: boolean
 }
 
-export const Login = ({ options, children }: { options: ConnectOptions, children: ReactNode }) => {
+export const Login = ({ options, children, loading = false }: { options: ConnectOptions, children: ReactNode, loading?: boolean }) => {
   const orbis = useOrbis();
+  const setUser = useAppStore((state) => state.setUser);
+  const setUserLoading = useAppStore((state) => state.setUserLoading);
 
   const connect = async () => {
+    setUserLoading(true);
     const res: User = await orbis.connect_v2({
       lit: true,
+      provider: options.chain === 'ethereum' ? window?.ethereum : window?.phantom?.solana,
       ...options
     });
 
     if (res.status === 200) {
-      console.log(res)
+      setUser(res);
     } else {
-      console.error(res);
+      console.log(res);
     }
+
+    setUserLoading(false);
   };
 
   return (
-    <button type="submit" onClick={async () => await connect()}>
+    <Button
+      loading={loading}
+      icon={<WalletIcon className="w-6 h-6" />}
+      className="uppercase"
+      onClick={async () => await connect()}
+    >
       {children}
-    </button>
+    </Button>
   );
 };
