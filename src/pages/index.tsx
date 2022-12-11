@@ -6,6 +6,7 @@ import { ActiveUsers } from '../components/ActiveUsers'
 import Footer from '../components/Footer'
 import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
+import { GitCredentials } from '../components/GitCredentials'
 
 const Home = () => (
   <>
@@ -27,7 +28,9 @@ const Home = () => (
           </ul>
           <div className="sidebar lg:w-1/3">
             <ActiveUsers />
+            <GitCredentials />
           </div>
+
         </div>
       </main>
       <Footer />
