@@ -4,7 +4,7 @@ import { Button } from './UI/Button'
 import { NavBarAccount } from './NavBarAccount';
 
 const NavBar = () => (
-  <div className="sticky top-0 z-10 flex shrink-0 justify-between items-center w-full border border-skin-border bg-skin-bg h-16 sm:h-auto px-4 sm:p-7 backdrop-blur">
+  <div className="sticky top-0 z-10 flex shrink-0 justify-between items-center w-full h-16 sm:h-auto px-4 sm:p-7 backdrop-blur">
     <div className="relative w-32">
       <Image src="https://i.imgur.com/Skr4I1Z.png" alt="brand" width={100} height={100} unoptimized />
     </div>

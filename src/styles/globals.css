@@ -4,11 +4,13 @@
 
 [data-theme='light'] {
 	--primary-color: #384aff;
+	--accent-color: #4f46e5;
 	--bg-color: #e5e7eb;
-	--text-color: #374151;
-	--link-color: #444444;
+	--text-color: #0f172a;
+	--link-color: #0284c7;
 	--heading-color: #111827;
-	--border-color: #e5e7eb;
+	--border-color: #d1d5db;
+	--divider-color: #e2e8f0;
 	--header-bg: white;
 	--block-bg: transparent;
 	--shadow-color: #0001;

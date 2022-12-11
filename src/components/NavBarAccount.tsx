@@ -44,24 +44,26 @@ export const NavBarAccount = () => {
 
   return !user && userLoading
     ? (
-      <Button loading>Connect</Button>
+      <Button loading>Connecting</Button>
       )
     : user
       ? (
         <MenuAccount>
-          <AvatarUser
-            details={user?.details}
-            size="18"
-            className="-mr-1 -ml-1 sm:mr-2 md:mr-2 lg:mr-2 xl:mr-2"
-          />
-          <span className="hidden sm:block">{username}</span>
+          <div className="flex gap-2">
+            <AvatarUser
+              details={user?.details}
+              size="18"
+            />
+            <span>{username}</span>
+          </div>
         </MenuAccount>
         )
       : (
         <>
           <Button
-            icon={<WalletIcon className="w-6 h-6" />}
+            primary
             className="uppercase"
+            icon={<WalletIcon className="w-6 h-6" />}
             onClick={() => setShowAuthModal(true)}
           >
             Connect wallet

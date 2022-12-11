@@ -12,9 +12,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        accent: '#4f46e5',
+        accent: 'var(--accent-color)',
         primary: 'var(--primary-color)',
         'skin-border': 'var(--border-color)',
+        'skin-divider': 'var(--divider-color)',
         'skin-text': 'var(--text-color)',
         'skin-link': 'var(--link-color)',
         'skin-bg': 'var(--bg-color)',

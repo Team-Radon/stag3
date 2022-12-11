@@ -18,7 +18,7 @@ export const ActiveUsers = () => {
 
   return (
     <Card>
-      <div className="divide-y divide-skin-border">
+      <div className="divide-y divide-skin-divider">
         {users?.data?.map((user: User, i: number) => (
           <UserProfileItem key={i} details={user.profile} />
         ))}
