@@ -47,7 +47,7 @@ export const AvatarUser = ({
           alt="avatar"
           width={Number(size)}
           height={Number(size)}
-          onError={() => setSrc(makeBlockie(details?.metadata?.address))}
+          onError={() => setSrc(makeBlockie(details?.metadata?.address || ''))}
         />
       </div>
     </span>
