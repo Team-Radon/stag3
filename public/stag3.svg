@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120.26459mm"
+   height="120.29582mm"
+   viewBox="0 0 120.26459 120.29582"
+   version="1.1"
+   id="svg775"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01, custom)"
+   sodipodi:docname="stage-2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview777"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.75722503"
+     inkscape:cx="267.42381"
+     inkscape:cy="274.68717"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid779"
+       dotted="true"
+       spacingx="2"
+       spacingy="2"
+       units="mm" />
+  </sodipodi:namedview>
+  <defs
+     id="defs772" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-39.867711,0.14790639)">
+    <path
+       style="fill:#87aade;stroke:#87aad0;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 100,0 79.999998,10 c 0,0 0,20 0,20 L 100,39.999999 120,30 V 10 Z"
+       id="path2190" />
+    <path
+       style="fill:#3666af;fill-opacity:1;stroke:#3666af;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 79.999998,30 c 0,0 -20,9.999999 -20,9.999999 0,0 0,19.999999 0,19.999999 l 40.000002,20 40,-20 V 39.999999 L 120,30 100,39.999999 Z"
+       id="path3702"
+       inkscape:export-filename="../33ff731d/final.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#143c79;fill-opacity:1;stroke:#143c79;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 59.999998,59.999998 39.999999,69.999999 v 20 L 100,120 160,89.999999 v -20 l -20,-10.000001 -40,20 z"
+       id="path4430" />
+  </g>
+</svg>

@@ -1,7 +1,7 @@
 import Error from 'next/error';
 import { useRouter } from 'next/router';
-import { useUsername } from '../../hooks/useUsername';
-import { useGetProfile } from '../../orbis/useGetProfile';
+import { useUsername } from '../../../hooks/useUsername';
+import { useGetProfile } from '../../../orbis/useGetProfile';
 
 const Profile = () => {
   const {
