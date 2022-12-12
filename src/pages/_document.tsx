@@ -14,7 +14,7 @@ class Stag3Document extends Document {
         <Head>
           <link
             rel="shortcut icon"
-            href="https://cdn2.whatoplay.com/stag3/favicon.ico"
+            href="/favicon.ico"
             type="image/x-icon"
           />
           <link
