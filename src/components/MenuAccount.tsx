@@ -75,6 +75,21 @@ export const MenuAccount = ({
                       : 'bg-skin-header-bg text-skin-text',
                     'cursor-pointer whitespace-nowrap px-3 py-2'
                   )}
+                  onClick={async () => push(`/profile/${user?.did}/credentials/`)}
+                >
+                  Credentials
+                </div>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <div
+                  className={clsx(
+                    active
+                      ? 'bg-skin-border text-skin-link'
+                      : 'bg-skin-header-bg text-skin-text',
+                    'cursor-pointer whitespace-nowrap px-3 py-2'
+                  )}
                   onClick={() => logout()}
                 >
                   Log out
