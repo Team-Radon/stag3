@@ -33,6 +33,7 @@
 		"@headlessui-float/react": "^0.10.0",
 		"@headlessui/react": "^1.7.5",
 		"@heroicons/react": "^2.0.13",
+		"@hookform/resolvers": "^2.9.10",
 		"@orbisclub/orbis-sdk": "^0.4.4-beta.41",
 		"@tanstack/react-query": "^4.19.1",
 		"@tanstack/react-query-devtools": "^4.19.1",
@@ -46,7 +47,9 @@
 		"next-themes": "^0.2.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"react-hook-form": "^7.40.0",
 		"react-hot-toast": "^2.4.0",
+		"zod": "^3.19.1",
 		"zustand": "^4.1.5"
 	},
 	"devDependencies": {
