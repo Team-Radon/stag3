@@ -1,15 +1,11 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 import Select, { components, MultiValue, MultiValueGenericProps } from 'react-select';
 import { TAGS } from 'src/constants'
+import { Tag } from 'src/helpers/interfaces';
 
-export interface SelectOption {
-  readonly title: string
-  readonly slug: string
-}
+export const options: readonly Tag[] = TAGS;
 
-export const options: readonly SelectOption[] = TAGS;
-
-const MultiValueContainer = (props: MultiValueGenericProps<SelectOption>) => (
+const MultiValueContainer = (props: MultiValueGenericProps<Tag>) => (
   <components.MultiValueContainer {...props} />
 );
 
@@ -17,10 +13,10 @@ const MultiValueContainer = (props: MultiValueGenericProps<SelectOption>) => (
 interface Props {
   className?: string
   closeMenuOnSelect?: boolean
-  setSelect: Dispatch<MultiValue<SelectOption> | undefined>
+  setSelect: Dispatch<MultiValue<Tag> | undefined>
 }
 export const MultiSelect = ({ className, setSelect, closeMenuOnSelect = true }: Props) => {
-  const [userChoice, setSelectedOption] = useState<MultiValue<SelectOption>>([]);
+  const [userChoice, setSelectedOption] = useState<MultiValue<Tag>>([]);
 
   // set selected option
   useEffect(() => {
@@ -31,10 +27,12 @@ export const MultiSelect = ({ className, setSelect, closeMenuOnSelect = true }: 
       className={className}
       closeMenuOnSelect={closeMenuOnSelect}
       components={{ MultiValueContainer }}
+      getOptionLabel={(option) => option.title}
+      getOptionValue={(option) => option.slug}
       defaultValue={[]}
       isMulti
       options={options}
-      onChange={(choice) => setSelectedOption(choice)}
+      onChange={(option) => setSelectedOption(option)}
     />
   )
 }
