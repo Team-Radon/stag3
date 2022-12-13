@@ -48,8 +48,8 @@ export const AddProject = () => {
     //  {label,value} - default to display item in select
     // format {label,value} to {name,url} - tags format
     const formattedTags = tags?.length && tags.map(({ label, value }: { label: string, value: string }) => ({
-      name: label,
-      url: value
+      title: label,
+      slug: value
     })) || [];
 
     const res = await orbis.createPost({
