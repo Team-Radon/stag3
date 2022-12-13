@@ -1,13 +1,13 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 import Select, { components, MultiValue, MultiValueGenericProps } from 'react-select';
-import { tags } from '../../../constants'
+import { TAGS } from 'src/constants'
 
 export interface SelectOption {
-  readonly label: string
-  readonly value: string
+  readonly title: string
+  readonly slug: string
 }
 
-export const options: readonly SelectOption[] = tags;
+export const options: readonly SelectOption[] = TAGS;
 
 const MultiValueContainer = (props: MultiValueGenericProps<SelectOption>) => (
   <components.MultiValueContainer {...props} />
