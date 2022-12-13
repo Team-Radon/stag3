@@ -45,18 +45,11 @@ export const AddProject = () => {
   const [tags, setSelectedTag] = useState <any>();
 
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
-    //  {label,value} - default to display item in select
-    // format {label,value} to {name,url} - tags format
-    const formattedTags = tags?.length && tags.map(({ label, value }: { label: string, value: string }) => ({
-      title: label,
-      slug: value
-    })) || [];
-
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
       context: process.env.PROJECT_CONTEXT,
-      tags: formattedTags,
+      tags,
       data: {
         logo: project.logo,
         description_long: project.description_long,
@@ -100,6 +93,7 @@ export const AddProject = () => {
           className="mb-2 block w-full mtop-2"
           primary
           type="submit"
+          disabled={form.formState.isDirty}
         >
           Publish
         </Button>
