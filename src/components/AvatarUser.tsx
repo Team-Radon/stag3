@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import clsx from 'clsx';
 import makeBlockie from 'ethereum-blockies-base64';
 import Image from 'next/image';
