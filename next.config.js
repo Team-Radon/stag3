@@ -7,6 +7,7 @@ const nextConfig = {
       'arweave.net',
       'res.cloudinary.com',
       'turquoise-changing-crane-15.mypinata.cloud',
+      'avatars.githubusercontent.com'
     ],
     remotePatterns: [
       {
@@ -16,7 +17,6 @@ const nextConfig = {
     ],
   },
   env: {
-    IFRAMELY_API_KEY: process.env.IFRAMELY_API_KEY,
     PINATA_API_KEY: process.env.PINATA_API_KEY,
     PINATA_SECRET_API_KEY: process.env.PINATA_SECRET_API_KEY,
     PINATA_GATEWAY: process.env.PINATA_GATEWAY,

@@ -2,6 +2,7 @@ import { User } from '../helpers/interfaces';
 import { useGetActiveUsers } from '../orbis/useGetActiveUsers';
 import { Button } from './UI/Button';
 import Card from './UI/Card';
+import { LoadingSpinner } from './UI/LoadingSpinner';
 import { UserProfileItem } from './UserProfileItem';
 
 export const ActiveUsers = () => {
@@ -9,10 +10,7 @@ export const ActiveUsers = () => {
 
   if (!users && isLoading) {
     return (
-      <>
-        <div className="lazy-loading mb-2 rounded-md w-[80%] h-[20px]" />
-        <div className="lazy-loading rounded-md w-[50%] h-[20px]" />
-      </>
+      <LoadingSpinner />
     );
   }
 
