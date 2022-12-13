@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { Float } from '@headlessui-float/react';
 import { Menu } from '@headlessui/react';
 import clsx from 'clsx';

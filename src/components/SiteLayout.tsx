@@ -1,6 +1,4 @@
 import { ReactNode } from 'react';
-// import { Toaster } from '@/ui/Toaster';
-// import { Toaster } from 'react-hot-toast';
 import Head from 'next/head'
 import Footer from './Footer';
 import NavBar from './NavBar';
@@ -11,7 +9,6 @@ interface Props {
 
 const SiteLayout = ({ children }: Props) => (
   <>
-    {/* <Toaster /> */}
     <Head>
       <title>STAG3</title>
       <meta name="description" content="Stage web3 projects" />

@@ -1,4 +1,3 @@
-export const { PROJECT_CONTEXT } = process.env;
 
 export const IFRAMELY_API_KEY =
   process.env.IFRAMELY_API_KEY ?? 'b357c70e91259962333082';
