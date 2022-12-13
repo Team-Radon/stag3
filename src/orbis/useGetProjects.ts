@@ -1,8 +1,13 @@
-// https://orbis.club/documentation/api-documentation/getPosts
+import { Project } from '@/helpers/interfaces';
 import { useQuery } from '@tanstack/react-query';
 import { useOrbis } from './useOrbis';
 
-export const useGetProjects = ({ options }: { options: any }) => {
+export interface GetProjectsOptions {
+  did: string
+  tag: string
+}
+
+export const useGetProjects = ({ options }: { options?: GetProjectsOptions }) => {
   const orbis = useOrbis();
 
   return useQuery(
@@ -11,6 +16,10 @@ export const useGetProjects = ({ options }: { options: any }) => {
       context: process.env.PROJECT_CONTEXT,
       only_master: true,
       ...options
-    })
+    }) as {
+      data: Project[]
+      error: Error
+      status: number
+    }
   );
 };

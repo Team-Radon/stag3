@@ -29,3 +29,30 @@ export interface User {
   status: number
   profile: Details
 }
+
+export interface Tag {
+  title: string
+  slug: string
+}
+
+export interface Project {
+  stream_id: string
+  content: {
+    title: string
+    body: string
+    tags: Tag[]
+    data: {
+      logo: string
+      description_long: string
+      whitepaper: string
+      website: string
+      twitter: string
+      github: string
+      gitcoin: string
+      discord: string
+    }
+  }
+  creator_details: Details
+  creator: string
+  timestamp: number
+}
