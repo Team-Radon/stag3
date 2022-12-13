@@ -6,7 +6,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'next-themes';
 import { OrbisContext } from '../orbis/useOrbis';
 
-const orbis = new Orbis();
+const orbis = new Orbis({
+  PINATA_API_KEY: process.env.PINATA_API_KEY,
+  PINATA_SECRET_API_KEY: process.env.PINATA_SECRET_API_KEY,
+  PINATA_GATEWAY: process.env.PINATA_GATEWAY
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {

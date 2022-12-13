@@ -62,6 +62,8 @@
 		"@typescript-eslint/no-floating-promises": "off",
 		"no-nested-ternary": "off",
 		"react/display-name": "off",
-		"react/button-has-type": "off"
+		"react/button-has-type": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"no-param-reassign": "off"
 	}
 }
