@@ -6,7 +6,7 @@ import { ProjectLogo } from './ProjectLogo';
 import { ProjectLogoOverlay } from './ProjectLogoOverlay';
 
 interface Props {
-  logo: string
+  logo: string | undefined
   imageUploaded?: (url: string) => void
 }
 

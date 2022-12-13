@@ -10,7 +10,7 @@ interface ProjectInput {
   body: string
   title: string
   tags: Tag[]
-  logo: string | null
+  logo: string | undefined
   description_long: string
   whitepaper: string
   website: string
@@ -28,7 +28,7 @@ export const AddProject = () => {
       body: 'Perpetual Protocol is an on-chain perpetual futures DEX with deep liquidity and builder-ready composability.',
       title: 'Perf Protocol Test Data',
       tags: [{ title: 'Defi', slug: 'defi' }],
-      logo: null,
+      logo: undefined,
       description_long: 'Hello world',
       whitepaper: '',
       website: 'https://perp.com/',
