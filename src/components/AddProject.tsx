@@ -1,9 +1,13 @@
+/* eslint-disable no-mixed-operators */
 // https://orbis.club/documentation/api-documentation/createPost
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
 import { useOrbis } from '../orbis/useOrbis';
 import { Button } from './UI/Button';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
+import { MultiSelect } from './UI/MultiSelect';
 
 interface Tag {
   title: string
@@ -59,6 +63,8 @@ export const AddProject = () => {
       discord: 'https://discord.com/invite/Dq9mTmCaBb'
     }
   });
+  const [tags, setSelectedTag] = useState <any>();
+
   // const summary = form.watch('summary');
   // const name = form.watch('name');
 
@@ -67,11 +73,18 @@ export const AddProject = () => {
     const { description, summary, whitepaper, team_members, status, website, twitter, gitcoin, github, discord } = data;
     const dataInfo = { description, summary, whitepaper, team_members, status, website, twitter, gitcoin, github, discord }
 
+    //  {label,value} - default to display item in select
+    // format {label,value} to {name,url} - tags format
+    const formattedTags = tags?.length && tags.map(({ label, value }: { label: string, value: string }) => ({
+      name: label,
+      url: value
+    })) || [];
+
     const res = await orbis.createPost({
       title: data.name,
       body: data.description,
       context: process.env.PROJECT_CONTEXT,
-      tag: data.category,
+      tag: formattedTags,
       data: dataInfo
     });
 
@@ -86,6 +99,7 @@ export const AddProject = () => {
       // push(`/${user?.did}/${res.doc}`);
     }
   }
+
   const inputClass = 'items-center px-4 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-600 bg-white dark:bg-transparent border border-gray-400 dark:border-[#291f43] focus:border-brand-500 focus:ring-brand-400 disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20 outline-none w-full rounded-xl'
 
   return (
@@ -104,6 +118,8 @@ export const AddProject = () => {
         <Input className={inputClass} label="Github" {...form.register('github')} />
         <Input className={inputClass} label="Gitcoin" {...form.register('gitcoin')} />
         <Input className={inputClass} label="Discord" {...form.register('discord')} />
+
+        <MultiSelect className="py-4 rounded-xl" closeMenuOnSelect={false} setSelect={setSelectedTag} />
         {/* <MarkdownEditor
           label="Content"
           {...form.register('content')}
@@ -111,7 +127,7 @@ export const AddProject = () => {
         /> */}
       </Form>
       <Button
-        className="mb-2 block w-full mtop-2"
+        className="mb-2 block w-full"
         primary
         type="submit"
         onClick={form.handleSubmit(onSubmit)}
