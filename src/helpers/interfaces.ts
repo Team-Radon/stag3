@@ -52,6 +52,7 @@ export interface Project {
       discord: string
     }
   }
+  creator_details: Details
   creator: string
   timestamp: number
 }
