@@ -93,7 +93,6 @@ export const AddProject = () => {
           className="mb-2 block w-full mtop-2"
           primary
           type="submit"
-          disabled={form.formState.isDirty}
         >
           Publish
         </Button>
