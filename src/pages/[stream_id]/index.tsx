@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
-import SiteLayout from '@/components/SiteLayout';
+import { GridItemTwelve, GridLayout } from '@/components/GridLayout';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
 
@@ -22,22 +22,18 @@ const Project = () => {
   }
 
   return (
-    <SiteLayout>
-      <main className="container mx-auto px-4 md:px-6 2xl:px-20">
-        <div className="space-y-10 lg:flex  lg:gap-20 lg:space-y-0">
-          <div className="sidebar lg:w-1/3">
-            {post && isLoading
-              ? <div>loading</div>
-              : (
-                <div>
-                  <h1>{username}</h1>
-                  <div>{JSON.stringify(post)}</div>
-                </div>
-                )}
-          </div>
-        </div>
-      </main>
-    </SiteLayout>
+    <GridLayout>
+      <GridItemTwelve>
+        {post && isLoading
+          ? <div>loading</div>
+          : (
+            <div>
+              <h1>{username}</h1>
+              <div>{JSON.stringify(post)}</div>
+            </div>
+            )}
+      </GridItemTwelve>
+    </GridLayout>
   );
 };
 
