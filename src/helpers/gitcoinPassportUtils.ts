@@ -18,6 +18,15 @@ export const getGitCoinPassportScores = (providers: string[]) => {
 }
 
 /**
+ * Returns an array stamps for the given passport, or an empty array if the passport is not provided or does not have any stamps.
+ * @param {CeramicPassport | false} passport - The passport to extract the stamps from
+ * @return {string[]} - An array of provider names for the given passport
+ */
+export const getStamps = (passport: CeramicPassport | false) => {
+  if (!passport) { return [] }
+  return passport?.stamps?.map((stamp) => stamp.provider);
+}
+/**
  * Export Ceramic Passport types in utils
  * To reduce the need to import the @gitcoinco/passport-sdk-reader module in multiple components, we can export the relevant types from the utils module and you can import them in a single file.
  */

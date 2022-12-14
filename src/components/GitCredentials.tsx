@@ -3,8 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import type { CeramicPassport } from '@/helpers/gitcoinPassportUtils';
-import { getGitPassportCredentials } from '@/helpers/gitcoinPassportUtils';
+import { CeramicPassport, getStamps, getGitPassportCredentials, getGitCoinPassportScores } from '@/helpers/gitcoinPassportUtils';
 
 import { useAddress } from '../hooks/useAddress';
 import { useAppStore } from '../store/useAppStore';
@@ -18,12 +17,17 @@ export const GitCredentials = () => {
   const { address } = useAddress(user?.details);
 
   const [passport, setPassport] = useState<CeramicPassport >();
+  const [score, setScore] = useState<number>(0);
 
   // get gitcoin credentials
   const readGitCredentials = async () => {
-    const res: CeramicPassport | false = await getGitPassportCredentials(address);
-    if (res) {
-      setPassport(res);
+    const response: CeramicPassport | false = await getGitPassportCredentials(address);
+    if (response) {
+      // set Credentials
+      setPassport(response);
+      // get total Score with verified credential
+      const stamps = await getStamps(response);
+      setScore(await getGitCoinPassportScores(stamps));
     }
   }
 
@@ -46,6 +50,10 @@ export const GitCredentials = () => {
                 <img src="https://passport.gitcoin.co/assets/gitcoinLogoDark.svg" alt="Gitcoin Logo" />
                 <img className="mx-4 h-6" src="https://passport.gitcoin.co/assets/logoLine.svg" alt="Logo Line" />
                 <img src="https://passport.gitcoin.co/assets/passportLogoBlack.svg" alt="pPassport Logo" />
+              </div>
+              <div className="text-l truncate">
+                Total Score
+                {` ${score}`}
               </div>
               <div className="text-sm truncate">{address}</div>
             </div>
