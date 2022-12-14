@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useOrbis } from './useOrbis';
 
 export interface GetProjectsOptions {
-  did: string
-  tag: string
+  did?: string
+  tag?: string
 }
 
 export const useGetProjects = ({ options }: { options?: GetProjectsOptions }) => {

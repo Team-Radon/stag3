@@ -1,10 +1,13 @@
+/* eslint-disable no-mixed-operators */
 import { Tag } from '@/helpers/interfaces';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useOrbis } from '../orbis/useOrbis';
 import { InputUploadLogo } from './InputUploadLogo';
 import { Button } from './UI/Button';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
+import { MultiSelect } from './UI/MultiSelect';
 
 interface ProjectInput {
   body: string
@@ -38,13 +41,15 @@ export const AddProject = () => {
       discord: 'Dq9mTmCaBb'
     }
   });
+  // I had hard time fixing the type
+  const [tags, setSelectedTag] = useState <any>();
 
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
       context: process.env.PROJECT_CONTEXT,
-      tags: project.tags,
+      tags,
       data: {
         logo: project.logo,
         description_long: project.description_long,
@@ -83,10 +88,12 @@ export const AddProject = () => {
         <Input label="Github" {...form.register('github')} />
         <Input label="Gitcoin" {...form.register('gitcoin')} />
         <Input label="Discord" {...form.register('discord')} />
+        <MultiSelect closeMenuOnSelect={false} setSelect={setSelectedTag} />
         <Button
           className="mb-2 block w-full mtop-2"
           primary
           type="submit"
+          disabled={form.formState.isDirty}
         >
           Publish
         </Button>
