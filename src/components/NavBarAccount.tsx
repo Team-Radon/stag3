@@ -1,4 +1,4 @@
-import { WalletIcon } from '@heroicons/react/24/outline';
+/* eslint-disable @next/next/no-img-element */
 import { useEffect } from 'react';
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { User } from '../helpers/interfaces';
@@ -50,11 +50,9 @@ export const NavBarAccount = () => {
     : user
       ? (
         <MenuAccount>
-          <div className="flex gap-2">
           <div className="flex items-center gap-2">
             <AvatarUser
               details={user?.details}
-              size="18"
               size="24"
             />
             <span>{username}</span>
@@ -66,26 +64,27 @@ export const NavBarAccount = () => {
           <Button
             primary
             className="uppercase"
-            icon={<WalletIcon className="w-6 h-6" />}
             icon={<ArrowRightOnRectangleIcon className="w-6 h-6" />}
             onClick={() => setShowAuthModal(true)}
           >
-            Connect wallet
             Login
           </Button>
           {hasMounted && (
           <Modal
-            title="Connect to Stage"
+            title="CONNECT WALLET"
             open={showAuthModal}
             onClose={() => setShowAuthModal(false)}
           >
-            <div className="m-4 space-y-2">
+            <div className="flex flex-col gap-4 px-4 py-6">
               <Login
                 options={{
                   chain: 'ethereum'
                 }}
               >
-                Connect to metamask
+                <div className="flex items-center gap-2">
+                  <img className="w-6 h-6" src="./metamask.svg" alt="MetaMask" />
+                  <span>Connect with MetaMask</span>
+                </div>
               </Login>
 
               <Login
@@ -93,7 +92,10 @@ export const NavBarAccount = () => {
                   chain: 'solana'
                 }}
               >
-                Connect to phantom wallet
+                <div className="flex items-center gap-2">
+                  <img className="w-6 h-6" src="./phantom.svg" alt="MetaMask" />
+                  <span>Connect with Phantom</span>
+                </div>
               </Login>
             </div>
           </Modal>
