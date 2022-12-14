@@ -14,7 +14,7 @@ const SiteLayout = ({ children }: Props) => (
       <meta name="description" content="Stage web3 projects" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="static min-h-screen">
+    <div className="static flex flex-col min-h-screen">
       <NavBar />
       {children}
       <Footer />
