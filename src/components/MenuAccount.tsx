@@ -61,7 +61,7 @@ export const MenuAccount = ({
                       : 'bg-skin-header-bg text-skin-text',
                     'cursor-pointer whitespace-nowrap px-3 py-2'
                   )}
-                  onClick={async () => push(`/${user?.did}`)}
+                  onClick={async () => push(`/profile/${user?.did}`)}
                 >
                   View profile
                 </div>
