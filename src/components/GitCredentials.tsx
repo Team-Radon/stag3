@@ -1,8 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { CeramicPassport, PassportReader } from '@gitcoinco/passport-sdk-reader';
+import type { CeramicPassport } from '@/helpers/gitcoinPassportUtils';
+import { getGitPassportCredentials } from '@/helpers/gitcoinPassportUtils';
+
 import { useAddress } from '../hooks/useAddress';
 import { useAppStore } from '../store/useAppStore';
 
@@ -10,8 +13,6 @@ import { Button } from './UI/Button';
 import Card from './UI/Card';
 
 export const GitCredentials = () => {
-  const reader = new PassportReader();
-
   const user = useAppStore((state) => state.user);
   const userLoading = useAppStore((state) => state.userLoading);
   const { address } = useAddress(user?.details);
@@ -20,13 +21,11 @@ export const GitCredentials = () => {
 
   // get gitcoin credentials
   const readGitCredentials = async () => {
-    const res: CeramicPassport | false = await reader.getPassportStream(address);
+    const res: CeramicPassport | false = await getGitPassportCredentials(address);
     if (res) {
       setPassport(res);
     }
   }
-
-  console.log(passport)
 
   useEffect(() => {
     if (address) {
@@ -50,6 +49,7 @@ export const GitCredentials = () => {
               </div>
               <div className="text-sm truncate">{address}</div>
             </div>
+
             {passport?.stamps?.length
               ? (
                 <div>
