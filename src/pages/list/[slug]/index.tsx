@@ -11,14 +11,14 @@ const ListByTag = () => {
   const {
     query: { slug }
   } = useRouter();
-  const options = { tag: slug?.toString() }
+
   return (
     <GridLayout>
       <GridItemTwelve>
         <Hero />
       </GridItemTwelve>
       <GridItemEight className="flex flex-col gap-4 md:gap-6">
-        <Projects options={options} />
+        <Projects options={{ tag: slug as string }} />
       </GridItemEight>
       <GridItemFour className="flex flex-col gap-4 md:gap-6">
         <ActiveUsers />

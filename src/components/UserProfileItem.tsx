@@ -15,7 +15,7 @@ export const UserProfileItem = ({ details }: { details: Details }) => {
         <div className="flex-shrink-0">
           <AvatarUser details={details} size="32" />
         </div>
-        <Link href="/" title={username} className="min-w-0 flex-1">
+        <Link href={`/profile/${details?.did}`} title={username} className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</p>
           <p className="truncate text-sm text-skin-text">{shorten(details?.metadata?.address)}</p>
         </Link>

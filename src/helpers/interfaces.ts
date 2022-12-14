@@ -24,10 +24,13 @@ export interface Metadata {
 
 export interface User {
   did: string
+  username: string
   details: Details
   metadata: Metadata
   status: number
   profile: Details
+  count_followers: number
+  count_following: number
 }
 
 export interface Tag {
