@@ -1,8 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { CeramicPassport, PassportReader } from '@gitcoinco/passport-sdk-reader';
+import { CeramicPassport, getStamps, getGitPassportCredentials, getGitCoinPassportScores } from '@/helpers/gitcoinPassportUtils';
+
 import { useAddress } from '../hooks/useAddress';
 import { useAppStore } from '../store/useAppStore';
 
@@ -10,23 +12,24 @@ import { Button } from './UI/Button';
 import Card from './UI/Card';
 
 export const GitCredentials = () => {
-  const reader = new PassportReader();
-
   const user = useAppStore((state) => state.user);
   const userLoading = useAppStore((state) => state.userLoading);
   const { address } = useAddress(user?.details);
 
   const [passport, setPassport] = useState<CeramicPassport >();
+  const [score, setScore] = useState<number>(0);
 
   // get gitcoin credentials
   const readGitCredentials = async () => {
-    const res: CeramicPassport | false = await reader.getPassportStream(address);
-    if (res) {
-      setPassport(res);
+    const response: CeramicPassport | false = await getGitPassportCredentials(address);
+    if (response) {
+      // set Credentials
+      setPassport(response);
+      // get total Score with verified credential
+      const stamps = await getStamps(response);
+      setScore(await getGitCoinPassportScores(stamps));
     }
   }
-
-  console.log(passport)
 
   useEffect(() => {
     if (address) {
@@ -48,8 +51,13 @@ export const GitCredentials = () => {
                 <img className="mx-4 h-6" src="https://passport.gitcoin.co/assets/logoLine.svg" alt="Logo Line" />
                 <img src="https://passport.gitcoin.co/assets/passportLogoBlack.svg" alt="pPassport Logo" />
               </div>
+              <div className="text-l truncate">
+                Total Score
+                {` ${score}`}
+              </div>
               <div className="text-sm truncate">{address}</div>
             </div>
+
             {passport?.stamps?.length
               ? (
                 <div>
