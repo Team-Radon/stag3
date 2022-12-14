@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 import { GridItemTwelve, GridLayout } from '@/components/GridLayout';
+import { ProjectsItem } from '@/components/ProjectsItem';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
 
@@ -27,11 +28,16 @@ const Project = () => {
         {post && isLoading
           ? <div>loading</div>
           : (
-            <div>
-              <h1>{username}</h1>
-              <div>{JSON.stringify(post)}</div>
-            </div>
+            <>
+              <div>
+                <h1>{username}</h1>
+                <div>{JSON.stringify(post)}</div>
+              </div>
+              {post?.data &&
+              <ProjectsItem project={post.data} />}
+            </>
             )}
+
       </GridItemTwelve>
     </GridLayout>
   );
