@@ -8,7 +8,7 @@ import { NavBarAccount } from './NavBarAccount';
 const NavBar = () => {
   const { push } = useRouter();
   return (
-    <div className="sticky top-0 z-10 flex shrink-0 justify-between items-center w-full h-16 sm:h-auto p-4 sm:p-6 backdrop-blur">
+    <div className="sticky top-0 z-40 flex shrink-0 justify-between items-center w-full h-16 bg-[#e5e7eb]/70 sm:h-auto p-4 sm:p-6 backdrop-blur">
       <Link href="/" title="Home">
         <div className="brand flex items-center gap-2">
           <div className="relative w-10">
