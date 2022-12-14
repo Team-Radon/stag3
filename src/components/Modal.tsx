@@ -1,7 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment, ReactNode } from 'react';
-import { ButtonRounded } from './ButtonRounded';
 
 interface Props {
   title?: string
@@ -44,19 +43,19 @@ export const Modal = ({
         leaveFrom="opacity-100 translate-y-0 sm:scale-100"
         leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       >
-        <div className="shell relative overflow-hidden rounded-none md:rounded-3xl">
-          <div className="pt-3 text-center">
+        <div className="shell relative overflow-hidden rounded-lg">
+          <div className="flex justify-between p-4 border-b border-skin-border">
             <h3>{title}</h3>
+            {!hideClose && (
+            <button
+              aria-label="Close"
+              onClick={onClose}
+            >
+              <XMarkIcon className="w-6 h-6 hover:text-accent" />
+            </button>
+            )}
           </div>
-          <div className="modal-body">{children}</div>
-          {!hideClose && (
-          <ButtonRounded
-            className="absolute right-3 top-[18px] !border-none"
-            onClick={onClose}
-          >
-            <XMarkIcon className="w-[24px] h-[24px]" />
-          </ButtonRounded>
-          )}
+          <div>{children}</div>
         </div>
       </Transition.Child>
     </Dialog>

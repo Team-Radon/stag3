@@ -1,4 +1,3 @@
-import { WalletIcon } from '@heroicons/react/24/outline';
 import { ReactNode } from 'react';
 import { User } from '../helpers/interfaces';
 import { useOrbis } from '../orbis/useOrbis';
@@ -34,9 +33,9 @@ export const Login = ({ options, children, loading = false }: { options: Connect
 
   return (
     <Button
+      primary
       loading={loading}
-      icon={<WalletIcon className="w-6 h-6" />}
-      className="uppercase"
+      className="flex w-full justify-center uppercase"
       onClick={async () => await connect()}
     >
       {children}
