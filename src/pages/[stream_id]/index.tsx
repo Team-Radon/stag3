@@ -3,6 +3,7 @@ import Error from 'next/error';
 import { GridItemTwelve, GridLayout } from '@/components/GridLayout';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
+import { ProjectsItem } from '@/components/ProjectsItem';
 
 const Project = () => {
   const {
@@ -27,11 +28,16 @@ const Project = () => {
         {post && isLoading
           ? <div>loading</div>
           : (
+            <>
             <div>
               <h1>{username}</h1>
               <div>{JSON.stringify(post)}</div>
             </div>
+            {post?.data &&
+            <ProjectsItem project={post.data} />}
+            </>
             )}
+
       </GridItemTwelve>
     </GridLayout>
   );
