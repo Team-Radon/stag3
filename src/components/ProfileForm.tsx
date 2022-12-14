@@ -54,7 +54,7 @@ export const ProfileForm = ({ profile }: { profile: User }) => {
       <div className="space-y-2 p-4">
         <div className="flex justify-center">
           <InputUploadAvatar
-            details={{ ...profile?.details, pfp }}
+            details={{ ...profile?.details, pfp } as any}
             imageUploaded={(url) => {
               form.setValue('pfp', url);
             }}
