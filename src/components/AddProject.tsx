@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useOrbis } from '../orbis/useOrbis';
 import { InputUploadLogo } from './InputUploadLogo';
+import { MarkdownEditor } from './MarkdownEditor';
 import { Button } from './UI/Button';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
@@ -42,7 +43,7 @@ export const AddProject = () => {
     }
   });
   // I had hard time fixing the type
-  const [tags, setSelectedTag] = useState <any>();
+  const [tags, setSelectedTag] = useState<any>();
 
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     const res = await orbis.createPost({
@@ -72,6 +73,7 @@ export const AddProject = () => {
   }
 
   const logo = form.watch('logo')
+  const description_long = form.watch('description_long')
 
   return (
     <div className="mb-5 px-4 md:px-0">
@@ -81,7 +83,12 @@ export const AddProject = () => {
         <InputUploadLogo logo={logo} {...form.register('logo')} imageUploaded={(url) => form.setValue('logo', url)} />
         <Input label="Project name" {...form.register('title')} />
         <Input label="Description" {...form.register('body')} />
-        <Input label="Summary" {...form.register('description_long')} />
+        <MarkdownEditor
+          label="Summary"
+          {...form.register('description_long')}
+          imageUploaded={(body) => form.setValue('description_long', body)}
+          count={description_long.length}
+        />
         <Input label="Whitepaper" {...form.register('whitepaper')} />
         <Input label="Website" {...form.register('website')} />
         <Input label="Twitter" {...form.register('twitter')} />

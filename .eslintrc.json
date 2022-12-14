@@ -65,6 +65,7 @@
 		"react/button-has-type": "off",
 		"react/jsx-no-useless-fragment": "off",
 		"no-param-reassign": "off",
-		"@typescript-eslint/restrict-template-expressions": "off"
+		"@typescript-eslint/restrict-template-expressions": "off",
+		"no-restricted-syntax": "off"
 	}
 }
