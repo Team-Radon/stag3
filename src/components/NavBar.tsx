@@ -12,7 +12,7 @@ const NavBar = () => {
       <Link href="/" title="Home">
         <div className="brand flex items-center gap-2">
           <div className="relative w-10">
-            <Image src="./stag3.svg" alt="brand" width={50} height={50} unoptimized />
+            <Image src="/stag3.svg" alt="brand" width={50} height={50} unoptimized />
           </div>
           <div className="text-4xl font-extrabold tracking-tight text-slate-800">stage</div>
         </div>
