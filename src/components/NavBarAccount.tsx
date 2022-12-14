@@ -1,5 +1,6 @@
 import { WalletIcon } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { User } from '../helpers/interfaces';
 import { useHasMounted } from '../hooks/useHasMounted';
 import { useUsername } from '../hooks/useUsername';
@@ -50,9 +51,11 @@ export const NavBarAccount = () => {
       ? (
         <MenuAccount>
           <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <AvatarUser
               details={user?.details}
               size="18"
+              size="24"
             />
             <span>{username}</span>
           </div>
@@ -64,9 +67,11 @@ export const NavBarAccount = () => {
             primary
             className="uppercase"
             icon={<WalletIcon className="w-6 h-6" />}
+            icon={<ArrowRightOnRectangleIcon className="w-6 h-6" />}
             onClick={() => setShowAuthModal(true)}
           >
             Connect wallet
+            Login
           </Button>
           {hasMounted && (
           <Modal
