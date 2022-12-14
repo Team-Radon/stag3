@@ -1,3 +1,5 @@
+import { GitCredentials } from '@/components/GitCredentials';
+import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
 import { useUsername } from '../../../hooks/useUsername';
@@ -21,16 +23,21 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      {profile && isLoading
-        ? <div>loading</div>
-        : (
-          <div>
-            <h1>{username}</h1>
-            <div>{JSON.stringify(profile)}</div>
-          </div>
-          )}
-    </div>
+    <GridLayout>
+      <GridItemEight>
+        {profile && isLoading
+          ? <div>loading</div>
+          : (
+            <div>
+              <h1>{username}</h1>
+              <div>{JSON.stringify(profile)}</div>
+            </div>
+            )}
+      </GridItemEight>
+      <GridItemFour>
+        <GitCredentials />
+      </GridItemFour>
+    </GridLayout>
   );
 };
 

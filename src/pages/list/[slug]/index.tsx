@@ -3,7 +3,8 @@ import { Projects } from '@/components/Projects'
 import { ActiveUsers } from '@/components/ActiveUsers'
 import Hero from '@/components/Hero'
 import { GitCredentials } from '@/components/GitCredentials'
-import SiteLayout from '@/components/SiteLayout'
+import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
+
 import { useRouter } from 'next/router'
 
 const ListByTag = () => {
@@ -12,21 +13,18 @@ const ListByTag = () => {
   } = useRouter();
   const options = { tag: slug?.toString() }
   return (
-    <SiteLayout>
-      <main className="container mx-auto px-4 md:px-6 2xl:px-20">
+    <GridLayout>
+      <GridItemTwelve>
         <Hero />
-        <div className="space-y-10 lg:flex lg:gap-20 lg:space-y-0">
-          <div className="space-y-4 md:space-y-6 lg:w-2/3">
-            <Projects options={options} />
-          </div>
-          <div className="sidebar lg:w-1/3">
-            <ActiveUsers />
-            <GitCredentials />
-          </div>
-        </div>
-      </main>
-    </SiteLayout>
-
+      </GridItemTwelve>
+      <GridItemEight className="flex flex-col gap-4 md:gap-6">
+        <Projects options={options} />
+      </GridItemEight>
+      <GridItemFour className="flex flex-col gap-4 md:gap-6">
+        <ActiveUsers />
+        <GitCredentials />
+      </GridItemFour>
+    </GridLayout>
   )
 }
 export default ListByTag

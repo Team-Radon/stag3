@@ -1,25 +1,22 @@
 
 import { Projects } from '@/components/Projects'
+import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
 import { ActiveUsers } from '../components/ActiveUsers'
 import Hero from '../components/Hero'
 import { GitCredentials } from '../components/GitCredentials'
-import SiteLayout from '../components/SiteLayout'
 
 const Home = () => (
-  <SiteLayout>
-    <main className="container mx-auto px-4 md:px-6 2xl:px-20">
+  <GridLayout>
+    <GridItemTwelve>
       <Hero />
-      <div className="space-y-10 lg:flex lg:gap-20 lg:space-y-0">
-        <div className="space-y-4 md:space-y-6 lg:w-2/3">
-          <Projects />
-        </div>
-        <div className="sidebar lg:w-1/3">
-          <ActiveUsers />
-          <GitCredentials />
-        </div>
-      </div>
-    </main>
-  </SiteLayout>
-
+    </GridItemTwelve>
+    <GridItemEight className="flex flex-col gap-4 md:gap-6">
+      <Projects />
+    </GridItemEight>
+    <GridItemFour className="flex flex-col gap-4 md:gap-6">
+      <ActiveUsers />
+      <GitCredentials />
+    </GridItemFour>
+  </GridLayout>
 )
 export default Home
