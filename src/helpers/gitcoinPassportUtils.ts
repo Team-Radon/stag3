@@ -6,11 +6,14 @@ import { GITCOIN_PASSPORT_SCORES } from '@/constants';
 
 /**
  * Get the GitCoin passport scores for a list of verified user credentials.
- * @param {string[]} providers - The list of Gitcoin Passport stamps|providers to get the scores for.
+ * @param {string[]} providers -['Twiiter','Ens'] The list of Gitcoin Passport stamps|providers to get the scores for.
  * @returns {number} scores - The total GitCoin passport scores for the given providers.
  */
 export const getGitCoinPassportScores = (providers: string[]) => {
-  const scores = providers.map((provider) => GITCOIN_PASSPORT_SCORES[`${provider}`]).reduce((acc, score) => acc + score, 0);
+  const scores = providers
+    .map((provider) => GITCOIN_PASSPORT_SCORES[`${provider}`])
+    .filter((score) => score !== undefined) // filter out scores that are undefined
+    .reduce((acc, score) => acc + score, 0);
   return scores;
 }
 
