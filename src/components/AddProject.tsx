@@ -142,22 +142,24 @@ export const AddProject = () => {
                 <Input label="Website" {...form.register('website')} />
                 <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} />
                 <Input label="Team Members" />
-                <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                  Status
-                </label>
-                <SingleSelect
-                  className="mt-2 bg-white"
-                  closeMenuOnSelect={false}
-                  setSelect={(selectedStatus) => {
-                    form.setValue('status', selectedStatus);
-                  }}
-                />
-                <div className="logo">
+                <div className="status">
+                  <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                    Status
+                  </label>
+                  <SingleSelect
+                    className="mt-2"
+                    closeMenuOnSelect
+                    setSelect={(selectedStatus) => {
+                      form.setValue('status', selectedStatus);
+                    }}
+                  />
+                </div>
+                <div className="tags">
                   <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                     Tags
                   </label>
                   <MultiSelect
-                    className="mt-2 bg-white"
+                    className="mt-2"
                     closeMenuOnSelect={false}
                     setSelect={(selectedTag) => {
                       form.setValue('tags', selectedTag);
