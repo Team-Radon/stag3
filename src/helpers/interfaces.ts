@@ -48,6 +48,7 @@ export interface Project {
       logo: string
       description_long: string
       whitepaper: string
+      status: Tag
       website: string
       twitter: string
       github: string

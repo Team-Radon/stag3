@@ -1,9 +1,10 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 import Select, { components, MultiValue, MultiValueGenericProps } from 'react-select';
-import { TAGS } from 'src/constants'
+import { TAGS } from 'src/constants';
 import { Tag } from 'src/helpers/interfaces';
 
-export const options: readonly Tag[] = TAGS;
+export type MultiTag = MultiValue<Tag>;
+const options: readonly Tag[] = TAGS;
 
 const MultiValueContainer = (props: MultiValueGenericProps<Tag>) => (
   <components.MultiValueContainer {...props} />
@@ -13,10 +14,10 @@ const MultiValueContainer = (props: MultiValueGenericProps<Tag>) => (
 interface Props {
   className?: string
   closeMenuOnSelect?: boolean
-  setSelect: Dispatch<MultiValue<Tag> | undefined>
+  setSelect: Dispatch<MultiTag >
 }
 export const MultiSelect = ({ className, setSelect, closeMenuOnSelect = true }: Props) => {
-  const [userChoice, setSelectedOption] = useState<MultiValue<Tag>>([]);
+  const [userChoice, setSelectedOption] = useState<MultiTag>([]);
 
   // set selected option
   useEffect(() => {

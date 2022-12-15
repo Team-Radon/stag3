@@ -16,6 +16,14 @@ export const TAGS: Tag[] = [
   { title: 'Other', slug: 'other' }
 ];
 
+export const PROJECT_STATUS: Tag[] = [
+  { title: 'Idea and Concept', slug: 'ideas' },
+  { title: 'Pre-launch', slug: 'pre-launch' },
+  { title: 'Alpha', slug: 'alpha' },
+  { title: 'Beta', slug: 'beta' },
+  { title: 'Public launch', slug: 'public-launch' }
+];
+
 export const ALLOWED_IMAGE_TYPES = [
   'image/jpeg',
   'image/jpg',

@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-mixed-operators */
-import { Tag } from '@/helpers/interfaces';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { useOrbis } from '../orbis/useOrbis';
 import { InputUploadLogo } from './InputUploadLogo';
 import { MarkdownEditor } from './MarkdownEditor';
@@ -10,12 +9,14 @@ import { Button } from './UI/Button';
 import Card from './UI/Card';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
-import { MultiSelect } from './UI/MultiSelect';
+import { MultiSelect, MultiTag } from './UI/MultiSelect';
+import { SingleSelect, SingleTag } from './UI/SingleSelect';
 
 interface ProjectInput {
   body: string
   title: string
-  tags: Tag[]
+  tags: MultiTag
+  status?: SingleTag
   logo: string | undefined
   description_long: string
   whitepaper: string
@@ -38,6 +39,7 @@ export const AddProject = () => {
       description_long: 'What is your project about?',
       website: 'https://example.com/',
       whitepaper: 'https://example.com/whitepaper',
+      status: undefined,
       twitter: '@stag3_orbis',
       github: 'stag3_orbis',
       gitcoin: 'stag3_orbis',
@@ -45,18 +47,16 @@ export const AddProject = () => {
     }
   });
 
-  // I had hard time fixing the type
-  const [tags, setSelectedTag] = useState<any>();
-
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
       context: process.env.PROJECT_CONTEXT,
-      tags,
+      tags: project.tags,
       data: {
         logo: project.logo,
         description_long: project.description_long,
+        status: project.status,
         whitepaper: project.whitepaper,
         website: project.website,
         twitter: project.twitter,
@@ -72,6 +72,7 @@ export const AddProject = () => {
 
     if (res.status === 200) {
       console.log(res);
+      toast.success('saved');
     }
   }
 
@@ -136,16 +137,32 @@ export const AddProject = () => {
                 imageUploaded={(body) => form.setValue('description_long', body)}
                 count={description_long.length}
               />
+
               <div className="flex flex-col gap-4 md:w-3/5">
                 <Input label="Website" {...form.register('website')} />
                 <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} />
                 <Input label="Team Members" />
-                <Input label="Status" />
+                <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
+                  Status
+                </label>
+                <SingleSelect
+                  className="mt-2 bg-white"
+                  closeMenuOnSelect={false}
+                  setSelect={(selectedStatus) => {
+                    form.setValue('status', selectedStatus);
+                  }}
+                />
                 <div className="logo">
                   <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                     Tags
                   </label>
-                  <MultiSelect className="mt-2 bg-white" closeMenuOnSelect={false} setSelect={setSelectedTag} />
+                  <MultiSelect
+                    className="mt-2 bg-white"
+                    closeMenuOnSelect={false}
+                    setSelect={(selectedTag) => {
+                      form.setValue('tags', selectedTag);
+                    }}
+                  />
                 </div>
               </div>
             </div>
