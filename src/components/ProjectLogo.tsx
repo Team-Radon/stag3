@@ -1,5 +1,4 @@
 import { LOGO_PLACEHOLDER } from '@/constants';
-import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -24,21 +23,15 @@ export const ProjectLogo = ({
   }, [previewFile]);
 
   return (
-    <span
-      className={clsx('flex shrink-0 items-center justify-center', className)}
-    >
-      <div className="relative">
-        <Image
-          className={clsx(
-            'bg-skin-border',
-          `w-[${size}px] h-[${size}px]`
-          )}
-          src={src}
-          alt="logo"
-          width={Number(size)}
-          height={Number(size)}
-        />
-      </div>
-    </span>
+    <div className="aspect-square rounded-md md:rounded-lg overflow-hidden">
+      <Image
+        className="w-full h-full"
+        src={src}
+        alt="logo"
+        width={Number(size)}
+        height={Number(size)}
+        style={{ objectFit: 'cover', objectPosition: 'center' }}
+      />
+    </div>
   );
 };
