@@ -1,7 +1,7 @@
 import { useForkRef } from '@/hooks/useForkRef';
 import { useImageUpload } from '@/hooks/useImageUpload';
-import { PencilIcon } from '@heroicons/react/24/outline';
 import { ChangeEvent, forwardRef, useRef } from 'react';
+import { PencilIcon } from '@heroicons/react/24/outline';
 import { ProjectLogo } from './ProjectLogo';
 import { ProjectLogoOverlay } from './ProjectLogoOverlay';
 
@@ -41,7 +41,7 @@ export const InputUploadLogo = forwardRef<HTMLInputElement, Props>(
 
     return (
       <>
-        <div className="relative" onClick={onFilePicker} ref={handleRef}>
+        <div className="relative w-28 md:w-36" onClick={onFilePicker} ref={handleRef}>
           <ProjectLogo
             logo={logo}
             previewFile={
@@ -52,8 +52,8 @@ export const InputUploadLogo = forwardRef<HTMLInputElement, Props>(
             loading={isUploadingImage}
             logo={logo}
           />
-          <div className="absolute right-0 bottom-[2px] rounded-full bg-skin-heading p-2">
-            <PencilIcon className="w-[14px] h-[14px] text-skin-bg" />
+          <div className="absolute -bottom-3 -right-3 rounded-full bg-skin-bg border border-skin-border p-2">
+            <PencilIcon className="w-5 h-5 text-black" />
           </div>
           <input
             ref={ref}

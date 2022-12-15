@@ -31,16 +31,16 @@ export const Input = forwardRef<HTMLInputElement, Props>((
   return (
     <div className="w-full">
       <label
-        className="mb-[2px] flex items-center gap-1 text-skin-text"
+        className="block text-sm font-medium text-gray-700"
         htmlFor={id}
       >
-        {label && <div>{label}</div>}
+        {label && <>{label}</>}
       </label>
-      <div className="group relative z-10">
+      <div className="group relative z-10 mt-2">
         <input
           id={id}
           className={clsx(
-            's-input !h-[42px]',
+            'block w-full rounded-md bg-transparent border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
             { '!border-red': error },
             { 'cursor-not-allowed placeholder:!opacity-30': props.disabled },
             className

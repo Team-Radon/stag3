@@ -78,7 +78,7 @@ export const MarkdownEditor = forwardRef<HTMLTextAreaElement, Props>(
         <div className="w-full">
           <div className="flex justify-between">
             <label
-              className="mb-[2px] flex items-center gap-1 text-skin-text"
+              className="block text-sm font-medium text-gray-700"
               htmlFor={id}
             >
               {label && <div>{label}</div>}
@@ -91,11 +91,11 @@ export const MarkdownEditor = forwardRef<HTMLTextAreaElement, Props>(
               {limit}
             </div>
           </div>
-          <div className="peer min-h-[240px] overflow-hidden rounded-t-xl border border-skin-border focus-within:border-skin-text">
+          <div className="min-h-[240px] mt-2 -mb-[6px] rounded-t-md focus-within:border-accent">
             <textarea
               id={id}
               className={clsx(
-                's-input mt-0 h-full min-h-[240px] w-full !rounded-xl border-none pt-0 text-base',
+                's-input mt-0 h-full min-h-[240px] w-full !rounded-t-md border border-skin-border pt-2 text-base',
                 { '!border-red': error },
                 {
                   'cursor-not-allowed placeholder:!opacity-30': props.disabled
@@ -108,7 +108,7 @@ export const MarkdownEditor = forwardRef<HTMLTextAreaElement, Props>(
               onPaste={handlePaste}
             />
           </div>
-          <div className="relative flex items-center justify-between rounded-b-xl border border-t-0 border-skin-border py-1 px-2 peer-focus-within:border-skin-text">
+          <div className="relative bg-skin-border flex items-center justify-between rounded-b-md border border-skin-border py-1 px-2">
             <span className="pointer-events-none relative pl-1 text-sm">
               {isUploadingImage
                 ? (
