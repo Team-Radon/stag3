@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-mixed-operators */
-import { Tag } from '@/helpers/interfaces';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useOrbis } from '../orbis/useOrbis';
@@ -11,13 +9,13 @@ import { Button } from './UI/Button';
 import Card from './UI/Card';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
-import { MultiSelect } from './UI/MultiSelect';
+import { MultiSelect, MultiTag } from './UI/MultiSelect';
 import { SingleSelect, SingleTag } from './UI/SingleSelect';
 
 interface ProjectInput {
   body: string
   title: string
-  tags: Tag[]
+  tags: MultiTag
   status?: SingleTag
   logo: string | undefined
   description_long: string
@@ -49,16 +47,12 @@ export const AddProject = () => {
     }
   });
 
-  // todo
-  // I had hard time fixing the type
-  const [tags, setSelectedTag] = useState<any>();
-
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
       context: process.env.PROJECT_CONTEXT,
-      tags,
+      tags: project.tags,
       data: {
         logo: project.logo,
         description_long: project.description_long,
@@ -155,15 +149,20 @@ export const AddProject = () => {
                   className="mt-2 bg-white"
                   closeMenuOnSelect={false}
                   setSelect={(selectedStatus) => {
-                    form.setValue('status', selectedStatus)
+                    form.setValue('status', selectedStatus);
                   }}
                 />
                 <div className="logo">
                   <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                     Tags
                   </label>
-                  <MultiSelect className="mt-2 bg-white" closeMenuOnSelect={false} setSelect={setSelectedTag} />
-
+                  <MultiSelect
+                    className="mt-2 bg-white"
+                    closeMenuOnSelect={false}
+                    setSelect={(selectedTag) => {
+                      form.setValue('tags', selectedTag);
+                    }}
+                  />
                 </div>
               </div>
             </div>
