@@ -150,6 +150,9 @@ const Project = () => {
                   <div>{username}</div>
                 </div>
               </Card>
+              <Card className="mt-4">
+                {post?.data?.content?.data?.cover && <img src={post?.data?.content?.data?.cover} />}
+              </Card>
             </GridItemFour>
           </>
           )}

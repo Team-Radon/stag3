@@ -95,7 +95,7 @@ export const MarkdownEditor = forwardRef<HTMLTextAreaElement, Props>(
             <textarea
               id={id}
               className={clsx(
-                's-input mt-0 h-full min-h-[240px] w-full !rounded-t-md border border-skin-border pt-2 text-base',
+                's-input mt-0 h-full min-h-[240px] w-full !rounded-t-md border border-skin-border  border-b-0 pt-2 text-base',
                 { '!border-red': error },
                 {
                   'cursor-not-allowed placeholder:!opacity-30': props.disabled
@@ -122,7 +122,7 @@ export const MarkdownEditor = forwardRef<HTMLTextAreaElement, Props>(
                     <span>{imageUploadError}</span>
                     )
                   : (
-                    <span>Use markdown to write and format posts.</span>
+                    <span>Attach images by dragging & dropping, selecting or pasting them.</span>
                     )}
             </span>
 

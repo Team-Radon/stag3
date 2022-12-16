@@ -46,6 +46,7 @@ export interface Project {
     tags: Tag[]
     data: {
       logo: string
+      cover: string
       description_long: string
       whitepaper: string
       status: Tag
