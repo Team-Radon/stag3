@@ -4,6 +4,7 @@ import { Details } from '../helpers/interfaces';
 import { shorten } from '../helpers/utils';
 import { useUsername } from '../hooks/useUsername';
 import { AvatarUser } from './AvatarUser';
+import { ButtonFollow } from './ButtonFollow';
 import { Button } from './UI/Button';
 
 export const UserProfileItem = ({ details }: { details: Details }) => {
@@ -19,9 +20,7 @@ export const UserProfileItem = ({ details }: { details: Details }) => {
           <p className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</p>
           <p className="truncate text-sm text-skin-text">{shorten(details?.metadata?.address)}</p>
         </Link>
-        <Button size="sm" icon={<PlusIcon className="h-4 w-4" />}>
-          Follow
-        </Button>
+        <ButtonFollow creator={details?.did} />
       </div>
     </div>
   )
