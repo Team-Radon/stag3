@@ -38,8 +38,18 @@ export interface Tag {
   slug: string
 }
 
-export interface Project {
+export interface Post {
   stream_id: string
+  creator_details: Details
+  creator: string
+  timestamp: number
+  count_likes: number
+  count_haha: number
+  count_downvotes: number
+  count_replies: number
+}
+
+export interface Project extends Post {
   content: {
     title: string
     body: string
@@ -57,7 +67,19 @@ export interface Project {
       discord: string
     }
   }
-  creator_details: Details
-  creator: string
-  timestamp: number
+}
+
+export interface Comment extends Post {
+  content: {
+    body: string
+  }
+  master: string
+  reply_to: string
+  reply_to_creator_details: Details
+  reply_to_details: {
+    body: string
+    type: string
+    master: string
+    mentions: User[]
+  }
 }
