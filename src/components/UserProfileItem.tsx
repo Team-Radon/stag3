@@ -1,11 +1,9 @@
-import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Details } from '../helpers/interfaces';
 import { shorten } from '../helpers/utils';
 import { useUsername } from '../hooks/useUsername';
 import { AvatarUser } from './AvatarUser';
 import { ButtonFollow } from './ButtonFollow';
-import { Button } from './UI/Button';
 
 export const UserProfileItem = ({ details }: { details: Details }) => {
   const { username } = useUsername(details)
