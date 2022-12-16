@@ -7,6 +7,7 @@ import { Markdown } from '@/components/Markdown';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
+import { Comments } from '@/components/Comments';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
 
@@ -138,6 +139,9 @@ const Project = () => {
                     </Link>
                   </div>
                 </div>
+              </Card>
+              <Card>
+                {post && <Comments post={post?.data} />}
               </Card>
             </GridItemEight>
             <GridItemFour>
