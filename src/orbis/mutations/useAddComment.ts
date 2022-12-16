@@ -19,7 +19,7 @@ export function useAddCommentMutation<
 > (options?: UseMutationOptions<TData, TError, TVariables, TContext>) {
   const orbis = useOrbis();
 
-  const addComment: MutationFunction<TData, TVariables> = async (variables) => {
+  const addComment: MutationFunction<TData, TVariables> = async (variables: any) => {
     const result = await orbis.createPost({
       body: variables.body,
       reply_to: variables.replyTo,

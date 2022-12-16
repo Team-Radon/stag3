@@ -1,7 +1,6 @@
 import { Comment, Post } from '@/helpers/interfaces';
 import { useAddCommentMutation } from '@/orbis/mutations/useAddComment';
 import { useGetComments } from '@/orbis/useGetComments';
-import { useOrbis } from '@/orbis/useOrbis';
 import { useAppStore } from '@/store/useAppStore';
 import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
