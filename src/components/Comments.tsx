@@ -1,4 +1,4 @@
-import { Post } from '@/helpers/interfaces';
+import { Comment, Post } from '@/helpers/interfaces';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useOrbis } from '@/orbis/useOrbis';
 import clsx from 'clsx';
@@ -28,10 +28,10 @@ export const Comments = ({
     );
   }
 
-  const addComment = async (body: string, master?: string) => {
+  const addComment = async (body: string, master: string, replyTo?: string) => {
     await orbis.createPost({
       body,
-      reply_to: master ?? post?.stream_id,
+      reply_to: replyTo ?? master ?? post?.stream_id,
       master: master ?? post?.stream_id,
       context: process.env.PROJECT_CONTEXT
     })
@@ -44,7 +44,7 @@ export const Comments = ({
         {post?.count_replies}
         )
       </h3>
-      <CommentForm handleSubmit={addComment} />
+      <CommentForm parent={post as Comment} handleSubmit={addComment} />
       <div className="divide-y divide-skin-border">
         {comments?.data?.map((comment, i: number) => (
           <CommentsItem key={i} comment={comment} addComment={addComment} activeComment={activeComment} setActiveComment={setActiveComment} />

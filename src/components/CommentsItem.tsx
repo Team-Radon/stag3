@@ -1,12 +1,12 @@
 import { Comment } from '@/helpers/interfaces';
 import { useGetComments } from '@/orbis/useGetComments';
-import { ChatBubbleLeftIcon, HandThumbUpIcon } from '@heroicons/react/24/outline';
+import { HandThumbUpIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Dispatch, SetStateAction } from 'react';
-import { AvatarUser } from './AvatarUser';
 import { CommentForm } from './CommentForm';
 import Card from './UI/Card';
+import { UserPophover } from './UserPophover';
 
 dayjs.extend(relativeTime);
 
@@ -15,19 +15,20 @@ interface CommentsItemProps {
   master?: string | null
   activeComment: { id: string, type: 'replying' | 'editing' } | null
   setActiveComment: Dispatch<SetStateAction<{ id: string, type: 'replying' | 'editing' } | null>>
-  addComment: (body: string, master?: string) => void
+  addComment: (body: string, master: string, replyTo?: string) => void
 }
 
 export const CommentsItem = ({ comment, master = null, activeComment, setActiveComment, addComment }: CommentsItemProps) => {
   const { data: replies } = useGetComments({ id: comment.stream_id });
   const isReplying = activeComment && activeComment.type === 'replying' && activeComment.id === comment.stream_id
   const replyId = master || comment.stream_id
+  const replyTo = comment.stream_id
 
   return (
     <Card className="border-none">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center space-x-1">
-          <AvatarUser size="28" details={comment.creator_details} />
+          <UserPophover details={comment.creator_details} />
         </div>
         <span>{dayjs(new Date(comment.timestamp * 1000)).fromNow()}</span>
       </div>
@@ -37,20 +38,15 @@ export const CommentsItem = ({ comment, master = null, activeComment, setActiveC
         </p>
       </div>
       <div className="flex space-x-3">
-        <span className="flex items-center space-x-1">
-          <ChatBubbleLeftIcon className="w-4 h-4" />
-          {comment.count_replies ?? 0}
-        </span>
         <span className="flex items-center space-x-2">
           <HandThumbUpIcon className="w-4 h-4" />
           {comment.count_likes ?? 0}
         </span>
         <span className="flex items-center space-x-2" onClick={() => setActiveComment({ id: comment.stream_id, type: 'replying' })}>
-          <HandThumbUpIcon className="w-4 h-4" />
           Reply
         </span>
       </div>
-      {isReplying && <CommentForm handleSubmit={(text) => addComment(text, replyId)} />}
+      {isReplying && <CommentForm parent={comment} handleSubmit={(text) => addComment(text, replyId, replyTo)} />}
       {replies && replies?.data?.length > 0 && (
         <div className="p-4">
           {replies?.data?.map((reply) => (
