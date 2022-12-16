@@ -1,8 +1,11 @@
 import { Comment, Post } from '@/helpers/interfaces';
+import { useAddCommentMutation } from '@/orbis/mutations/useAddComment';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useOrbis } from '@/orbis/useOrbis';
+import { useAppStore } from '@/store/useAppStore';
+import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { CommentForm } from './CommentForm';
 import { CommentsItem } from './CommentsItem';
 import Card from './UI/Card';
@@ -14,10 +17,53 @@ export const Comments = ({
   post: Post
   className?: string
 }) => {
-  const orbis = useOrbis();
+  const queryClient = useQueryClient();
   const { data: comments, isLoading } = useGetComments({ id: post.stream_id });
+  const user = useAppStore((state) => state.user)
+  const id = useId();
 
   const [activeComment, setActiveComment] = useState<{ id: string, type: 'replying' | 'editing' } | null>(null)
+
+  const { mutate: addCommentMutation } = useAddCommentMutation({
+    onMutate: async (data) => {
+      await queryClient.cancelQueries(['comments', data.master]);
+      const snapshotOfPreviousComments = queryClient.getQueryData([
+        'comments',
+        data.master
+      ]);
+      queryClient.setQueryData(['comments', data.master], (old: any) => {
+        const optimisticData = {
+          ...old,
+          data: [
+            {
+              creator: user?.did,
+              creator_details: user?.details,
+              temporary_id: id,
+              stream_id: 'none',
+              content: {
+                body: data.body,
+                reply_to: data.replyTo,
+                master: data.master,
+                context: process.env.PROJECT_CONTEXT
+              },
+              master: data.master,
+              timestamp: Math.floor(Date.now() / 1000)
+            },
+            ...old.data
+          ]
+        };
+
+        return optimisticData;
+      });
+      return { snapshotOfPreviousComments };
+    },
+    onError: (_err, data, context) => {
+      queryClient.setQueryData(
+        ['comments', data.master],
+        context?.snapshotOfPreviousComments
+      );
+    }
+  });
 
   if (!comments && isLoading) {
     return (
@@ -29,12 +75,7 @@ export const Comments = ({
   }
 
   const addComment = async (body: string, master: string, replyTo?: string) => {
-    await orbis.createPost({
-      body,
-      reply_to: replyTo ?? master ?? post?.stream_id,
-      master: master ?? post?.stream_id,
-      context: process.env.PROJECT_CONTEXT
-    })
+    addCommentMutation({ body, master, replyTo: replyTo ?? master ?? post?.stream_id })
   }
 
   return (

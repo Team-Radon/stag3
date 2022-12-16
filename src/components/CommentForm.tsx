@@ -17,7 +17,8 @@ export const CommentForm = ({ parent, handleSubmit }: { parent: Comment, handleS
   });
 
   const onSubmit: SubmitHandler<CommentInput> = async (data) => {
-    handleSubmit(data.body, parent.stream_id)
+    handleSubmit(data.body, parent.stream_id);
+    form.reset({ body: '' })
   };
 
   return (
