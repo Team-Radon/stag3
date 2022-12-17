@@ -146,6 +146,7 @@ export const Comments = ({
         {comments?.data?.map((comment) => (
           <CommentsItem
             key={comment.stream_id}
+            context={context}
             comment={comment}
             addComment={addComment}
             updateComment={updateComment}
