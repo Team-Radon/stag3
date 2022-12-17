@@ -18,8 +18,8 @@ export const Projects = ({ options }: { options?: GetProjectsOptions }) => {
 
   return (
     <>
-      {projects?.data?.map((project, i: number) => (
-        <ProjectsItem project={project} key={i} />
+      {projects?.data?.map((project) => (
+        <ProjectsItem project={project} key={project.stream_id} />
       ))}
     </>
   )

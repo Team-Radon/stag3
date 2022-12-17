@@ -141,8 +141,8 @@ export const Comments = ({
         handleSubmit={addComment}
       />
       <div className="divide-y divide-skin-border">
-        {comments?.data?.map((comment, i: number) => (
-          <CommentsItem key={i} comment={comment} addComment={addComment} updateComment={updateComment} activeComment={activeComment} setActiveComment={setActiveComment} />
+        {comments?.data?.map((comment) => (
+          <CommentsItem key={comment.stream_id} comment={comment} addComment={addComment} updateComment={updateComment} activeComment={activeComment} setActiveComment={setActiveComment} />
         ))}
       </div>
     </div>
