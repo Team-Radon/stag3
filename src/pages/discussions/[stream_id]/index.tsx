@@ -33,7 +33,7 @@ const Discussion = () => {
             <GridItemEight className="space-y-4">
               {JSON.stringify(discussion)}
               <Card>
-                {discussion && <Comments post={discussion?.data} />}
+                {discussion && <Comments context={process.env.DISCUSSION_CONTEXT || ''} post={discussion?.data} />}
               </Card>
             </GridItemEight>
           </>
