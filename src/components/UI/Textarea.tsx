@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { ComponentProps, forwardRef, useId } from 'react';
+import { ComponentProps, forwardRef, ReactNode, useId } from 'react';
 
 import { FieldError } from './Form';
 
 interface Props extends ComponentProps<'textarea'> {
-  label?: string
+  label?: string | ReactNode
   className?: string
   error?: boolean
 }

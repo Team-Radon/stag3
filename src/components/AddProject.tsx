@@ -3,6 +3,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useOrbis } from '../orbis/useOrbis';
+import { InputUploadCover } from './InputUploadCover';
 import { InputUploadLogo } from './InputUploadLogo';
 import { MarkdownEditor } from './MarkdownEditor';
 import { Button } from './UI/Button';
@@ -18,6 +19,7 @@ interface ProjectInput {
   tags: MultiTag
   status?: SingleTag
   logo: string | undefined
+  cover: string | undefined
   description_long: string
   whitepaper: string
   website: string
@@ -36,6 +38,7 @@ export const AddProject = () => {
       title: 'Best Project Ever',
       tags: [{ title: 'Defi', slug: 'defi' }],
       logo: undefined,
+      cover: undefined,
       description_long: 'What is your project about?',
       website: 'https://example.com/',
       whitepaper: 'https://example.com/whitepaper',
@@ -55,6 +58,7 @@ export const AddProject = () => {
       tags: project.tags,
       data: {
         logo: project.logo,
+        cover: project.cover,
         description_long: project.description_long,
         status: project.status,
         whitepaper: project.whitepaper,
@@ -77,6 +81,7 @@ export const AddProject = () => {
   }
 
   const logo = form.watch('logo')
+  const cover = form.watch('cover')
   const description_long = form.watch('description_long')
 
   return (
@@ -95,41 +100,7 @@ export const AddProject = () => {
                   <InputUploadLogo logo={logo} {...form.register('logo')} imageUploaded={(url) => form.setValue('logo', url)} />
                 </div>
               </div>
-              {/* needs input for cover upload */}
-              <div className="cover">
-                <label htmlFor="cover-photo" className="block text-sm font-medium text-gray-700">
-                  Cover Image
-                </label>
-                <div className="mt-2 flex items-center justify-center aspect-[4/1] rounded-md border-2 border-dashed border-gray-300 p-4">
-                  <div className="space-y-1 text-center">
-                    <svg
-                      className="mx-auto h-12 w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <div className="flex text-sm text-gray-600">
-                      <label
-                        htmlFor="file-upload"
-                        className="relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-                      >
-                        <span>Upload a file</span>
-                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
-                      </label>
-                      <p className="pl-1">or drag and drop</p>
-                    </div>
-                    <p className="text-xs text-gray-500">PNG, JPG, WEBP up to 10MB</p>
-                  </div>
-                </div>
-              </div>
+              <InputUploadCover cover={cover} {...form.register('cover')} imageUploaded={(url) => form.setValue('cover', url)} />
               <Input label="Project name" {...form.register('title')} />
               <MarkdownEditor
                 label="Description"
@@ -142,22 +113,24 @@ export const AddProject = () => {
                 <Input label="Website" {...form.register('website')} />
                 <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} />
                 <Input label="Team Members" />
-                <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                  Status
-                </label>
-                <SingleSelect
-                  className="mt-2 bg-white"
-                  closeMenuOnSelect={false}
-                  setSelect={(selectedStatus) => {
-                    form.setValue('status', selectedStatus);
-                  }}
-                />
-                <div className="logo">
+                <div className="status">
+                  <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                    Status
+                  </label>
+                  <SingleSelect
+                    className="mt-2"
+                    closeMenuOnSelect
+                    setSelect={(selectedStatus) => {
+                      form.setValue('status', selectedStatus);
+                    }}
+                  />
+                </div>
+                <div className="tags">
                   <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                     Tags
                   </label>
                   <MultiSelect
-                    className="mt-2 bg-white"
+                    className="mt-2"
                     closeMenuOnSelect={false}
                     setSelect={(selectedTag) => {
                       form.setValue('tags', selectedTag);
