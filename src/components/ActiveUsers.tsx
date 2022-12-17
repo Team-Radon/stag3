@@ -17,8 +17,8 @@ export const ActiveUsers = () => {
   return (
     <Card>
       <div className="divide-y divide-skin-divider">
-        {users?.data?.map((user: User, i: number) => (
-          <UserProfileItem key={i} details={user.profile} />
+        {users?.data?.map((user: User) => (
+          <UserProfileItem key={user.did} details={user.profile} />
         ))}
       </div>
       <div className="mt-6 flex">

@@ -83,3 +83,11 @@ export interface Comment extends Post {
     mentions: User[]
   }
 }
+
+export interface Discussion extends Post {
+  content: {
+    title: string
+    body: string
+    tags: Tag[]
+  }
+}

@@ -21,6 +21,7 @@ const nextConfig = {
     PINATA_SECRET_API_KEY: process.env.PINATA_SECRET_API_KEY,
     PINATA_GATEWAY: process.env.PINATA_GATEWAY,
     PROJECT_CONTEXT: process.env.PROJECT_CONTEXT,
+    DISCUSSION_CONTEXT: process.env.DISCUSSION_CONTEXT,
   },
 };
 
