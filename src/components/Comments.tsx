@@ -1,10 +1,12 @@
 import { Comment, Post } from '@/helpers/interfaces';
 import { useAddCommentMutation } from '@/orbis/mutations/useAddComment';
+import { useUpdateCommentMutation } from '@/orbis/mutations/useUpdateComment';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useAppStore } from '@/store/useAppStore';
 import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useId, useState } from 'react';
+import { BaseUser } from './BaseUser';
 import { CommentForm } from './CommentForm';
 import { CommentsItem } from './CommentsItem';
 import Card from './UI/Card';
@@ -64,6 +66,45 @@ export const Comments = ({
     }
   });
 
+  const { mutate: updateCommentMutation } = useUpdateCommentMutation({
+    onMutate: async (data) => {
+      await queryClient.cancelQueries(['comments', data.master]);
+      const snapshotOfPreviousComments = queryClient.getQueryData([
+        'comments',
+        data.id
+      ]);
+
+      queryClient.setQueryData<{ data: Comment[] }>(['comments', data.master], (old) => {
+        if (typeof old !== 'undefined') {
+          const optimisticData = old.data.map((comment) => {
+            if (comment.stream_id === data.id) {
+              return {
+                ...comment,
+                content: {
+                  ...comment.content,
+                  body: data.body
+                }
+              }
+            }
+            return comment
+          })
+
+          return { data: optimisticData };
+        }
+
+        return undefined
+      });
+
+      return { snapshotOfPreviousComments };
+    },
+    onError: (_err, data, context) => {
+      queryClient.setQueryData(
+        ['comments', data.master],
+        context?.snapshotOfPreviousComments
+      );
+    }
+  });
+
   if (!comments && isLoading) {
     return (
       <Card>
@@ -77,6 +118,11 @@ export const Comments = ({
     addCommentMutation({ body, master, replyTo: replyTo ?? master ?? post?.stream_id })
   }
 
+  const updateComment = async (commentId: string, body: string, master?: string) => {
+    updateCommentMutation({ id: commentId, body, master: master ?? post?.stream_id })
+    setActiveComment(null)
+  }
+
   return (
     <div className={clsx('space-y-4', className)}>
       <h3>
@@ -84,10 +130,19 @@ export const Comments = ({
         {post?.count_replies}
         )
       </h3>
-      <CommentForm parent={post as Comment} handleSubmit={addComment} />
+      <CommentForm
+        label={(
+          <div className="flex">
+            <span>Replying to: </span>
+            <BaseUser details={post.creator_details} />
+          </div>
+          )}
+        parent={post as Comment}
+        handleSubmit={addComment}
+      />
       <div className="divide-y divide-skin-border">
         {comments?.data?.map((comment, i: number) => (
-          <CommentsItem key={i} comment={comment} addComment={addComment} activeComment={activeComment} setActiveComment={setActiveComment} />
+          <CommentsItem key={i} comment={comment} addComment={addComment} updateComment={updateComment} activeComment={activeComment} setActiveComment={setActiveComment} />
         ))}
       </div>
     </div>
