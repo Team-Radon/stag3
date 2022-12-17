@@ -59,4 +59,5 @@ export interface Project {
   creator_details: Details
   creator: string
   timestamp: number
+  count_likes: number
 }

@@ -1,6 +1,7 @@
 import { Project } from '@/helpers/interfaces'
 import Link from 'next/link';
 import { ProjectLogo } from './ProjectLogo';
+import { Reaction } from './Reaction';
 import Card from './UI/Card';
 
 export const ProjectsItem = ({ project }: { project: Project }) => (
@@ -22,5 +23,6 @@ export const ProjectsItem = ({ project }: { project: Project }) => (
       {project.content?.tags.map(({ title, slug }) => (<Link key={slug} href={`/list/${slug}`}><div className="chips inline-flex px-4 py-1 rounded-full bg-gray-200 text-sm">{title}</div></Link>))}
     </div>
     )}
+    <Reaction stream_id={project.stream_id} count={project.count_likes ? project.count_likes : 0} type="like" />
   </Card>
 );
