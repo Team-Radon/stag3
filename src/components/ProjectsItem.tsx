@@ -1,8 +1,8 @@
 import { Project } from '@/helpers/interfaces'
 import Link from 'next/link';
 import { ProjectLogo } from './ProjectLogo';
-import { Reaction } from './Reaction';
 import Card from './UI/Card';
+import { ButtonReaction } from './ButtonReaction';
 
 export const ProjectsItem = ({ project }: { project: Project }) => (
   <Card>
@@ -23,6 +23,13 @@ export const ProjectsItem = ({ project }: { project: Project }) => (
       {project.content?.tags.map(({ title, slug }) => (<Link key={slug} href={`/list/${slug}`}><div className="chips inline-flex px-4 py-1 rounded-full bg-gray-200 text-sm">{title}</div></Link>))}
     </div>
     )}
-    <Reaction stream_id={project.stream_id} count={project.count_likes ? project.count_likes : 0} type="like" />
+    <div className="flex justify-center p-1.5 rounded-full font-medium cursor-pointer text-sm tracking-wider hover:bg-gray-300/50 dark:hover:bg-[#6b50af]/50 duration-100 ease-in-out">
+
+      <ButtonReaction stream_id={project.stream_id} count_likes={project.count_likes} count_downvotes={project.count_downvotes} creator={project.creator} />
+
+      Comments
+      {' '}
+      {project.count_replies}
+    </div>
   </Card>
 );
