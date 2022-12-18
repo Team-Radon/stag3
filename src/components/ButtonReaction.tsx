@@ -32,9 +32,9 @@ export const ButtonReaction = ({
   const [totalLikes, setTotalLikes] = useState<number>(0);
   const [totalDownvotes, setTotalDownvotes] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>();
-  // const [currentType, setCurrentType] = useState<ReactType>();
+  const [currentType, setCurrentType] = useState<ReactType>('haha');
 
-  const prevType = usePrevious<boolean>(isLiked);
+  const prevType = usePrevious<ReactType>(currentType);
 
   const getIsReacted = async () => {
     const { data, error } = await orbis.api.from('orbis_reactions').select('type').eq('post_id', stream_id).eq('creator', user?.did)
@@ -43,12 +43,9 @@ export const ButtonReaction = ({
       toast.error('Error querying isReacted');
       return;
     }
-    console.log('data');
-    console.log(data);
 
     if (data.length) {
-      setIsLiked(data[0]?.type === 'like');
-      setIsDownvoted(data[0]?.type === 'downvote');
+      setCurrentType(data[0]?.type)
     }
   };
 
@@ -65,35 +62,28 @@ export const ButtonReaction = ({
       toast.error('Error set following');
       return;
     }
-    setLikeLoading(false);
-    setLoading(false);
 
-    alert(prevType)
     if (res.status === 200) {
+      setLikeLoading(false);
+      setLoading(false);
       if (type === 'like') {
-        setIsLiked(true);
-        setIsDownvoted(false);
         setTotalLikes(totalLikes + 1)
-        // if (prevType === 'downvote') {
-        //   setTotalDownvotes(totalDownvotes - 1)
-        // }
-      } else if (type === 'downvote') {
-        setIsDownvoted(true);
-        setIsLiked(false);
+        if (prevType === 'downvote') {
+          setTotalDownvotes(totalDownvotes - 1)
+        }
+      } else if (type === 'downvote') { // downvote
         setTotalDownvotes(totalDownvotes + 1);
-        // if (prevType === 'like') {
-        //   setTotalLikes(totalLikes - 1)
-        // }
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+        if (prevType === 'like') {
+          setTotalLikes(totalLikes - 1)
+        }
       } else if (type === 'haha') { // haha
-        setIsDownvoted(false);
-        setIsLiked(false);
-        // if (prevType === 'like') {
-        //   setTotalLikes(totalLikes - 1)
-        // } else if (prevType === 'downvote') {
-        //   setTotalDownvotes(totalDownvotes - 1)
-        // }
+        if (prevType === 'like') {
+          setTotalLikes(totalLikes - 1)
+        } else if (prevType === 'downvote') {
+          setTotalDownvotes(totalDownvotes - 1)
+        }
       }
+      setCurrentType(type);
     }
   };
 
@@ -107,9 +97,12 @@ export const ButtonReaction = ({
     setTotalLikes(count_likes);
     setTotalDownvotes(count_downvotes);
   }, []);
-  // useEffect(() => {
 
-  // }, [currentType]);
+  useEffect(() => {
+    setIsLiked(currentType === 'like');
+    setIsDownvoted(currentType === 'downvote');
+    // setting total counts
+  }, [currentType]);
 
   return (
     <>
