@@ -66,6 +66,7 @@ export const ButtonReaction = ({
     if (res.status === 200) {
       setLikeLoading(false);
       setLoading(false);
+
       if (type === 'like') {
         setTotalLikes(totalLikes + 1)
         if (prevType === 'downvote') {
@@ -101,7 +102,6 @@ export const ButtonReaction = ({
   useEffect(() => {
     setIsLiked(currentType === 'like');
     setIsDownvoted(currentType === 'downvote');
-    // setting total counts
   }, [currentType]);
 
   return (
@@ -126,7 +126,7 @@ export const ButtonReaction = ({
         icon={isLiked
           ? <HandThumbUpIcon className="w-4 h-4 fill-black" />
           : <HandThumbUpIcon className="h-4 w-4" />}
-        // disabled={user?.did === creator}
+        disabled={likeLoading}
       >
         <span>
           {totalLikes}
@@ -153,6 +153,7 @@ export const ButtonReaction = ({
           ? <HandThumbDownIcon className="w-4 h-4 fill-black" />
           : <HandThumbDownIcon className="w-4 h-4" />}
         // disabled={user?.did === creator}
+        disabled={likeLoading}
       >
         <span>
           {totalDownvotes}
