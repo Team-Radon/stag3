@@ -13,6 +13,7 @@ import { UserPophover } from './UserPophover';
 dayjs.extend(relativeTime);
 
 interface CommentsItemProps {
+  context: string
   comment: Comment
   master?: string
   activeComment: { id: string, type: 'replying' | 'editing' } | null
@@ -21,9 +22,9 @@ interface CommentsItemProps {
   updateComment: (commentId: string, body: string, master?: string) => void
 }
 
-export const CommentsItem = ({ comment, master = undefined, activeComment, setActiveComment, addComment, updateComment }: CommentsItemProps) => {
+export const CommentsItem = ({ context, comment, master = undefined, activeComment, setActiveComment, addComment, updateComment }: CommentsItemProps) => {
   const user = useAppStore((state) => state.user)
-  const { data: replies } = useGetComments({ id: comment.stream_id });
+  const { data: replies } = useGetComments({ context, id: comment.stream_id });
   const isReplying = activeComment && activeComment.type === 'replying' && activeComment.id === comment.stream_id
   const isEditing = activeComment && activeComment.id === comment.stream_id && activeComment.type === 'editing';
   const canEdit = user?.did === comment.creator;
@@ -86,6 +87,7 @@ export const CommentsItem = ({ comment, master = undefined, activeComment, setAc
           {replies?.data?.map((reply) => (
             <CommentsItem
               key={reply.stream_id}
+              context={context}
               master={comment.stream_id}
               addComment={addComment}
               updateComment={updateComment}

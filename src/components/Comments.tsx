@@ -13,13 +13,15 @@ import Card from './UI/Card';
 
 export const Comments = ({
   post,
+  context,
   className
 }: {
   post: Post
+  context: string
   className?: string
 }) => {
   const queryClient = useQueryClient();
-  const { data: comments, isLoading } = useGetComments({ id: post.stream_id });
+  const { data: comments, isLoading } = useGetComments({ id: post.stream_id, context });
   const user = useAppStore((state) => state.user)
   const id = useId();
 
@@ -45,7 +47,7 @@ export const Comments = ({
                 body: data.body,
                 reply_to: data.replyTo,
                 master: data.master,
-                context: process.env.PROJECT_CONTEXT
+                context
               },
               master: data.master,
               timestamp: Math.floor(Date.now() / 1000)
@@ -58,10 +60,10 @@ export const Comments = ({
       });
       return { snapshotOfPreviousComments };
     },
-    onError: (_err, data, context) => {
+    onError: (_err, data, ctx) => {
       queryClient.setQueryData(
         ['comments', data.master],
-        context?.snapshotOfPreviousComments
+        ctx?.snapshotOfPreviousComments
       );
     }
   });
@@ -97,10 +99,10 @@ export const Comments = ({
 
       return { snapshotOfPreviousComments };
     },
-    onError: (_err, data, context) => {
+    onError: (_err, data, ctx) => {
       queryClient.setQueryData(
         ['comments', data.master],
-        context?.snapshotOfPreviousComments
+        ctx?.snapshotOfPreviousComments
       );
     }
   });
@@ -142,7 +144,15 @@ export const Comments = ({
       />
       <div className="divide-y divide-skin-border">
         {comments?.data?.map((comment) => (
-          <CommentsItem key={comment.stream_id} comment={comment} addComment={addComment} updateComment={updateComment} activeComment={activeComment} setActiveComment={setActiveComment} />
+          <CommentsItem
+            key={comment.stream_id}
+            context={context}
+            comment={comment}
+            addComment={addComment}
+            updateComment={updateComment}
+            activeComment={activeComment}
+            setActiveComment={setActiveComment}
+          />
         ))}
       </div>
     </div>

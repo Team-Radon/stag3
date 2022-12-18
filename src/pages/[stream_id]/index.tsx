@@ -141,7 +141,12 @@ const Project = () => {
                 </div>
               </Card>
               <Card>
-                {post && <Comments post={post?.data} />}
+                {post && (
+                <Comments
+                  context={process.env.PROJECT_CONTEXT || ''}
+                  post={post?.data}
+                />
+                )}
               </Card>
             </GridItemEight>
             <GridItemFour>
