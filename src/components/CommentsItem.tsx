@@ -1,7 +1,7 @@
 import { Comment } from '@/helpers/interfaces';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useAppStore } from '@/store/useAppStore';
-import { HandThumbUpIcon, PencilIcon } from '@heroicons/react/24/outline';
+import { PencilIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Dispatch, SetStateAction } from 'react';
@@ -9,6 +9,7 @@ import { BaseUser } from './BaseUser';
 import { CommentForm } from './CommentForm';
 import Card from './UI/Card';
 import { UserPophover } from './UserPophover';
+import { ButtonReaction } from './ButtonReaction';
 
 dayjs.extend(relativeTime);
 
@@ -51,8 +52,7 @@ export const CommentsItem = ({ comment, master = undefined, activeComment, setAc
       <div className="flex">
         <div className="flex space-x-3">
           <span className="flex items-center space-x-2">
-            <HandThumbUpIcon className="w-4 h-4" />
-            {comment.count_likes ?? 0}
+            <ButtonReaction creator={comment.creator} stream_id={comment.stream_id} count_downvotes={comment.count_downvotes} count_likes={comment.count_likes} />
           </span>
           <span className="flex items-center space-x-2" onClick={() => setActiveComment({ id: comment.stream_id, type: 'replying' })}>
             Reply

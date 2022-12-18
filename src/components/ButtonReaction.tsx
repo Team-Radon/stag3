@@ -27,13 +27,14 @@ export const ButtonReaction = ({
   const user = useAppStore((state) => state.user);
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [isDownvoted, setIsDownvoted] = useState<boolean>(false);
-  const [likeLoading, setLikeLoading] = useState<boolean>();
+
+  const [likeLoading, setLikeLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [totalLikes, setTotalLikes] = useState<number>(0);
   const [totalDownvotes, setTotalDownvotes] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>();
-  const [currentType, setCurrentType] = useState<ReactType>('haha');
 
+  const [currentType, setCurrentType] = useState<ReactType>('haha');
   const prevType = usePrevious<ReactType>(currentType);
 
   const getIsReacted = async () => {
@@ -50,11 +51,8 @@ export const ButtonReaction = ({
   };
 
   const setReaction = async (type: ReactType) => {
-    if (type === 'like') {
-      setLikeLoading(true);
-    } else if (type === 'downvote') {
-      setLoading(true);
-    }
+    setLikeLoading(type === 'like');
+    setLoading(type === 'downvote');
 
     const res = await orbis.react(stream_id, type);
 
