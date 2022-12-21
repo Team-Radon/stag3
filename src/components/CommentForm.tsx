@@ -1,5 +1,5 @@
 import { Comment } from '@/helpers/interfaces';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Button } from './UI/Button';
 import { Form } from './UI/Form';
@@ -9,12 +9,28 @@ interface CommentInput {
   body: string
 }
 
-export const CommentForm = ({ label, parent, handleSubmit }: { label: string | ReactNode, parent: Comment, handleSubmit: (body: string, master: string, replyTo?: string) => void }) => {
+export const CommentForm = ({
+  label,
+  initialValue = '',
+  parent,
+  handleSubmit,
+  handleCancel
+}: {
+  label: string | ReactNode
+  initialValue?: string
+  parent: Comment
+  handleSubmit: (body: string, master: string, replyTo?: string) => void
+  handleCancel?: () => void
+}) => {
   const form = useForm<CommentInput>({
     defaultValues: {
-      body: ''
+      body: initialValue
     }
   });
+
+  useEffect(() => {
+    form.setFocus('body')
+  }, [form])
 
   const onSubmit: SubmitHandler<CommentInput> = async (data) => {
     handleSubmit(data.body, parent.stream_id);
@@ -38,6 +54,11 @@ export const CommentForm = ({ label, parent, handleSubmit }: { label: string | R
         >
           Submit
         </Button>
+        {handleCancel && (
+          <Button onClick={handleCancel}>
+            Cancel
+          </Button>
+        )}
       </Form>
     </div>
   );
