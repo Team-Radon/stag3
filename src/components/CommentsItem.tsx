@@ -47,7 +47,13 @@ export const CommentsItem = ({ context, comment, master = undefined, activeComme
         </p>
         )}
         {isEditing && (
-          <CommentForm label="Editing" parent={comment} handleSubmit={(text) => updateComment(comment.stream_id, text, master)} />
+          <CommentForm
+            initialValue={comment.content.body}
+            label="Editing"
+            parent={comment}
+            handleSubmit={(text) => updateComment(comment.stream_id, text, master)}
+            handleCancel={() => setActiveComment(null)}
+          />
         )}
       </div>
       <div className="flex">
