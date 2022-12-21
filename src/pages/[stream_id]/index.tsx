@@ -8,9 +8,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import { Comments } from '@/components/Comments';
+import { ButtonReaction } from '@/components/ButtonReaction';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
-import { ButtonReaction } from '@/components/ButtonReaction';
 
 const Project = () => {
   const {
@@ -141,10 +141,10 @@ const Project = () => {
                   </div>
                 </div>
                 <div className="flex justify-center p-1.5 rounded-full font-medium cursor-pointer text-sm tracking-wider hover:bg-gray-300/50 dark:hover:bg-[#6b50af]/50 duration-100 ease-in-out">
-                  <ButtonReaction creator={post?.data?.creator||''} stream_id={post?.data?.stream_id||''} count_downvotes={post?.data?.count_downvotes||0} count_likes={post?.data?.count_haha||0} />
-                  </div>
+                  <ButtonReaction creator={post?.data?.creator || ''} stream_id={post?.data?.stream_id || ''} count_downvotes={post?.data?.count_downvotes || 0} count_likes={post?.data?.count_haha || 0} />
+                </div>
               </Card>
-             
+
               <Card>
                 {post && (
                 <Comments
