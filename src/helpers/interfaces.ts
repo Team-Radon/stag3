@@ -82,6 +82,7 @@ export interface Comment extends Post {
     master: string
     mentions: User[]
   }
+  count_likes: number
 }
 
 export interface Discussion extends Post {
