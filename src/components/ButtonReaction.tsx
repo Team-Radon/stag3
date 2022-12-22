@@ -103,17 +103,13 @@ export const ButtonReaction = ({
 
   return (
     <div className="flex gap-2 items-center justify-center">
-      <div className="flex flex-col">
+      <div className="flex items-center md:flex-col">
         {/* upvote */}
         <Button
           loading={likeLoading}
           size="sm"
           className={clsx(
-            'group !space-x-0 !p-2 border-none hover:bg-indigo-100/50',
-            {
-              'hover:!border-red hover:!text-red':
-            isLiked
-            },
+            'border-none hover:bg-indigo-100/50',
             className
           )}
           onClick={(e) => {
@@ -140,18 +136,14 @@ export const ButtonReaction = ({
           disabled={likeLoading}
         />
 
-        <div className="text-center">{totalLikes}</div>
+        <div className="text-center text-xs">{totalLikes}</div>
 
         {/* downvote */}
         <Button
           loading={loading}
           size="sm"
           className={clsx(
-            'group !space-x-0 !p-2 border-none hover:bg-indigo-100/50',
-            {
-              'hover:!border-red hover:!text-red':
-            isDownvoted
-            },
+            'border-none hover:bg-indigo-100/50',
             className
           )}
           onClick={(e) => {
