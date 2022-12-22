@@ -39,7 +39,7 @@ export const AddProject = () => {
       tags: [{ title: 'Defi', slug: 'defi' }],
       logo: undefined,
       cover: undefined,
-      description_long: 'What is your project about?',
+      description_long: 'Describe your project in detail',
       website: 'https://example.com/',
       whitepaper: 'https://example.com/whitepaper',
       status: undefined,
@@ -102,6 +102,7 @@ export const AddProject = () => {
               </div>
               <InputUploadCover cover={cover} {...form.register('cover')} imageUploaded={(url) => form.setValue('cover', url)} />
               <Input label="Project name" {...form.register('title')} />
+              <Input label="Summary" {...form.register('body')} />
               <MarkdownEditor
                 label="Description"
                 {...form.register('description_long')}
