@@ -23,7 +23,7 @@ export const ProjectLogo = ({
   }, [previewFile]);
 
   return (
-    <div className="aspect-square rounded-md md:rounded-lg overflow-hidden">
+    <div className="shrink-0 aspect-square rounded-md md:rounded-lg overflow-hidden">
       <Image
         className="w-full h-full"
         src={src}
