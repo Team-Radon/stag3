@@ -44,6 +44,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     {...rest}
   >
     {loading ? <LoadingSpinner className={size} /> : icon}
-    <div>{children}</div>
+    {children}
   </button>
 ));
