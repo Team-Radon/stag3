@@ -66,12 +66,14 @@ export const ButtonReaction = ({
       setLoading(false);
 
       if (type === 'like') {
-        setTotalLikes(totalLikes + 1)
+        setTotalLikes(totalLikes + 1);
+        toast.success('like');
         if (prevType === 'downvote') {
-          setTotalDownvotes(totalDownvotes - 1)
+          setTotalDownvotes(totalDownvotes - 1);
         }
       } else if (type === 'downvote') { // downvote
         setTotalDownvotes(totalDownvotes + 1);
+        toast.success('dislike');
         if (prevType === 'like') {
           setTotalLikes(totalLikes - 1)
         }
