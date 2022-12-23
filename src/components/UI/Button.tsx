@@ -31,9 +31,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     ref={ref}
     className={clsx(
       'flex items-center border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent',
-      { 'px-2 py-1 text-sm space-x-2 rounded-md': size === 'sm' },
-      { 'px-3 py-2 text-sm space-x-2 rounded-lg': size === 'md' },
-      { 'px-6 py-3 text-base space-x-3 rounded-xl': size === 'lg' },
+      { 'px-2 py-1 text-sm gap-2 rounded-md': size === 'sm' },
+      { 'px-3 py-2 text-sm gap-2 rounded-lg': size === 'md' },
+      { 'px-6 py-3 text-base gap-3 rounded-xl': size === 'lg' },
       {
         '!text-white !bg-accent border border-accent hover:!bg-indigo-700':
           primary
@@ -44,6 +44,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     {...rest}
   >
     {loading ? <LoadingSpinner className={size} /> : icon}
-    <div>{children}</div>
+    {children}
   </button>
 ));
