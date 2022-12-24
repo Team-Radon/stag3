@@ -2,7 +2,6 @@ import { AddProject } from '@/components/AddProject'
 import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
 import Card from '@/components/UI/Card'
 
-// Submit new project
 const Add = () => (
   <GridLayout>
     <GridItemTwelve>

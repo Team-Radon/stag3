@@ -1,7 +1,7 @@
 
 import { Projects } from '@/components/Projects'
 import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
-import { ActiveUsers } from '../components/ActiveUsers'
+import { GroupMembers } from '@/components/GroupMembers'
 import Hero from '../components/Hero'
 import { GitCredentials } from '../components/GitCredentials'
 
@@ -14,9 +14,10 @@ const Home = () => (
       <Projects />
     </GridItemEight>
     <GridItemFour className="flex flex-col gap-4 md:gap-6">
-      <ActiveUsers />
+      <GroupMembers />
       <GitCredentials />
     </GridItemFour>
   </GridLayout>
 )
+
 export default Home
