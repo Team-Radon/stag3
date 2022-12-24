@@ -23,6 +23,12 @@ export const Login = ({ options, children, loading = false }: { options: Connect
     });
 
     if (res.status === 200) {
+      orbis.getIsGroupMember(process.env.STAGE_GROUP, res.did)
+        .then(({ data }: { data: boolean }) => {
+          if (!data) {
+            orbis.setGroupMember(process.env.STAGE_GROUP, true)
+          }
+        }).catch((err: Error) => console.log(err))
       setUser(res);
     } else {
       console.log(res);

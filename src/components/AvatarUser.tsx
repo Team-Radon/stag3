@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { useAddress } from '@/hooks/useAddress';
 import clsx from 'clsx';
 import makeBlockie from 'ethereum-blockies-base64';
 import Image from 'next/image';
@@ -16,9 +17,11 @@ export const AvatarUser = ({
   className?: string
   previewFile?: File | undefined
 }) => {
+  const { address } = useAddress(details)
+
   const [src, setSrc] = useState<string>(
     details?.profile?.pfp ??
-      makeBlockie(details?.metadata?.address ?? 'shimone')
+      makeBlockie(address ?? 'shimone')
   );
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export const AvatarUser = ({
 
     setSrc(
       details?.profile?.pfp ??
-        makeBlockie(details?.metadata?.address ?? 'shimone')
+        makeBlockie(address ?? 'shimone')
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [details, previewFile]);
@@ -48,7 +51,7 @@ export const AvatarUser = ({
           alt="avatar"
           width={Number(size)}
           height={Number(size)}
-          onError={() => setSrc(makeBlockie(details?.metadata?.address || ''))}
+          onError={() => setSrc(makeBlockie(address || ''))}
         />
       </div>
     </span>
