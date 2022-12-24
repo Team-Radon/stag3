@@ -1,7 +1,7 @@
 
 import { Projects } from '@/components/Projects'
 import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
-import { GroupMembers } from '@/components/GroupMembers'
+import { GroupMembers } from '../components/GroupMembers'
 import Hero from '../components/Hero'
 import { GitCredentials } from '../components/GitCredentials'
 

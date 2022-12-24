@@ -22,6 +22,7 @@ const nextConfig = {
     PINATA_GATEWAY: process.env.PINATA_GATEWAY,
     PROJECT_CONTEXT: process.env.PROJECT_CONTEXT,
     DISCUSSION_CONTEXT: process.env.DISCUSSION_CONTEXT,
+    STAGE_GROUP: process.env.STAGE_GROUP
   },
 };
 

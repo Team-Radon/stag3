@@ -26,6 +26,7 @@ export interface User {
   did: string
   username: string
   details: Details
+  profile_details: Details
   metadata: Metadata
   status: number
   profile: Details
