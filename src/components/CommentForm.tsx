@@ -38,28 +38,29 @@ export const CommentForm = ({
   };
 
   return (
-    <div className="mb-5 px-4 md:px-0">
-      <Form form={form} onSubmit={onSubmit}>
-        <Textarea
-          label={label}
-          placeholder="Add to the discussion"
-          className="s-input !rounded-3xl"
-          rows={4}
-          {...form.register('body')}
-        />
+    <Form form={form} onSubmit={onSubmit}>
+      <Textarea
+        label={label}
+        className="!rounded-md text-sm shadow-sm focus:!border-indigo-500
+        focus:!ring-indigo-500"
+        placeholder="Add to the discussion"
+        rows={4}
+        {...form.register('body')}
+      />
+      <div className="flex gap-2 mt-2 items-center justify-end">
         <Button
           primary
           type="submit"
           disabled={!form.formState.isDirty}
         >
-          Submit
+          Post
         </Button>
         {handleCancel && (
-          <Button onClick={handleCancel}>
-            Cancel
-          </Button>
+        <Button onClick={handleCancel}>
+          Cancel
+        </Button>
         )}
-      </Form>
-    </div>
+      </div>
+    </Form>
   );
 };

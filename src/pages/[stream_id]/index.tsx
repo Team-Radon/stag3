@@ -3,13 +3,13 @@ import { useRouter } from 'next/router';
 import Error from 'next/error';
 import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout';
 import Card from '@/components/UI/Card';
-import { AvatarUser } from '@/components/AvatarUser';
 import { Markdown } from '@/components/Markdown';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import { Comments } from '@/components/Comments';
 import { ButtonReaction } from '@/components/ButtonReaction';
+import { AvatarUser } from '@/components/AvatarUser';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
 
@@ -100,37 +100,38 @@ const Project = () => {
                 <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-12">Links</div>
 
                 {/* links */}
-                <div className="links flex flex-col md:flex-row md:gap-20 px-4 md:px-6 mt-6">
-                  <div className="official-sites">
+                <div className="links flex flex-col md:flex-row md:gap-20 px-4 md:px-6 my-6">
+                  <div className="official-sites md:w-1/3">
                     <Link href={post?.data?.content?.data?.website ?? ''} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
                       <span>Website</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={post?.data?.content?.data?.whitepaper ?? ''} className="group flex items-center gap-1 mt-2 text-sm text-sky-600 hover:underline">
+                    <Link href={post?.data?.content?.data?.whitepaper ?? ''} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Whitepaper / Litepaper</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={post?.data?.content?.data?.github ?? ''} className="group flex items-center gap-1 mt-2 text-sm text-sky-600 hover:underline">
+                    <Link href={post?.data?.content?.data?.github ?? ''} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Github</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={post?.data?.content?.data?.gitcoin ?? ''} className="group flex items-center gap-1 mt-2 text-sm text-sky-600 hover:underline">
+                    <Link href={post?.data?.content?.data?.gitcoin ?? ''} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Gitcoin</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
                   </div>
-                  <div className="socials">
+                  <div className="socials md:w-1/3 mt-4 md:mt-0">
                     <Link href={post?.data?.content?.data?.discord ?? ''} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
                       <span>Discord</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={post?.data?.content?.data?.twitter ?? ''} className="group flex items-center gap-1 mt-2 text-sm text-sky-600 hover:underline">
+                    <Link href={post?.data?.content?.data?.twitter ?? ''} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Twitter</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
                   </div>
                 </div>
-
+              </Card>
+              <Card className="mt-4">
                 {/* comments */}
                 {post && (
                 <Comments
@@ -141,7 +142,7 @@ const Project = () => {
               </Card>
             </GridItemEight>
             <GridItemFour>
-              <Card>
+              <Card padded className="md:sticky top-[154px]">
                 <div className="flex items-center justify-center gap-2">
                   <AvatarUser
                     details={post?.data?.creator_details}
@@ -150,9 +151,6 @@ const Project = () => {
                   <div>{username}</div>
                 </div>
               </Card>
-              {/* <Card className="mt-4">
-                {post?.data?.content?.data?.cover && <img src={post?.data?.content?.data?.cover} alt="cover" />}
-              </Card> */}
             </GridItemFour>
           </>
           )}

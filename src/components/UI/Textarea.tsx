@@ -17,7 +17,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, Props>(
       <div className="w-full">
         <div className="flex justify-between">
           <label
-            className="mb-[2px] flex items-center gap-1 text-skin-text"
+            className="mb-1 flex items-center gap-1 text-skin-text text-sm font-medium"
             htmlFor={id}
           >
             {label && <div>{label}</div>}
