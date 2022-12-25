@@ -85,7 +85,7 @@ export const AddProject = () => {
   const description_long = form.watch('description_long')
 
   return (
-    <Card>
+    <Card padded>
       <Form form={form} onSubmit={onSubmit}>
         <div className="space-y-8">
           <div className="details">

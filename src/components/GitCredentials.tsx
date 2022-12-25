@@ -43,7 +43,7 @@ export const GitCredentials = () => {
       )
     : user
       ? (
-        <Card>
+        <Card padded>
           <div>
             <div className="space-y-2 border-b border-gray-200 pb-2">
               <div className="flex items-center h-8">

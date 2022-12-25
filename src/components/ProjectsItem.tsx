@@ -6,7 +6,7 @@ import { ButtonReaction } from './ButtonReaction';
 import { Button } from './UI/Button';
 
 export const ProjectsItem = ({ project }: { project: Project }) => (
-  <Card className="group border-2 border-transparent hover:border-indigo-300 transition-all">
+  <Card padded className="group border-2 border-transparent hover:border-indigo-300 transition-all">
     <Link href={project.stream_id} title={project.content?.title} className="flex justify-between">
       <div>
         <div className="flex gap-4 mb-6">
