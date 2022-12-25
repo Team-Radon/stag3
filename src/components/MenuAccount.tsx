@@ -46,7 +46,7 @@ export const MenuAccount = ({
         placement={placement}
       >
         <Menu.Button>
-          <Button primary size="md">
+          <Button className="border-accent">
             {children}
           </Button>
         </Menu.Button>
