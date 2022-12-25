@@ -6,9 +6,9 @@ export const BaseUser = ({ details }: { details: Details }) => {
   const { username } = useUsername(details);
 
   return (
-    <div className="flex items-center">
-      <AvatarUser details={details} size="28" />
-      <span className="ml-2 text-skin-link">{username}</span>
+    <div className="flex gap-1 items-center">
+      <AvatarUser details={details} size="24" />
+      <div className="text-sm">{username}</div>
     </div>
   )
 }

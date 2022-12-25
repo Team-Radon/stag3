@@ -1,13 +1,11 @@
 import { Comment } from '@/helpers/interfaces';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useAppStore } from '@/store/useAppStore';
-import { PencilIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Dispatch, SetStateAction } from 'react';
 import { BaseUser } from './BaseUser';
 import { CommentForm } from './CommentForm';
-import Card from './UI/Card';
 import { UserPophover } from './UserPophover';
 import { ButtonReaction } from './ButtonReaction';
 
@@ -33,77 +31,72 @@ export const CommentsItem = ({ context, comment, master = undefined, activeComme
   const replyTo = comment.stream_id
 
   return (
-    <Card className="border-none">
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center space-x-1">
-          <UserPophover details={comment.creator_details} />
-        </div>
-        <span>{dayjs(new Date(comment.timestamp * 1000)).fromNow()}</span>
+    <div className="flex gap-3">
+      <div className="user shrink-0">
+        <UserPophover iconOnly details={comment.creator_details} />
       </div>
-      <div className="relative mb-1 break-words pr-[80px] leading-7">
-        {!isEditing && (
-        <p className="mb-2 break-words text-md line-clamp-2">
-          {comment.content.body}
-        </p>
-        )}
-        {isEditing && (
+      <div className="w-full">
+        <>
+          {!isEditing && (
+            <>
+              <div className="flex items-center justify-between">
+                <UserPophover userOnly details={comment.creator_details} />
+                <div className="text-xs">{dayjs(new Date(comment.timestamp * 1000)).fromNow()}</div>
+              </div>
+              <p className="break-words prose-sm max-w-none mt-2">
+                {comment.content.body}
+              </p>
+            </>
+          )}
+          {isEditing && (
+            <CommentForm
+              initialValue={comment.content.body}
+              label="Editing"
+              parent={comment}
+              handleSubmit={(text) => updateComment(comment.stream_id, text, master)}
+              handleCancel={() => setActiveComment(null)}
+            />
+          )}
+        </>
+
+        <div className="actions flex items-center gap-4 mt-2 -ml-2">
+          <ButtonReaction className="!flex-row" creator={comment.creator} stream_id={comment.stream_id} count_downvotes={comment.count_downvotes} count_likes={comment.count_likes} />
+          <button className="text-sm font-medium" onClick={() => setActiveComment({ id: comment.stream_id, type: 'replying' })}>Reply</button>
+          {canEdit && (
+            <button className="text-sm font-medium" onClick={() => setActiveComment({ id: comment.stream_id, type: 'editing' })}>Edit</button>
+          )}
+        </div>
+
+        {isReplying && (
           <CommentForm
-            initialValue={comment.content.body}
-            label="Editing"
+            label={(
+              <div className="flex items-center gap-2 mt-4 mb-1">
+                <div className="text-sm font-medium">Replying to:</div>
+                <BaseUser details={comment.creator_details} />
+              </div>
+          )}
             parent={comment}
-            handleSubmit={(text) => updateComment(comment.stream_id, text, master)}
-            handleCancel={() => setActiveComment(null)}
+            handleSubmit={(text) => addComment(text, replyId, replyTo)}
           />
         )}
-      </div>
-      <div className="flex">
-        <div className="flex space-x-3">
-          <span className="flex items-center space-x-2">
-            <ButtonReaction creator={comment.creator} stream_id={comment.stream_id} count_downvotes={comment.count_downvotes} count_likes={comment.count_likes} />
-          </span>
-          <span className="flex items-center space-x-2" onClick={() => setActiveComment({ id: comment.stream_id, type: 'replying' })}>
-            Reply
-          </span>
-        </div>
-        {canEdit && (
-        <div className="flex space-x-3">
-          <span className="flex items-center space-x-2">
-            <PencilIcon className="w-4 h-4" />
-          </span>
-          <span className="flex items-center space-x-2" onClick={() => setActiveComment({ id: comment.stream_id, type: 'editing' })}>
-            Edit
-          </span>
-        </div>
+
+        {replies && replies?.data?.length > 0 && (
+          <div className="pt-8 pl-4 mt-4 border-l-4 border-gray-100 space-y-6">
+            {replies?.data?.map((reply) => (
+              <CommentsItem
+                key={reply.stream_id}
+                context={context}
+                master={comment.stream_id}
+                addComment={addComment}
+                updateComment={updateComment}
+                comment={reply}
+                activeComment={activeComment}
+                setActiveComment={setActiveComment}
+              />
+            ))}
+          </div>
         )}
       </div>
-      {isReplying && (
-      <CommentForm
-        label={(
-          <div className="flex">
-            <span>Replying to: </span>
-            <BaseUser details={comment.creator_details} />
-          </div>
-          )}
-        parent={comment}
-        handleSubmit={(text) => addComment(text, replyId, replyTo)}
-      />
-      )}
-      {replies && replies?.data?.length > 0 && (
-        <div className="p-4">
-          {replies?.data?.map((reply) => (
-            <CommentsItem
-              key={reply.stream_id}
-              context={context}
-              master={comment.stream_id}
-              addComment={addComment}
-              updateComment={updateComment}
-              comment={reply}
-              activeComment={activeComment}
-              setActiveComment={setActiveComment}
-            />
-          ))}
-        </div>
-      )}
-    </Card>
+    </div>
   )
 };

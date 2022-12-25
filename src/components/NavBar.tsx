@@ -19,7 +19,7 @@ const NavBar = () => {
       </Link>
       <div className="flex flex-row gap-5 items-center">
         <div className="hidden md:flex h-8 items-center gap-3 border-r border-gray-300 pr-5">
-          <Button icon={<PlusCircleIcon className="w-6 h-6" />} onClick={async () => push('/add')}>
+          <Button primary icon={<PlusCircleIcon className="w-6 h-6" />} onClick={async () => push('/add')}>
             Submit
           </Button>
         </div>

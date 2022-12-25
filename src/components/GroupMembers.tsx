@@ -14,7 +14,7 @@ export const GroupMembers = () => {
   }
 
   return (
-    <Card>
+    <Card padded>
       <div className="divide-y divide-skin-divider">
         {users?.data?.map((user: User) => (
           <UserProfileItem key={user.did} details={user.profile_details} />

@@ -62,7 +62,6 @@ export const NavBarAccount = () => {
       : (
         <>
           <Button
-            primary
             className="uppercase"
             icon={<ArrowRightOnRectangleIcon className="w-6 h-6" />}
             onClick={() => setShowAuthModal(true)}

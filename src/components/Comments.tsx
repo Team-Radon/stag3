@@ -4,21 +4,18 @@ import { useUpdateCommentMutation } from '@/orbis/mutations/useUpdateComment';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useAppStore } from '@/store/useAppStore';
 import { useQueryClient } from '@tanstack/react-query';
-import clsx from 'clsx';
 import { useId, useState } from 'react';
-import { BaseUser } from './BaseUser';
+import { AvatarUser } from './AvatarUser';
 import { CommentForm } from './CommentForm';
 import { CommentsItem } from './CommentsItem';
 import Card from './UI/Card';
 
 export const Comments = ({
   post,
-  context,
-  className
+  context
 }: {
   post: Post
   context: string
-  className?: string
 }) => {
   const queryClient = useQueryClient();
   const { data: comments, isLoading } = useGetComments({ id: post.stream_id, context });
@@ -126,23 +123,30 @@ export const Comments = ({
   }
 
   return (
-    <div className={clsx('space-y-4', className)}>
-      <h3>
-        Comments (
+    <>
+      <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-4 md:px-6 mt-6">
+        Discussion
+        (
         {post?.count_replies}
         )
-      </h3>
-      <CommentForm
-        label={(
-          <div className="flex">
-            <span>Replying to: </span>
-            <BaseUser details={post.creator_details} />
-          </div>
-          )}
-        parent={post as Comment}
-        handleSubmit={addComment}
-      />
-      <div className="divide-y divide-skin-border">
+      </div>
+
+      {/* comment textarea */}
+      <div className="flex gap-4 px-4 md:px-6 py-6 bg-gray-100/50">
+        <AvatarUser
+          className="!inline-flex shrink-0 !items-start py-2"
+          details={user?.details}
+          size="32"
+        />
+        <CommentForm
+          label=""
+          parent={post as Comment}
+          handleSubmit={addComment}
+        />
+      </div>
+
+      {/* comment items */}
+      <div className="px-4 md:px-6 mt-8 mb-6 space-y-8">
         {comments?.data?.map((comment) => (
           <CommentsItem
             key={comment.stream_id}
@@ -155,6 +159,6 @@ export const Comments = ({
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
