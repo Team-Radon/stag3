@@ -3,11 +3,10 @@ import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
 
 export const Markdown = ({ source = '' }: { source?: string }) => (
-  <div className="markdown-body break-words">
-    <div
-      dangerouslySetInnerHTML={{
-        __html: DOMPurify.sanitize(marked.parse(source))
-      }}
-    />
-  </div>
+  <div
+    className="break-words"
+    dangerouslySetInnerHTML={{
+      __html: DOMPurify.sanitize(marked.parse(source))
+    }}
+  />
 );
