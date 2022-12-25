@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Popover } from '@headlessui/react';
 import { useRef, useState } from 'react';
 import { Float } from '@headlessui-float/react';
@@ -12,7 +13,18 @@ import { Button } from './UI/Button';
 import { ButtonFollow } from './ButtonFollow';
 import { BaseUser } from './BaseUser';
 
-export const UserPophover = ({ details }: { details: Details }) => {
+interface Props {
+  iconOnly?: boolean
+  userOnly?: boolean
+  iconUser?: boolean
+}
+
+export const UserPophover = ({
+  details,
+  iconOnly,
+  userOnly,
+  iconUser
+}: Props & { details: Details }) => {
   const [show, setShow] = useState<boolean>(false);
   const timerOpen = useRef<any>(null);
   const timerClose = useRef<any>(null);
@@ -61,7 +73,9 @@ export const UserPophover = ({ details }: { details: Details }) => {
           onMouseEnter={open}
           onMouseLeave={delayClose}
         >
-          <BaseUser details={details} />
+          {iconUser && <BaseUser details={details} />}
+          {iconOnly && <AvatarUser details={details} size="32" />}
+          {userOnly && <div className="text-sm font-semibold">{username}</div>}
         </Popover.Button>
         <Popover.Panel
           static
@@ -70,7 +84,7 @@ export const UserPophover = ({ details }: { details: Details }) => {
           onMouseLeave={delayClose}
         >
           <div className="overflow-hidden rounded-2xl border border-skin-border bg-skin-header-bg shadow-lg">
-            <div className="no-scrollbar max-h-[85vh] overflow-y-auto overscroll-contain">
+            <div className="max-h-[85vh] overflow-y-auto overscroll-contain">
               <div className="p-4">
                 <div className="flex">
                   <div>
