@@ -34,19 +34,19 @@ export const AddProject = () => {
 
   const form = useForm<ProjectInput>({
     defaultValues: {
-      body: 'What is your project about?',
-      title: 'Best Project Ever',
+      body: '',
+      title: '',
       tags: [{ title: 'Defi', slug: 'defi' }],
       logo: undefined,
       cover: undefined,
-      description_long: 'Describe your project in detail',
-      website: 'https://example.com/',
-      whitepaper: 'https://example.com/whitepaper',
-      status: undefined,
-      twitter: '@stag3_orbis',
-      github: 'stag3_orbis',
-      gitcoin: 'stag3_orbis',
-      discord: 'stag3#1234'
+      description_long: '',
+      website: '',
+      whitepaper: '',
+      status: { title: 'Idea and Concept', slug: 'ideas' },
+      twitter: '',
+      github: '',
+      gitcoin: '',
+      discord: ''
     }
   });
 
@@ -57,25 +57,24 @@ export const AddProject = () => {
       context: process.env.PROJECT_CONTEXT,
       tags: project.tags,
       data: {
-        logo: project.logo,
-        cover: project.cover,
-        description_long: project.description_long,
-        status: project.status,
-        whitepaper: project.whitepaper,
-        website: project.website,
-        twitter: project.twitter,
-        github: project.github,
-        gitcoin: project.gitcoin,
-        discord: project.discord
+        logo: project.logo || '',
+        cover: project.cover || '',
+        description_long: project.description_long || '',
+        status: project.status || '',
+        whitepaper: project.whitepaper || '',
+        website: project.website || '',
+        twitter: project.twitter || '',
+        github: project.github || '',
+        gitcoin: project.gitcoin || '',
+        discord: project.discord || ''
       }
     });
 
     if (res.status === 300) {
-      console.log(res);
+      toast.error(JSON.stringify(res));
     }
 
     if (res.status === 200) {
-      console.log(res);
       toast.success('saved');
     }
   }
@@ -101,18 +100,19 @@ export const AddProject = () => {
                 </div>
               </div>
               <InputUploadCover cover={cover} {...form.register('cover')} imageUploaded={(url) => form.setValue('cover', url)} />
-              <Input label="Project name" {...form.register('title')} />
-              <Input label="Summary" {...form.register('body')} />
+              <Input label="Project name" {...form.register('title', { required: true })} placeholder="Best Project Ever" />
+              <Input label="Summary" {...form.register('body', { required: true })} placeholder="What is your project about?" />
               <MarkdownEditor
                 label="Description"
-                {...form.register('description_long')}
+                {...form.register('description_long', { required: true })}
                 imageUploaded={(body) => form.setValue('description_long', body)}
                 count={description_long.length}
+                placeholder="Describe your project in detail"
               />
 
               <div className="flex flex-col gap-4 md:w-3/5">
-                <Input label="Website" {...form.register('website')} />
-                <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} />
+                <Input label="Website" {...form.register('website')} placeholder="https://example.com/" />
+                <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} placeholder="https://example.com/whitepaper" />
                 <Input label="Team Members" />
                 <div className="status">
                   <label htmlFor="status" className="block text-sm font-medium text-gray-700">
@@ -145,10 +145,14 @@ export const AddProject = () => {
             <h3 className="text-lg font-medium leading-6 text-gray-900">Social Links</h3>
             <p className="mt-1 text-sm text-gray-500">Amet commodo proident ex reprehenderit deserunt do</p>
             <div className="flex flex-col gap-4 my-6 md:w-3/5">
-              <Input label="Twitter" {...form.register('twitter')} />
-              <Input label="Github" {...form.register('github')} />
-              <Input label="Gitcoin" {...form.register('gitcoin')} />
-              <Input label="Discord" {...form.register('discord')} />
+              <Input label="Twitter" {...form.register('twitter')} placeholder="@stag3_orbis" />
+              <Input
+                label="Github"
+                {...form.register('github')}
+                placeholder="stag3_orbis"
+              />
+              <Input label="Gitcoin" {...form.register('gitcoin')} placeholder="stag3_orbis" />
+              <Input label="Discord" {...form.register('discord')} placeholder="stag3#1234" />
             </div>
           </div>
         </div>
@@ -157,6 +161,8 @@ export const AddProject = () => {
           <Button
             primary
             type="submit"
+            disabled={!form.formState.isDirty}
+            className="disabled:opacity-50"
           >
             Save
           </Button>

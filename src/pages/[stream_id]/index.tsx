@@ -12,6 +12,7 @@ import { ButtonReaction } from '@/components/ButtonReaction';
 import { AvatarUser } from '@/components/AvatarUser';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
+import { ProjectLogo } from '@/components/ProjectLogo';
 
 const Project = () => {
   const {
@@ -53,14 +54,9 @@ const Project = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start px-4 md:px-6 -mt-16 md:mt-12">
                   <div className="flex flex-col items-center md:flex-row gap-4 md:gap-6">
                     <div className="logo shrink-0 relative aspect-square w-24 rounded-md md:rounded-lg overflow-hidden">
-                      <Image
-                        className="w-full h-full"
-                        src={post?.data?.content?.data?.logo ?? ''}
-                        alt="logo"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: 'cover', objectPosition: 'center' }}
-                      />
+                   
+
+                      <ProjectLogo   className="w-full h-full" logo={post?.data?.content?.data?.logo} size="100"  />
                     </div>
                     <div className="px-4 md:px-0">
                       <div className="text-center md:text-left text-black">
