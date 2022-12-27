@@ -30,7 +30,7 @@ const Project = () => {
   if (error) {
     return <Error statusCode={404} />;
   }
-  
+
   return (
     <GridLayout className="pt-16">
       {!post && isLoading
@@ -105,21 +105,21 @@ const Project = () => {
                       <span>Whitepaper / Litepaper</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={'https://github.com/'+post?.data?.content?.data?.github || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
+                    <Link href={`https://github.com/${post?.data?.content?.data?.github}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Github</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={'https://gitcoin.com/'+post?.data?.content?.data?.gitcoin || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
+                    <Link href={`https://gitcoin.com/${post?.data?.content?.data?.gitcoin}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Gitcoin</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
                   </div>
                   <div className="socials md:w-1/3 mt-4 md:mt-0">
-                    <Link href={'https://discord.com/'+post?.data?.content?.data?.discord || '#'} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
+                    <Link href={`https://discord.com/${post?.data?.content?.data?.discord}` || '#'} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
                       <span>Discord</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
-                    <Link href={'https://twitter.com/'+post?.data?.content?.data?.twitter || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
+                    <Link href={`https://twitter.com/${post?.data?.content?.data?.twitter}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
                       <span>Twitter</span>
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
                     </Link>
