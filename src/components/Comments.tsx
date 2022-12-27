@@ -4,6 +4,7 @@ import { useUpdateCommentMutation } from '@/orbis/mutations/useUpdateComment';
 import { useGetComments } from '@/orbis/useGetComments';
 import { useAppStore } from '@/store/useAppStore';
 import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 import { useId, useState } from 'react';
 import { AvatarUser } from './AvatarUser';
 import { CommentForm } from './CommentForm';
@@ -18,6 +19,7 @@ export const Comments = ({
   context: string
 }) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const { data: comments, isLoading } = useGetComments({ id: post.stream_id, context });
   const user = useAppStore((state) => state.user)
   const id = useId();
@@ -139,6 +141,7 @@ export const Comments = ({
           size="32"
         />
         <CommentForm
+          focus={router.asPath.split('#')[1] === 'discussions'}
           label=""
           parent={post as Comment}
           handleSubmit={addComment}

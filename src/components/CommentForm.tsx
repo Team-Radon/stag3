@@ -13,12 +13,14 @@ export const CommentForm = ({
   label,
   initialValue = '',
   parent,
+  focus = true,
   handleSubmit,
   handleCancel
 }: {
   label: string | ReactNode
   initialValue?: string
   parent: Comment
+  focus?: boolean
   handleSubmit: (body: string, master: string, replyTo?: string) => void
   handleCancel?: () => void
 }) => {
@@ -29,8 +31,10 @@ export const CommentForm = ({
   });
 
   useEffect(() => {
-    form.setFocus('body')
-  }, [form])
+    if (focus) {
+      form.setFocus('body')
+    }
+  }, [form, focus])
 
   const onSubmit: SubmitHandler<CommentInput> = async (data) => {
     handleSubmit(data.body, parent.stream_id);
