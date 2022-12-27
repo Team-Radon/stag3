@@ -31,7 +31,7 @@ export const ALLOWED_IMAGE_TYPES = [
   'image/gif'
 ];
 
-export const LOGO_PLACEHOLDER = 'https://avatars.githubusercontent.com/u/14985020?s=200&v=4'
+export const LOGO_PLACEHOLDER = '/stag3-grayscale.png'
 
 // Hashmap utility type
 interface ScoringHashMap { [key: string]: number }

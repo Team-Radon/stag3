@@ -1,4 +1,5 @@
 import { LOGO_PLACEHOLDER } from '@/constants';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -14,6 +15,7 @@ export const ProjectLogo = ({
   previewFile?: File | undefined
 }) => {
   const [src, setSrc] = useState<string>(logo || LOGO_PLACEHOLDER);
+  console.log(logo, LOGO_PLACEHOLDER, 'LKAJSDF')
 
   useEffect(() => {
     if (previewFile) {
@@ -23,7 +25,7 @@ export const ProjectLogo = ({
   }, [previewFile]);
 
   return (
-    <div className="shrink-0 aspect-square rounded-md md:rounded-lg overflow-hidden">
+    <div className={clsx('shrink-0 aspect-square rounded-md md:rounded-lg overflow-hidden', className)}>
       <Image
         className="w-full h-full"
         src={src}
