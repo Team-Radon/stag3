@@ -6,13 +6,15 @@ import Card from '@/components/UI/Card';
 import { Markdown } from '@/components/Markdown';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
+import { ArrowTopRightOnSquareIcon, PencilIcon } from '@heroicons/react/20/solid';
 import { Comments } from '@/components/Comments';
 import { ButtonReaction } from '@/components/ButtonReaction';
 import { AvatarUser } from '@/components/AvatarUser';
 import { ProjectLogo } from '@/components/ProjectLogo';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
+import { useAppStore } from '@/store/useAppStore';
+import { ButtonFollow } from '@/components/ButtonFollow';
 
 const Project = () => {
   const {
@@ -24,6 +26,9 @@ const Project = () => {
     error,
     isLoading
   } = useGetProject({ id: stream_id as string });
+
+  //current login user
+  const user = useAppStore((state) => state.user);
 
   const { username } = useUsername(post?.data?.creator_details);
 
@@ -73,7 +78,12 @@ const Project = () => {
                 </div>
 
                 {/* section label */}
-                <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-4 md:mt-12">Details</div>
+                <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-4 md:mt-12">Details</div> 
+                { post?.data?.creator_details?.did === user?.did ? <Link href={post?.data?.stream_id + '/edit'||'#'} title={post?.data?.content?.title} className="rounded-full bg-skin-bg border border-skin-border p-2">
+                  <PencilIcon className="w-5 h-5 text-black" /> Edit project
+                </Link>:null
+                }
+                
 
                 {/* tags */}
                 <div className="tag-chips flex flex-wrap items-center gap-3 px-4 md:px-6 mt-6">
@@ -144,6 +154,10 @@ const Project = () => {
                     size="32"
                   />
                   <div>{username}</div>
+                  
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                <ButtonFollow creator={post?.data?.creator_details?.did||''} />
                 </div>
               </Card>
             </GridItemFour>
