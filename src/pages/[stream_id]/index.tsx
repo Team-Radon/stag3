@@ -82,7 +82,7 @@ const Project = () => {
 
                 {/* tags */}
                 <div className="tag-chips flex flex-wrap items-center gap-3 px-4 md:px-6 mt-6">
-                  {post?.data?.content?.tags.map(({ title, slug }) => (
+                  {post?.data?.content?.tags?.map(({ title, slug }) => (
                     <Link key={slug} href={`/list/${slug}`}>
                       <span className="bg-indigo-100 border border-indigo-300 hover:bg-indigo-200 text-indigo-600 text-xs font-semibold px-2.5 py-0.5 rounded-md dark:bg-blue-200 dark:text-indigo-800 dark:hover:bg-indigo-300">
                         {title}
