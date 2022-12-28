@@ -5,6 +5,7 @@ import { ProjectLogo } from './ProjectLogo';
 import Card from './UI/Card';
 import { ButtonReaction } from './ButtonReaction';
 import { Button } from './UI/Button';
+import { LOGO_PLACEHOLDER } from '@/constants';
 
 export const ProjectsItem = ({ project }: { project: Project }) => {
   const { push } = useRouter();
@@ -14,10 +15,10 @@ export const ProjectsItem = ({ project }: { project: Project }) => {
       <Card padded className="group border-2 border-transparent hover:border-indigo-300 transition-all flex justify-between">
         <div>
           <div className="flex gap-4 mb-6">
-            <ProjectLogo logo={project.content?.data?.logo} size="56" />
+            <ProjectLogo logo={project?.content?.data?.logo?.length?project?.content?.data?.logo:LOGO_PLACEHOLDER} size="56" />
             <div>
               <div className="text-xl font-medium mb-2">{project.content?.title}</div>
-              {project.content?.tags?.length && (
+              {project.content?.tags?.length ? (
               <div className="tag-chips flex flex-wrap items-center gap-3">
                 {project.content?.tags.map(({ title, slug }) => (
                   <Link key={slug} href={`/list/${slug}`}>
@@ -27,7 +28,7 @@ export const ProjectsItem = ({ project }: { project: Project }) => {
                   </Link>
                 ))}
               </div>
-              )}
+              ):false}
             </div>
           </div>
           <div className="content space-y-6 text-sm break-words mb-6">

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-mixed-operators */
+import { LOGO_PLACEHOLDER } from '@/constants';
 import { Project } from '@/helpers/interfaces';
 import { useEffect, useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
@@ -22,8 +23,8 @@ export const EditProject = ({ post }: Props) => {
       context: process.env.PROJECT_CONTEXT,
       tags: project.tags,
       data: {
-        logo: project.logo || '',
-        cover: project.cover || '',
+        logo: project.logo || LOGO_PLACEHOLDER,
+        cover: project.cover || LOGO_PLACEHOLDER,
         description_long: project.description_long || '',
         status: project.status || '',
         whitepaper: project.whitepaper || '',

@@ -2,6 +2,7 @@
 /* eslint-disable no-mixed-operators */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { LOGO_PLACEHOLDER } from '@/constants';
 import { Project } from '@/helpers/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -63,7 +64,7 @@ export const AddProject = () => {
     body: '',
     title: '',
     tags: [{ title: 'Defi', slug: 'defi' }],
-    logo: undefined,
+    logo: LOGO_PLACEHOLDER,
     cover: undefined,
     description_long: '',
     website: '',
