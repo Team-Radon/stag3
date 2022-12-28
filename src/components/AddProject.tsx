@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LOGO_PLACEHOLDER } from '@/constants';
 import { Project } from '@/helpers/interfaces';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useOrbis } from '../orbis/useOrbis';
@@ -31,7 +32,10 @@ interface ProjectInput {
 
 export const AddProject = () => {
   const orbis = useOrbis();
+  const [loading, setLoading] = useState<boolean>(false);
+
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
+    setLoading(true);
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
@@ -52,10 +56,12 @@ export const AddProject = () => {
     });
 
     if (res.status === 300) {
+      setLoading(false);
       toast.error(JSON.stringify(res));
     }
 
     if (res.status === 200) {
+      setLoading(false);
       toast.success('saved');
     }
   }
@@ -83,6 +89,7 @@ export const AddProject = () => {
         initialValue={initialValue as ProjectInput}
         parent={{} as Project}
         handleSubmit={onSubmit}
+        loading={loading}
       />
     </Card>
   );

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Project } from '@/helpers/interfaces';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { InputUploadCover } from './InputUploadCover';
 import { InputUploadLogo } from './InputUploadLogo';
@@ -35,7 +35,8 @@ export const ProjectForm = ({
   parent,
   focus = true,
   handleSubmit,
-  handleCancel
+  handleCancel,
+  loading
 }: {
   label: string | ReactNode
   initialValue: ProjectInput
@@ -43,6 +44,7 @@ export const ProjectForm = ({
   focus?: boolean
   handleSubmit: (project: ProjectInput) => void
   handleCancel?: () => void
+  loading:boolean
 }) => {
   const form = useForm<ProjectInput>({
     defaultValues: {
@@ -61,7 +63,7 @@ export const ProjectForm = ({
       discord: initialValue.discord
     }
   });
-
+  
   useEffect(() => {
     if (focus) {
       form.setFocus('title');
@@ -155,12 +157,13 @@ export const ProjectForm = ({
 
       <div className="flex justify-end">
         <Button
+         loading={loading}
           primary
           type="submit"
           disabled={!form.formState.isDirty}
-          className="disabled:opacity-50"
+          className="disabled:opacity-70"
         >
-          Save
+          {loading? "Saving" : "Save"}
         </Button>
       </div>
     </Form>

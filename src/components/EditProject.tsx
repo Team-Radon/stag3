@@ -16,7 +16,10 @@ interface Props {
 
 export const EditProject = ({ post }: Props) => {
   const orbis = useOrbis();
+  const [loading, setLoading] = useState<boolean>(false);
+
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
+    setLoading(true);
     const res = await orbis.editPost(post.stream_id, {
       title: project.title,
       body: project.body,
@@ -37,25 +40,25 @@ export const EditProject = ({ post }: Props) => {
     });
 
     if (res.status === 300) {
+      setLoading(false);
       toast.error(JSON.stringify(res));
     }
 
     if (res.status === 200) {
+      setLoading(false);
       toast.success('Updated');
     }
   }
   const [initialValue, setInitialValue] = useState<ProjectInput>();
 
   useEffect(() => {
-
     if (post?.stream_id?.length) {
-     
       const projectData = post?.content?.data;
       const editValue = {
         body: post?.content?.body || '',
         title: post?.content?.title || '',
         tags: post?.content?.tags || [{ title: 'Defi', slug: 'defi' }],
-        logo: projectData?.logo?.length? projectData?.logo : undefined,
+        logo: projectData?.logo?.length ? projectData?.logo : undefined,
         cover: projectData?.cover || undefined,
         description_long: projectData?.description_long || '',
         website: projectData?.website || '',
@@ -78,6 +81,7 @@ export const EditProject = ({ post }: Props) => {
         initialValue={initialValue}
         parent={post}
         handleSubmit={onSubmit}
+        loading={loading}
       />
       )}
     </Card>
