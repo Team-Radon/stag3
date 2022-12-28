@@ -121,8 +121,9 @@ export const ProjectForm = ({
                   closeMenuOnSelect
                   setSelect={(selectedStatus) => {
                     form.setValue('status', selectedStatus);
-                  } } 
-                  initialSelected={initialValue.status}                />
+                  }}
+                  initialSelected={initialValue.status}
+                />
               </div>
               <div className="tags">
                 <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
