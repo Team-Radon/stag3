@@ -1,11 +1,11 @@
 import { Project } from '@/helpers/interfaces'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { LOGO_PLACEHOLDER } from '@/constants';
 import { ProjectLogo } from './ProjectLogo';
 import Card from './UI/Card';
 import { ButtonReaction } from './ButtonReaction';
 import { Button } from './UI/Button';
-import { LOGO_PLACEHOLDER } from '@/constants';
 
 export const ProjectsItem = ({ project }: { project: Project }) => {
   const { push } = useRouter();
@@ -15,20 +15,22 @@ export const ProjectsItem = ({ project }: { project: Project }) => {
       <Card padded className="group border-2 border-transparent hover:border-indigo-300 transition-all flex justify-between">
         <div>
           <div className="flex gap-4 mb-6">
-            <ProjectLogo logo={project?.content?.data?.logo?.length?project?.content?.data?.logo:LOGO_PLACEHOLDER} size="56" />
+            <ProjectLogo logo={project?.content?.data?.logo?.length ? project?.content?.data?.logo : LOGO_PLACEHOLDER} size="56" />
             <div>
               <div className="text-xl font-medium mb-2">{project.content?.title}</div>
-              {project.content?.tags?.length ? (
-              <div className="tag-chips flex flex-wrap items-center gap-3">
-                {project.content?.tags.map(({ title, slug }) => (
-                  <Link key={slug} href={`/list/${slug}`}>
-                    <span className="bg-indigo-100 border border-indigo-200 hover:bg-indigo-200 text-slate-500 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-indigo-800 dark:hover:bg-indigo-300">
-                      {title}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-              ):false}
+              {project.content?.tags?.length
+                ? (
+                  <div className="tag-chips flex flex-wrap items-center gap-3">
+                    {project.content?.tags.map(({ title, slug }) => (
+                      <Link key={slug} href={`/list/${slug}`}>
+                        <span className="bg-indigo-100 border border-indigo-200 hover:bg-indigo-200 text-slate-500 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-indigo-800 dark:hover:bg-indigo-300">
+                          {title}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                  )
+                : false}
             </div>
           </div>
           <div className="content space-y-6 text-sm break-words mb-6">

@@ -13,9 +13,9 @@ import { AvatarUser } from '@/components/AvatarUser';
 import { ProjectLogo } from '@/components/ProjectLogo';
 import { useAppStore } from '@/store/useAppStore';
 import { ButtonFollow } from '@/components/ButtonFollow';
+import { LOGO_PLACEHOLDER } from '@/constants';
 import { useGetProject } from '../../orbis/useGetProject';
 import { useUsername } from '../../hooks/useUsername';
-import { LOGO_PLACEHOLDER } from '@/constants';
 
 const Project = () => {
   const {
@@ -61,7 +61,7 @@ const Project = () => {
                   <div className="flex flex-col items-center md:flex-row gap-4 md:gap-6">
                     <div className="logo shrink-0 relative aspect-square w-24 rounded-md md:rounded-lg overflow-hidden">
 
-                      <ProjectLogo className="w-full h-full" logo={project?.data?.content?.data?.logo?.length?project.data?.content?.data?.logo:LOGO_PLACEHOLDER} size="100" />
+                      <ProjectLogo className="w-full h-full" logo={project?.data?.content?.data?.logo?.length ? project.data?.content?.data?.logo : LOGO_PLACEHOLDER} size="100" />
                     </div>
                     <div className="px-4 md:px-0">
                       <div className="text-center md:text-left text-black">
