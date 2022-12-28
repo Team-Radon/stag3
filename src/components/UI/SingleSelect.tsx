@@ -11,10 +11,11 @@ interface Props {
   className?: string
   closeMenuOnSelect?: boolean
   setSelect: Dispatch<SingleTag | undefined>
+  initialSelected: SingleTag | undefined
 }
 
-export const SingleSelect = ({ className, setSelect, closeMenuOnSelect = true }: Props) => {
-  const [userChoice, setSelectedOption] = useState<SingleTag>();
+export const SingleSelect = ({ className, setSelect, initialSelected, closeMenuOnSelect = true }: Props) => {
+  const [userChoice, setSelectedOption] = useState<SingleTag | undefined>(initialSelected || undefined);
 
   // set selected option
   useEffect(() => {
@@ -27,6 +28,7 @@ export const SingleSelect = ({ className, setSelect, closeMenuOnSelect = true }:
       getOptionLabel={(option) => option.title}
       getOptionValue={(option) => option.slug}
       options={options}
+      defaultValue={initialSelected}
       onChange={(option) => setSelectedOption(option)}
     />
   )

@@ -15,11 +15,11 @@ interface Props {
   className?: string
   closeMenuOnSelect?: boolean
   setSelect: Dispatch<MultiTag >
+  initialSelected: MultiTag
 }
-export const MultiSelect = ({ className, setSelect, closeMenuOnSelect = true }: Props) => {
-  const [userChoice, setSelectedOption] = useState<MultiTag>([]);
+export const MultiSelect = ({ className, setSelect, initialSelected, closeMenuOnSelect = true }: Props) => {
+  const [userChoice, setSelectedOption] = useState<MultiTag>(initialSelected || []);
 
-  // set selected option
   useEffect(() => {
     setSelect(userChoice);
   }, [setSelect, userChoice]);
@@ -30,7 +30,7 @@ export const MultiSelect = ({ className, setSelect, closeMenuOnSelect = true }: 
       components={{ MultiValueContainer }}
       getOptionLabel={(option) => option.title}
       getOptionValue={(option) => option.slug}
-      defaultValue={[]}
+      defaultValue={initialSelected}
       isMulti
       options={options}
       onChange={(option) => setSelectedOption(option)}
