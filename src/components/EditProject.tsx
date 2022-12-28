@@ -47,21 +47,24 @@ export const EditProject = ({ post }: Props) => {
   const [initialValue, setInitialValue] = useState<ProjectInput>();
 
   useEffect(() => {
-    if (post?.stream_id.length) {
+
+    if (post?.stream_id?.length) {
+     
+      const projectData = post?.content?.data;
       const editValue = {
         body: post?.content?.body || '',
         title: post?.content?.title || '',
         tags: post?.content?.tags || [{ title: 'Defi', slug: 'defi' }],
-        logo: post?.content?.data?.logo || '',
-        cover: post?.content?.data?.cover || '',
-        description_long: post?.content?.data?.description_long || '',
-        website: post?.content?.data?.website || '',
-        whitepaper: post?.content?.data?.whitepaper || '',
-        status: post?.content?.data?.status || { title: 'Idea and Concept', slug: 'ideas' },
-        twitter: post?.content?.data?.twitter || '',
-        github: post?.content?.data?.github || '',
-        gitcoin: post?.content?.data?.gitcoin || '',
-        discord: post?.content?.data?.discord || ''
+        logo: projectData?.logo?.length? projectData?.logo : undefined,
+        cover: projectData?.cover || undefined,
+        description_long: projectData?.description_long || '',
+        website: projectData?.website || '',
+        whitepaper: projectData?.whitepaper || '',
+        status: projectData?.status || { title: 'Idea and Concept', slug: 'ideas' },
+        twitter: projectData?.twitter || '',
+        github: projectData?.github || '',
+        gitcoin: projectData?.gitcoin || '',
+        discord: projectData?.discord || ''
       }
       setInitialValue(editValue);
     }
