@@ -49,8 +49,8 @@ export const EditProject = ({ post }: Props) => {
 
     if (res.status === 200) {
       setLoading(false);
-      queryClient.invalidateQueries({ queryKey: ['projects',null] });
-      queryClient.invalidateQueries({ queryKey: ['project',post.stream_id] });
+      queryClient.invalidateQueries({ queryKey: ['projects', null] });
+      queryClient.invalidateQueries({ queryKey: ['project', post.stream_id] });
       toast.success('Updated');
     }
   }

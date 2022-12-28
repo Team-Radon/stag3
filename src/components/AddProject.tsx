@@ -7,13 +7,14 @@ import { Project } from '@/helpers/interfaces';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useQueryClient } from '@tanstack/react-query'
 import { useOrbis } from '../orbis/useOrbis';
 import { ProjectForm } from './ProjectForm';
 
 import Card from './UI/Card';
 import { MultiTag } from './UI/MultiSelect';
 import { SingleTag } from './UI/SingleSelect';
-import { useQueryClient } from '@tanstack/react-query'
+
 interface ProjectInput {
   body: string
   title: string
@@ -33,7 +34,6 @@ interface ProjectInput {
 export const AddProject = () => {
   const orbis = useOrbis();
   const [loading, setLoading] = useState<boolean>(false);
-  
 
   // Get QueryClient from the context
   const queryClient = useQueryClient();
@@ -66,8 +66,8 @@ export const AddProject = () => {
     if (res.status === 200) {
       setLoading(false);
       toast.success('saved');
-      //invalidate cached projects
-      queryClient.invalidateQueries({ queryKey: ['projects',null] });
+      // invalidate cached projects
+      queryClient.invalidateQueries({ queryKey: ['projects', null] });
     }
   }
 
