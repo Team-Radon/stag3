@@ -44,7 +44,7 @@ export const ProjectForm = ({
   focus?: boolean
   handleSubmit: (project: ProjectInput) => void
   handleCancel?: () => void
-  loading:boolean
+  loading: boolean
 }) => {
   const form = useForm<ProjectInput>({
     defaultValues: {
@@ -63,7 +63,7 @@ export const ProjectForm = ({
       discord: initialValue.discord
     }
   });
-  
+
   useEffect(() => {
     if (focus) {
       form.setFocus('title');
@@ -157,13 +157,13 @@ export const ProjectForm = ({
 
       <div className="flex justify-end">
         <Button
-         loading={loading}
+          loading={loading}
           primary
           type="submit"
           disabled={!form.formState.isDirty}
           className="disabled:opacity-70"
         >
-          {loading? "Saving" : "Save"}
+          {loading ? 'Saving' : 'Save'}
         </Button>
       </div>
     </Form>
