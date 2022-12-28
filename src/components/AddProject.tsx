@@ -13,7 +13,7 @@ import { ProjectForm } from './ProjectForm';
 import Card from './UI/Card';
 import { MultiTag } from './UI/MultiSelect';
 import { SingleTag } from './UI/SingleSelect';
-
+import { useQueryClient } from '@tanstack/react-query'
 interface ProjectInput {
   body: string
   title: string
@@ -33,7 +33,10 @@ interface ProjectInput {
 export const AddProject = () => {
   const orbis = useOrbis();
   const [loading, setLoading] = useState<boolean>(false);
+  
 
+  // Get QueryClient from the context
+  const queryClient = useQueryClient();
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     setLoading(true);
     const res = await orbis.createPost({
@@ -63,6 +66,8 @@ export const AddProject = () => {
     if (res.status === 200) {
       setLoading(false);
       toast.success('saved');
+      //invalidate cached projects
+      queryClient.invalidateQueries({ queryKey: ['projects',null] });
     }
   }
 

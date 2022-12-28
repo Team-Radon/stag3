@@ -2,6 +2,7 @@
 /* eslint-disable no-mixed-operators */
 import { LOGO_PLACEHOLDER } from '@/constants';
 import { Project } from '@/helpers/interfaces';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -17,6 +18,8 @@ interface Props {
 export const EditProject = ({ post }: Props) => {
   const orbis = useOrbis();
   const [loading, setLoading] = useState<boolean>(false);
+  // Get QueryClient from the context
+  const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
     setLoading(true);
@@ -46,6 +49,8 @@ export const EditProject = ({ post }: Props) => {
 
     if (res.status === 200) {
       setLoading(false);
+      queryClient.invalidateQueries({ queryKey: ['projects',null] });
+      queryClient.invalidateQueries({ queryKey: ['project',post.stream_id] });
       toast.success('Updated');
     }
   }
