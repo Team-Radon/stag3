@@ -11,10 +11,10 @@ import { Comments } from '@/components/Comments';
 import { ButtonReaction } from '@/components/ButtonReaction';
 import { AvatarUser } from '@/components/AvatarUser';
 import { ProjectLogo } from '@/components/ProjectLogo';
-import { useGetProject } from '../../orbis/useGetProject';
-import { useUsername } from '../../hooks/useUsername';
 import { useAppStore } from '@/store/useAppStore';
 import { ButtonFollow } from '@/components/ButtonFollow';
+import { useGetProject } from '../../orbis/useGetProject';
+import { useUsername } from '../../hooks/useUsername';
 
 const Project = () => {
   const {
@@ -27,7 +27,7 @@ const Project = () => {
     isLoading
   } = useGetProject({ id: stream_id as string });
 
-  //current login user
+  // current login user
   const user = useAppStore((state) => state.user);
 
   const { username } = useUsername(post?.data?.creator_details);
@@ -64,7 +64,10 @@ const Project = () => {
                     </div>
                     <div className="px-4 md:px-0">
                       <div className="text-center md:text-left text-black">
-                        <div className="text-xs font-medium tracking-wider uppercase mb-2">Status</div>
+                        <div className="text-xs font-medium tracking-wider uppercase mb-2">
+                          Status -
+                          {post?.data?.content?.data?.status?.title ?? '' }
+                        </div>
                         <h1 className="text-2xl mb-2">{post?.data?.content?.title}</h1>
                         <div className="content space-y-6 text-sm break-words">
                           {post?.data?.content?.body}
@@ -78,12 +81,16 @@ const Project = () => {
                 </div>
 
                 {/* section label */}
-                <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-4 md:mt-12">Details</div> 
-                { post?.data?.creator_details?.did === user?.did ? <Link href={post?.data?.stream_id + '/edit'||'#'} title={post?.data?.content?.title} className="rounded-full bg-skin-bg border border-skin-border p-2">
-                  <PencilIcon className="w-5 h-5 text-black" /> Edit project
-                </Link>:null
-                }
-                
+                <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-4 md:mt-12">Details</div>
+                { post?.data?.creator_details?.did === user?.did
+                  ? (
+                    <Link href={`${post?.data?.stream_id}/edit` || '#'} title={post?.data?.content?.title} className="flex rounded-full bg-skin-bg border border-skin-border p-2 ">
+                      <PencilIcon className="w-5 h-5 text-black" />
+                      {' '}
+                      Edit
+                    </Link>
+                    )
+                  : null}
 
                 {/* tags */}
                 <div className="tag-chips flex flex-wrap items-center gap-3 px-4 md:px-6 mt-6">
@@ -154,10 +161,10 @@ const Project = () => {
                     size="32"
                   />
                   <div>{username}</div>
-                  
+
                 </div>
                 <div className="flex items-center justify-center gap-2">
-                <ButtonFollow creator={post?.data?.creator_details?.did||''} />
+                  <ButtonFollow creator={post?.data?.creator_details?.did || ''} />
                 </div>
               </Card>
             </GridItemFour>

@@ -52,6 +52,7 @@ export interface Post {
 
 export interface Project extends Post {
   content: {
+    stream_id?: string
     title: string
     body: string
     tags: Tag[]
