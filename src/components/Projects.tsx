@@ -1,19 +1,23 @@
 import { GetProjectsOptions, useGetProjects } from '@/orbis/useGetProjects';
 import { ProjectsItem } from './ProjectsItem';
 import Card from './UI/Card';
-import { LoadingSpinner } from './UI/LoadingSpinner';
+import SkeletonProject from './UI/SkeletonProject';
 
 export const Projects = ({ options }: { options?: GetProjectsOptions }) => {
   const { data: projects, isLoading } = useGetProjects({ options });
 
   if (!projects && isLoading) {
     return (
-      <LoadingSpinner />
+      <div className="flex flex-col w-full gap-4 md:gap-6">
+        <SkeletonProject />
+        <SkeletonProject />
+        <SkeletonProject />
+      </div>
     );
   }
 
   if (projects?.data?.length === 0) {
-    return <Card>Projects not found</Card>
+    return <Card padded>No projects found</Card>
   }
 
   return (
