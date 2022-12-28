@@ -72,7 +72,7 @@ export const AddDiscussion = () => {
                   setSelect={(selectedTag) => {
                     form.setValue('tags', selectedTag);
                   }}
-                />
+                  initialSelected={[]} />
               </div>
             </div>
           </div>
