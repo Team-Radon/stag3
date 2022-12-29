@@ -1,17 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-mixed-operators */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { LOGO_PLACEHOLDER } from '@/constants';
+import { Project } from '@/helpers/interfaces';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useQueryClient } from '@tanstack/react-query'
 import { useOrbis } from '../orbis/useOrbis';
-import { InputUploadCover } from './InputUploadCover';
-import { InputUploadLogo } from './InputUploadLogo';
-import { MarkdownEditor } from './MarkdownEditor';
-import { Button } from './UI/Button';
+import { ProjectForm } from './ProjectForm';
+
 import Card from './UI/Card';
-import { Form } from './UI/Form';
-import { Input } from './UI/Input';
-import { MultiSelect, MultiTag } from './UI/MultiSelect';
-import { SingleSelect, SingleTag } from './UI/SingleSelect';
+import { MultiTag } from './UI/MultiSelect';
+import { SingleTag } from './UI/SingleSelect';
 
 interface ProjectInput {
   body: string
@@ -31,137 +33,69 @@ interface ProjectInput {
 
 export const AddProject = () => {
   const orbis = useOrbis();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const form = useForm<ProjectInput>({
-    defaultValues: {
-      body: 'What is your project about?',
-      title: 'Best Project Ever',
-      tags: [{ title: 'Defi', slug: 'defi' }],
-      logo: undefined,
-      cover: undefined,
-      description_long: 'Describe your project in detail',
-      website: 'https://example.com/',
-      whitepaper: 'https://example.com/whitepaper',
-      status: undefined,
-      twitter: '@stag3_orbis',
-      github: 'stag3_orbis',
-      gitcoin: 'stag3_orbis',
-      discord: 'stag3#1234'
-    }
-  });
-
+  // Get QueryClient from the context
+  const queryClient = useQueryClient();
   const onSubmit: SubmitHandler<ProjectInput> = async (project) => {
+    setLoading(true);
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
       context: process.env.PROJECT_CONTEXT,
       tags: project.tags,
       data: {
-        logo: project.logo,
-        cover: project.cover,
-        description_long: project.description_long,
-        status: project.status,
-        whitepaper: project.whitepaper,
-        website: project.website,
-        twitter: project.twitter,
-        github: project.github,
-        gitcoin: project.gitcoin,
-        discord: project.discord
+        logo: project.logo || '',
+        cover: project.cover || '',
+        description_long: project.description_long || '',
+        status: project.status || '',
+        whitepaper: project.whitepaper || '',
+        website: project.website || '',
+        twitter: project.twitter || '',
+        github: project.github || '',
+        gitcoin: project.gitcoin || '',
+        discord: project.discord || ''
       }
     });
 
     if (res.status === 300) {
-      console.log(res);
+      setLoading(false);
+      toast.error(JSON.stringify(res));
     }
 
     if (res.status === 200) {
-      console.log(res);
+      setLoading(false);
       toast.success('saved');
+      // invalidate cached projects
+      queryClient.invalidateQueries({ queryKey: ['projects', null] });
     }
   }
 
-  const logo = form.watch('logo')
-  const cover = form.watch('cover')
-  const description_long = form.watch('description_long')
+  const initialValue = {
+    body: '',
+    title: '',
+    tags: [{ title: 'Defi', slug: 'defi' }],
+    logo: LOGO_PLACEHOLDER,
+    cover: undefined,
+    description_long: '',
+    website: '',
+    whitepaper: '',
+    status: { title: 'Idea and Concept', slug: 'ideas' },
+    twitter: '',
+    github: '',
+    gitcoin: '',
+    discord: ''
+  }
 
   return (
     <Card padded>
-      <Form form={form} onSubmit={onSubmit}>
-        <div className="space-y-8">
-          <div className="details">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Project Info</h3>
-            <p className="mt-1 text-sm text-gray-500">Amet commodo proident ex reprehenderit deserunt do</p>
-            <div className="inputs flex flex-col gap-4 my-6">
-              <div className="logo">
-                <label htmlFor="logo" className="block text-sm font-medium text-gray-700">
-                  Logo
-                </label>
-                <div className="mt-2">
-                  <InputUploadLogo logo={logo} {...form.register('logo')} imageUploaded={(url) => form.setValue('logo', url)} />
-                </div>
-              </div>
-              <InputUploadCover cover={cover} {...form.register('cover')} imageUploaded={(url) => form.setValue('cover', url)} />
-              <Input label="Project name" {...form.register('title')} />
-              <Input label="Summary" {...form.register('body')} />
-              <MarkdownEditor
-                label="Description"
-                {...form.register('description_long')}
-                imageUploaded={(body) => form.setValue('description_long', body)}
-                count={description_long.length}
-              />
-
-              <div className="flex flex-col gap-4 md:w-3/5">
-                <Input label="Website" {...form.register('website')} />
-                <Input label="Whitepaper / Litepaper" {...form.register('whitepaper')} />
-                <Input label="Team Members" />
-                <div className="status">
-                  <label htmlFor="status" className="block text-sm font-medium text-gray-700">
-                    Status
-                  </label>
-                  <SingleSelect
-                    className="mt-2"
-                    closeMenuOnSelect
-                    setSelect={(selectedStatus) => {
-                      form.setValue('status', selectedStatus);
-                    }}
-                  />
-                </div>
-                <div className="tags">
-                  <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                    Tags
-                  </label>
-                  <MultiSelect
-                    className="mt-2"
-                    closeMenuOnSelect={false}
-                    setSelect={(selectedTag) => {
-                      form.setValue('tags', selectedTag);
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="socials pt-8">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Social Links</h3>
-            <p className="mt-1 text-sm text-gray-500">Amet commodo proident ex reprehenderit deserunt do</p>
-            <div className="flex flex-col gap-4 my-6 md:w-3/5">
-              <Input label="Twitter" {...form.register('twitter')} />
-              <Input label="Github" {...form.register('github')} />
-              <Input label="Gitcoin" {...form.register('gitcoin')} />
-              <Input label="Discord" {...form.register('discord')} />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-end">
-          <Button
-            primary
-            type="submit"
-          >
-            Save
-          </Button>
-        </div>
-      </Form>
+      <ProjectForm
+        label="Add"
+        initialValue={initialValue as ProjectInput}
+        parent={{} as Project}
+        handleSubmit={onSubmit}
+        loading={loading}
+      />
     </Card>
   );
 }
