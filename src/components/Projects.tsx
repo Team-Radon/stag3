@@ -21,10 +21,10 @@ export const Projects = ({ options }: { options?: GetProjectsOptions }) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-4 md:gap-6">
       {projects?.data?.map((project) => (
         <ProjectsItem project={project} key={project.stream_id} />
       ))}
-    </>
+    </div>
   )
 };
