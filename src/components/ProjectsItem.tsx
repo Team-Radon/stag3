@@ -11,7 +11,7 @@ export const ProjectsItem = ({ project }: { project: Project }) => {
   const { push } = useRouter();
 
   return (
-    <Link href={project.stream_id} title={project.content?.title}>
+    <Link href={'/' + project.stream_id} title={project.content?.title}>
       <Card padded className="group border-2 border-transparent hover:border-indigo-300 transition-all flex justify-between">
         <div>
           <div className="flex gap-4 mb-6">
