@@ -38,7 +38,7 @@ const Project = () => {
   }
 
   return (
-    <GridLayout className="pt-16">
+    <GridLayout>
       {!project && isLoading
         ? (
           <GridItemEight>
@@ -57,16 +57,14 @@ const Project = () => {
                 )}
 
                 {/* header */}
-                <div className="flex flex-col md:flex-row justify-between items-start px-4 md:px-6 -mt-16 md:mt-12">
+                <div className="relative flex flex-col md:flex-row justify-between items-start px-4 md:px-6 -mt-16 md:mt-0 md:pt-12">
                   <div className="flex flex-col items-center md:flex-row gap-4 md:gap-6">
                     <div className="logo shrink-0 relative aspect-square w-24 rounded-md md:rounded-lg overflow-hidden">
-
                       <ProjectLogo className="w-full h-full" logo={project?.data?.content?.data?.logo?.length ? project.data?.content?.data?.logo : LOGO_PLACEHOLDER} size="100" />
                     </div>
                     <div className="px-4 md:px-0">
                       <div className="text-center md:text-left text-black">
                         <div className="text-xs font-medium tracking-wider uppercase mb-2">
-                          Status -
                           {project?.data?.content?.data?.status?.title ?? '' }
                         </div>
                         <h1 className="text-2xl mb-2">{project?.data?.content?.title}</h1>
@@ -79,19 +77,18 @@ const Project = () => {
                   <div className="shrink-0 mx-auto mt-4 md:mx-0 md:ml-4">
                     <ButtonReaction creator={project?.data?.creator || ''} stream_id={project?.data?.stream_id || ''} count_downvotes={project?.data?.count_downvotes || 0} count_likes={project?.data?.count_haha || 0} />
                   </div>
+                  { project?.data?.creator_details?.did === user?.did
+                    ? (
+                      <Link href={`${project?.data?.stream_id}/edit` || '#'} title={project?.data?.content?.title} className="top-20 md:top-4 right-4 absolute flex items-center border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-2 py-1 text-sm gap-2 rounded-md">
+                        <PencilIcon className="w-3 h-3" />
+                        Edit
+                      </Link>
+                      )
+                    : null }
                 </div>
 
                 {/* section label */}
                 <div className="font-medium leading-6 text-black border-b border-gray-200 px-4 pb-2 md:px-6 mt-4 md:mt-12">Details</div>
-                { project?.data?.creator_details?.did === user?.did
-                  ? (
-                    <Link href={`${project?.data?.stream_id}/edit` || '#'} title={project?.data?.content?.title} className="flex rounded-full bg-skin-bg border border-skin-border p-2 ">
-                      <PencilIcon className="w-5 h-5 text-black" />
-                      {' '}
-                      Edit
-                    </Link>
-                    )
-                  : null}
 
                 {/* tags */}
                 <div className="tag-chips flex flex-wrap items-center gap-3 px-4 md:px-6 mt-6">
