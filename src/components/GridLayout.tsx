@@ -7,7 +7,7 @@ interface Props {
 
 export const GridLayout = ({ children, className = '' }: Props) => (
   <div
-    className={`w-full max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-4 flex-1 md:px-6 2xl:px-12 ${className}`}
+    className={`w-full max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-4 flex-1 md:px-6 2xl:px-12 pt-16 ${className}`}
   >
     <div className="grid grid-cols-12 gap-4 lg:gap-12">{children}</div>
   </div>
