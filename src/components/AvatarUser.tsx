@@ -38,7 +38,7 @@ export const AvatarUser = ({
   }, [details, previewFile]);
 
   return (
-    <span
+    <div
       className={clsx('flex shrink-0 items-center justify-center', className)}
     >
       <div className="relative">
@@ -54,6 +54,6 @@ export const AvatarUser = ({
           onError={() => setSrc(makeBlockie(address || ''))}
         />
       </div>
-    </span>
+    </div>
   );
 };
