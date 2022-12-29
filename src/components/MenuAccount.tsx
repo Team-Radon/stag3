@@ -50,7 +50,7 @@ export const MenuAccount = ({
             {children}
           </Button>
         </Menu.Button>
-        <Menu.Items className="overflow-hidden z-50 rounded-2xl border bg-skin-header-bg shadow-lg outline-none">
+        <Menu.Items className="overflow-hidden z-50 rounded-lg border bg-skin-header-bg shadow-lg outline-none">
           <div className="no-scrollbar max-h-[300px] overflow-auto">
             <Menu.Item>
               {({ active }) => (

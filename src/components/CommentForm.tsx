@@ -53,6 +53,7 @@ export const CommentForm = ({
       />
       <div className="flex gap-2 mt-2 items-center justify-end">
         <Button
+          className="cursor-pointer"
           primary
           type="submit"
           disabled={!form.formState.isDirty}
@@ -60,7 +61,7 @@ export const CommentForm = ({
           Post
         </Button>
         {handleCancel && (
-        <Button onClick={handleCancel}>
+        <Button className="cursor-pointer" onClick={handleCancel}>
           Cancel
         </Button>
         )}
