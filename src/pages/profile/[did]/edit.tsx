@@ -7,7 +7,7 @@ import Error from 'next/error';
 import { useRouter } from 'next/router';
 import { useGetProfile } from '../../../orbis/useGetProfile';
 
-const Profile = () => {
+const ProfileEdit = () => {
   const {
     query: { did }
   } = useRouter();
@@ -43,4 +43,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfileEdit;

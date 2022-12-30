@@ -153,14 +153,15 @@ const Project = () => {
             </GridItemEight>
             <GridItemFour>
               <Card padded className="md:sticky top-[154px]">
-                <div className="flex items-center justify-center gap-2">
-                  <AvatarUser
-                    details={project?.data?.creator_details}
-                    size="32"
-                  />
-                  <div>{username}</div>
-
-                </div>
+                <Link href={`/profile/${project?.data?.creator_details?.did}`}>
+                  <div className="flex items-center justify-center gap-2">
+                    <AvatarUser
+                      details={project?.data?.creator_details}
+                      size="32"
+                    />
+                    <div className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</div>
+                  </div>
+                </Link>
                 <div className="flex items-center justify-center gap-2">
                   <ButtonFollow creator={project?.data?.creator_details?.did || ''} />
                 </div>
