@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'next-themes';
 import SiteLayout from '@/components/SiteLayout';
+import NextProgress from 'next-progress';
 import { OrbisContext } from '../orbis/useOrbis';
 
 const orbis = new Orbis({
@@ -35,6 +36,7 @@ export default function App ({ Component, pageProps }: AppProps): JSX.Element {
       <OrbisContext.Provider value={orbis}>
         <ThemeProvider defaultTheme="light">
           <SiteLayout>
+            <NextProgress height={4} color="#6366f1" options={{ showSpinner: false }} />
             <Component {...pageProps} />
           </SiteLayout>
         </ThemeProvider>
