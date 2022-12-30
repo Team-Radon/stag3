@@ -8,8 +8,8 @@ import { CeramicPassport, getStamps, getGitPassportCredentials, getGitCoinPasspo
 import { useAddress } from '../hooks/useAddress';
 import { useAppStore } from '../store/useAppStore';
 
-import { Button } from './UI/Button';
 import Card from './UI/Card';
+import { LoadingSpinner } from './UI/LoadingSpinner';
 
 export const GitCredentials = () => {
   const user = useAppStore((state) => state.user);
@@ -39,7 +39,7 @@ export const GitCredentials = () => {
 
   return !user && userLoading
     ? (
-      <Button loading>Connecting</Button>
+      <LoadingSpinner />
       )
     : user
       ? (
