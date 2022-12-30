@@ -22,7 +22,6 @@ export const ProfileFollower = () => {
     <Card padded>
       <div className="divide-y divide-skin-divider">
         <>
-          Followers
           {users?.data?.map((user: User) => (
             <UserProfileItem key={user.did} details={user.details} />
           ))}

@@ -13,7 +13,7 @@ export const Discussions = ({ options }: { options?: GetDiscussionsOptions }) =>
   }
 
   if (discussions?.data?.length === 0) {
-    return <Card>Discussions not found</Card>
+    return <Card padded>Discussions not found</Card>
   }
 
   return (
