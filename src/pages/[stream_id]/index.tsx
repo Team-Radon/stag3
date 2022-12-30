@@ -138,12 +138,11 @@ const Project = () => {
                 </div>
               </Card>
               <Card className="mt-4">
-                {/* comments */}
                 {project && (
-                <Comments
-                  context={process.env.PROJECT_CONTEXT || ''}
-                  post={project?.data}
-                />
+                  <Comments
+                    context={process.env.PROJECT_CONTEXT || ''}
+                    post={project?.data}
+                  />
                 )}
               </Card>
             </GridItemEight>
