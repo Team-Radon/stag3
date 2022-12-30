@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((
       >
         {label && <>{label}</>}
       </label>
-      <div className="group relative z-10 mt-2">
+      <div className="group relative mt-2">
         <input
           id={id}
           className={clsx(
