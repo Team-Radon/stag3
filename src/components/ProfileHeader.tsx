@@ -4,6 +4,7 @@ import Error from 'next/error';
 import { useGetProfile } from '@/orbis/useGetProfile';
 import { useAppStore } from '@/store/useAppStore';
 import { useUsername } from '@/hooks/useUsername';
+import Link from 'next/link';
 import Card from './UI/Card';
 import { LoadingSpinner } from './UI/LoadingSpinner';
 import { Button } from './UI/Button';
@@ -48,7 +49,11 @@ export const ProfileHeader = ({ profiledid }: Props) => {
               details={profile?.data?.details}
               size="80"
             />
-            <div className="truncate font-semibold text-center mt-2">{username}</div>
+            <div className="mt-2 text-center">
+              <Link href={`/profile/${profile?.data?.details?.did}`} className="truncate font-semibold hover:text-accent duration-100" title="View Profile">
+                {username}
+              </Link>
+            </div>
             {user?.did === did
               ? (
                 <div className="flex flex-grow items-start gap-x-2 lg:mb-4 justify-center mt-2">
@@ -63,14 +68,14 @@ export const ProfileHeader = ({ profiledid }: Props) => {
                 </div>
                 )}
             <div className="flex items-center justify-center gap-4 mt-6">
-              <div className="flex items-center gap-2 text-xs" onClick={async () => push(`/profile/${profile?.data?.did}/follower`)}>
+              <Link href={`/profile/${profile?.data?.did}/follower`} className="flex items-center gap-2 text-xs hover:text-accent duration-100">
                 <span className="font-semibold">{profile?.data?.count_followers}</span>
                 <span className="uppercase">Followers</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs" onClick={async () => push(`/profile/${profile?.data?.did}/following`)}>
+              </Link>
+              <Link href={`/profile/${profile?.data?.did}/following`} className="flex items-center gap-2 text-xs hover:text-accent duration-100">
                 <span className="font-semibold">{profile?.data?.count_following}</span>
                 <span className="uppercase">Following</span>
-              </div>
+              </Link>
             </div>
           </Card>
           )}
