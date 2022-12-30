@@ -74,7 +74,7 @@ export const AddProject = () => {
   const initialValue = {
     body: '',
     title: '',
-    tags: [{ title: 'Defi', slug: 'defi' }],
+    tags: [{ title: 'OrbisHackathon', slug: 'orbis-hackathon' }],
     logo: LOGO_PLACEHOLDER,
     cover: undefined,
     description_long: '',

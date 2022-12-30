@@ -1,6 +1,7 @@
 import { Tag } from './helpers/interfaces';
 
 export const TAGS: Tag[] = [
+  { title: 'OrbisHackathon', slug: 'orbis-hackathon' },
   { title: 'Privacy', slug: 'privacy' },
   { title: 'DeFi', slug: 'defi' },
   { title: 'Marketplace', slug: 'marketplace' },
