@@ -1,12 +1,16 @@
 
-import { GridItemTwelve, GridLayout } from '@/components/GridLayout'
+import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout'
+import { ProfileHeader } from '@/components/ProfileHeader'
 import { GitCredentials } from '../../../components/GitCredentials'
 
 const ProfileCredentials = () => (
   <GridLayout>
-    <GridItemTwelve>
+    <GridItemFour>
+      <ProfileHeader />
+    </GridItemFour>
+    <GridItemEight>
       <GitCredentials />
-    </GridItemTwelve>
+    </GridItemEight>
   </GridLayout>
 )
 export default ProfileCredentials
