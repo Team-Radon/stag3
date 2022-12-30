@@ -10,8 +10,8 @@ const Hero = () => {
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
         Your web3 product in the limelight
       </h1>
-      <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
-        Stag3 is where you present your web3 ideas and projects to fellow blockchain builders. Get specialized feedback and widen your network for future projects.
+      <p className="w-3/4 mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg md:mt-5 md:text-xl mx-auto">
+        Present your web3 ideas and projects on Stag3 and get valuable feedback from fellow blockchain builders.
       </p>
       <div className="mt-5 sm:mt-8 flex justify-center">
         <div className="flex h-8 items-center gap-3">
