@@ -1,6 +1,6 @@
-import { Comment } from '@/helpers/interfaces';
 import { ReactNode, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Comment } from '@/helpers/interfaces';
 import { Button } from './UI/Button';
 import { Form } from './UI/Form';
 import { Textarea } from './UI/Textarea';
@@ -53,7 +53,7 @@ export const CommentForm = ({
       />
       <div className="flex gap-2 mt-2 items-center justify-end">
         <Button
-          className="cursor-pointer"
+          className="cursor-pointer disabled:opacity-70"
           primary
           type="submit"
           disabled={!form.formState.isDirty}

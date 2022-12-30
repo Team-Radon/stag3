@@ -49,11 +49,11 @@ export const AddDiscussion = () => {
         <div className="space-y-8">
           <div className="details">
             <div className="inputs flex flex-col gap-4 my-6">
-              <Input label="Topic" {...form.register('title',{ required: true })} placeholder="specific title" />
+              <Input label="Topic" {...form.register('title', { required: true })} placeholder="specific title" />
               <MarkdownEditor
                 label="Content"
                 placeholder="Tell me more about the topic"
-                {...form.register('body',{ required: true })}
+                {...form.register('body', { required: true })}
                 imageUploaded={(injectedBody) => form.setValue('body', injectedBody)}
                 count={body.length}
               />
