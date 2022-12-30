@@ -9,7 +9,7 @@ const Home = () => (
     <GridItemTwelve>
       <Hero />
     </GridItemTwelve>
-    <GridItemEight>
+    <GridItemEight className="mt-8 md:mt-0">
       <Projects />
     </GridItemEight>
     <GridItemFour>
