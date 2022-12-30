@@ -71,7 +71,7 @@ const Project = () => {
                     </div>
                   </div>
                   <div className="shrink-0 mx-auto mt-4 md:mx-0 md:ml-4">
-                    <ButtonReaction creator={project?.data?.creator || ''} stream_id={project?.data?.stream_id || ''} count_downvotes={project?.data?.count_downvotes || 0} count_likes={project?.data?.count_haha || 0} />
+                    <ButtonReaction creator={project?.data?.creator || ''} stream_id={project?.data?.stream_id || ''} count_downvotes={project?.data?.count_downvotes || 0} count_likes={project?.data?.count_likes || 0} />
                   </div>
                   { project?.data?.creator_details?.did === user?.did
                     ? (
