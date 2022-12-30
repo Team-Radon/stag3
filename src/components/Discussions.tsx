@@ -17,10 +17,12 @@ export const Discussions = ({ options }: { options?: GetDiscussionsOptions }) =>
   }
 
   return (
-    <>
-      {discussions?.data?.map((discussion) => (
-        <DiscussionsItem discussion={discussion} key={discussion.stream_id} />
-      ))}
-    </>
+    <Card>
+      <div className="flex flex-col divide-y divide-skin-divider">
+        {discussions?.data?.map((discussion) => (
+          <DiscussionsItem discussion={discussion} key={discussion.stream_id} />
+        ))}
+      </div>
+    </Card>
   )
 };

@@ -8,12 +8,10 @@ import { Button } from './UI/Button';
 import Card from './UI/Card';
 import { Form } from './UI/Form';
 import { Input } from './UI/Input';
-import { MultiSelect, MultiTag } from './UI/MultiSelect';
 
 interface DiscussionInput {
   body: string
   title: string
-  tags: MultiTag
 }
 
 export const AddDiscussion = () => {
@@ -22,8 +20,7 @@ export const AddDiscussion = () => {
   const form = useForm<DiscussionInput>({
     defaultValues: {
       body: 'What is your project about?',
-      title: 'Best Project Ever',
-      tags: [{ title: 'Defi', slug: 'defi' }]
+      title: 'Best Project Ever'
     }
   });
 
@@ -31,8 +28,7 @@ export const AddDiscussion = () => {
     const res = await orbis.createPost({
       title: project.title,
       body: project.body,
-      context: process.env.DISCUSSION_CONTEXT,
-      tags: project.tags
+      context: process.env.DISCUSSION_CONTEXT
     });
 
     if (res.status === 300) {
@@ -48,33 +44,18 @@ export const AddDiscussion = () => {
   const body = form.watch('body')
 
   return (
-    <Card>
+    <Card padded>
       <Form form={form} onSubmit={onSubmit}>
         <div className="space-y-8">
           <div className="details">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">New discussion</h3>
-            <p className="mt-1 text-sm text-gray-500">Amet commodo proident ex reprehenderit deserunt do</p>
             <div className="inputs flex flex-col gap-4 my-6">
-              <Input label="Title" {...form.register('title')} />
+              <Input label="Topic" {...form.register('title')} />
               <MarkdownEditor
                 label="Text"
                 {...form.register('body')}
                 imageUploaded={(injectedBody) => form.setValue('body', injectedBody)}
                 count={body.length}
               />
-              <div className="tags">
-                <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                  Tags
-                </label>
-                <MultiSelect
-                  className="mt-2"
-                  closeMenuOnSelect={false}
-                  setSelect={(selectedTag) => {
-                    form.setValue('tags', selectedTag);
-                  }}
-                  initialSelected={[]}
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -84,7 +65,7 @@ export const AddDiscussion = () => {
             primary
             type="submit"
           >
-            Save
+            Post
           </Button>
         </div>
       </Form>
