@@ -4,18 +4,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { getAddressFromDid } from '@orbisclub/orbis-sdk/utils';
 import { CeramicPassport, getStamps, getGitPassportCredentials, getGitCoinPassportScores } from '@/helpers/gitcoinPassportUtils';
 
-import { useAddress } from '../hooks/useAddress';
 import { useAppStore } from '../store/useAppStore';
-
 import Card from './UI/Card';
 import { LoadingSpinner } from './UI/LoadingSpinner';
 
-export const GitCredentials = () => {
+interface Props {
+  did?: string
+}
+export const GitCredentials = ({ did }: Props) => {
   const user = useAppStore((state) => state.user);
   const userLoading = useAppStore((state) => state.userLoading);
-  const { address } = useAddress(user?.details);
+  const { address } = getAddressFromDid(did || user?.details?.did)
 
   const [passport, setPassport] = useState<CeramicPassport >();
   const [score, setScore] = useState<number>(0);
