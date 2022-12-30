@@ -98,7 +98,7 @@ const Project = () => {
                 </div>
 
                 {/* about */}
-                <div className="about prose-sm max-w-none text-black px-4 md:px-6 mt-4">
+                <div className="about prose-sm prose-p:last-of-type:!mb-0 max-w-none text-black px-4 md:px-6 mt-4">
                   <Markdown source={project?.data?.content?.data?.description_long} />
                 </div>
 

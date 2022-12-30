@@ -50,7 +50,7 @@ const Discussion = () => {
                           </div>
                           )}
                     </div>
-                    <div className="about prose-sm max-w-none text-black">
+                    <div className="about prose-sm prose-p:last-of-type:!mb-0 max-w-none text-black">
                       <Markdown source={discussion?.data?.content?.body} />
                     </div>
                   </div>
