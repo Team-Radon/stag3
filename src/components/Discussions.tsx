@@ -1,14 +1,14 @@
 import { GetDiscussionsOptions, useGetDiscussions } from '@/orbis/useGetDiscussions';
 import { DiscussionsItem } from './DiscussionsItem';
 import Card from './UI/Card';
-import { LoadingSpinner } from './UI/LoadingSpinner';
+import SkeletonDiscussions from './UI/SkeletonDiscussion';
 
 export const Discussions = ({ options }: { options?: GetDiscussionsOptions }) => {
   const { data: discussions, isLoading } = useGetDiscussions({ options });
 
   if (!discussions && isLoading) {
     return (
-      <LoadingSpinner />
+      <SkeletonDiscussions />
     );
   }
 
