@@ -65,6 +65,8 @@ export const AddDiscussion = () => {
           <Button
             primary
             type="submit"
+            disabled={!form.formState.isDirty}
+            className="disabled:opacity-70"
           >
             Post
           </Button>
