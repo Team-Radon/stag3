@@ -10,11 +10,15 @@ import { Button } from './UI/Button';
 import { AvatarUser } from './AvatarUser';
 import { ButtonFollow } from './ButtonFollow';
 
-export const ProfileHeader = () => {
-  const {
+interface Props {
+  profiledid?: string
+}
+export const ProfileHeader = ({ profiledid }: Props) => {
+  let {
     query: { did },
     push
   } = useRouter();
+  did = did || profiledid;
 
   const {
     data: profile,
