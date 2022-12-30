@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import { AddProject } from '@/components/AddProject'
+import { GitCredentials } from '@/components/GitCredentials'
 import { GridItemEight, GridItemFour, GridItemTwelve, GridLayout } from '@/components/GridLayout'
-import Card from '@/components/UI/Card'
 
 const Add = () => (
   <GridLayout>
@@ -14,7 +15,7 @@ const Add = () => (
       <AddProject />
     </GridItemEight>
     <GridItemFour>
-      <Card>Sidebar</Card>
+      <GitCredentials />
     </GridItemFour>
   </GridLayout>
 )
