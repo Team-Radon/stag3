@@ -11,7 +11,7 @@ const Hero = () => {
         Your web3 product in the limelight
       </h1>
       <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
-        A dedicated stage for blockchain builders. Showcase your latest web3 product or ideas, gain valuable insights, and kickstart your community.
+        Stag3 is where you present your web3 ideas and projects to fellow blockchain builders. Get specialized feedback and widen your network for future projects.
       </p>
       <div className="mt-5 sm:mt-8 flex justify-center">
         <div className="flex h-8 items-center gap-3">
