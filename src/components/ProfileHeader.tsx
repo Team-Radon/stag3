@@ -53,8 +53,10 @@ export const ProfileHeader = () => {
                   </Button>
                 </div>
                 )
-              : ( <div className="flex flex-grow items-center gap-x-2 lg:mb-4 justify-center mt-2">
-                <ButtonFollow creator={profile?.data?.did||''} /></div>
+              : (
+                <div className="flex flex-grow items-center gap-x-2 lg:mb-4 justify-center mt-2">
+                  <ButtonFollow creator={profile?.data?.did || ''} />
+                </div>
                 )}
             <div className="flex items-center justify-center gap-4 mt-6">
               <div className="flex items-center gap-2 text-xs" onClick={async () => push(`/profile/${profile?.data?.did}/follower`)}>
