@@ -1,7 +1,7 @@
 import { User } from '../helpers/interfaces';
 import { useGetGroupMembers } from '../orbis/useGetGroupMembers';
 import Card from './UI/Card';
-import { LoadingSpinner } from './UI/LoadingSpinner';
+import SkeletonGroupMembers from './UI/SkeletonGroupMembers';
 import { UserProfileItem } from './UserProfileItem';
 
 export const GroupMembers = () => {
@@ -9,7 +9,7 @@ export const GroupMembers = () => {
 
   if (!users && isLoading) {
     return (
-      <LoadingSpinner />
+      <SkeletonGroupMembers />
     );
   }
 
