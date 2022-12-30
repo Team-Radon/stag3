@@ -6,10 +6,10 @@ import { useAppStore } from '@/store/useAppStore';
 import { useUsername } from '@/hooks/useUsername';
 import Link from 'next/link';
 import Card from './UI/Card';
-import { LoadingSpinner } from './UI/LoadingSpinner';
 import { Button } from './UI/Button';
 import { AvatarUser } from './AvatarUser';
 import { ButtonFollow } from './ButtonFollow';
+import SkeletonProfileHeader from './UI/SkeletonProfileHeader';
 
 interface Props {
   profiledid?: string
@@ -36,7 +36,7 @@ export const ProfileHeader = ({ profiledid }: Props) => {
 
   if (!profile && isLoading) {
     return (
-      <LoadingSpinner />
+      <SkeletonProfileHeader />
     );
   }
   return (
