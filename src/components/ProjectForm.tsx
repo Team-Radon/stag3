@@ -82,12 +82,6 @@ export const ProjectForm = ({
     <Form form={form} onSubmit={onSubmit}>
       <div className="space-y-8">
         <div className="details">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">
-            {label}
-            {' '}
-            Project Info
-          </h3>
-          <p className="mt-1 text-sm text-gray-500">Amet commodo proident ex reprehenderit deserunt do</p>
           <div className="inputs flex flex-col gap-4 my-6">
             <div className="logo">
               <label htmlFor="logo" className="block text-sm font-medium text-gray-700">

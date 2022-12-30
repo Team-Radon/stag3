@@ -17,7 +17,7 @@ export const Projects = ({ options }: { options?: GetProjectsOptions }) => {
   }
 
   if (projects?.data?.length === 0) {
-    return <Card padded>No projects found</Card>
+    return <Card padded>Projects created and supported will appear here. Submit a Project or Go to Homepage to start voting.</Card>
   }
 
   return (
