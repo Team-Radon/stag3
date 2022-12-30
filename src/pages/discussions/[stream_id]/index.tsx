@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
-import { GridItemEight, GridLayout } from '@/components/GridLayout';
+import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout';
 import Card from '@/components/UI/Card';
 import { Comments } from '@/components/Comments';
 import { useGetDiscussion } from '@/orbis/useGetDiscussion';
 import { ButtonReaction } from '@/components/ButtonReaction';
 import { Markdown } from '@/components/Markdown';
+import { ProfileHeader } from '@/components/ProfileHeader';
 
 const Discussion = () => {
   const {
@@ -57,9 +58,17 @@ const Discussion = () => {
                 </div>
               </Card>
               <Card>
-                {discussion && <Comments context={process.env.DISCUSSION_CONTEXT || ''} post={discussion?.data} />}
+                {discussion && (
+                  <Comments
+                    context={process.env.DISCUSSION_CONTEXT || ''}
+                    post={discussion?.data}
+                  />
+                )}
               </Card>
             </GridItemEight>
+            <GridItemFour>
+              <ProfileHeader profiledid={discussion?.data?.creator_details?.did} />
+            </GridItemFour>
           </>
           )}
     </GridLayout>
