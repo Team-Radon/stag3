@@ -19,8 +19,8 @@ export const AddDiscussion = () => {
 
   const form = useForm<DiscussionInput>({
     defaultValues: {
-      body: 'What is your project about?',
-      title: 'Best Project Ever'
+      body: '',
+      title: ''
     }
   });
 
@@ -49,9 +49,10 @@ export const AddDiscussion = () => {
         <div className="space-y-8">
           <div className="details">
             <div className="inputs flex flex-col gap-4 my-6">
-              <Input label="Topic" {...form.register('title')} />
+              <Input label="Topic" {...form.register('title')} placeholder="specific title" />
               <MarkdownEditor
-                label="Text"
+                label="Content"
+                placeholder="Tell me more about the topic"
                 {...form.register('body')}
                 imageUploaded={(injectedBody) => form.setValue('body', injectedBody)}
                 count={body.length}
