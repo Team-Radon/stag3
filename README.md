@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Logo](https://www.stag3.xyz/stag3.svg)
+
+# stag3 (stage)
+
+**A dedicated stage for blockchain builders,** this Next.js app showcases how to use the Orbis Protocol SDK to build decentralized social experiences. Showcase your latest web3 product or ideas, gain valuable insights, and kickstart your community with the advanced features of Orbis Protocol.
 
 ## Getting Started
 
-First, run the development server:
+To get started, clone the repository and install the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/Team-Radon/stag3.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+cd stag3
+npm install
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Open [https://stag3.xyz](https://stag3.xyz) with your browser to see the demo.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more, take a look at the following resources:
 
+- [Orbis Club API Documentation](https://nextjs.org/docs) - start building decentralized social features.
+- [Gitcoin Passport Documentation](https://docs.passport.gitcoin.co/) - learn about Gitcoin Passport sdk features.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can check out [ Stag3 GitHub repository](https://github.com/Team-Radon/stag3/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

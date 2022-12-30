@@ -9,13 +9,11 @@ import Link from 'next/link';
 import { ArrowTopRightOnSquareIcon, PencilIcon } from '@heroicons/react/20/solid';
 import { Comments } from '@/components/Comments';
 import { ButtonReaction } from '@/components/ButtonReaction';
-import { AvatarUser } from '@/components/AvatarUser';
 import { ProjectLogo } from '@/components/ProjectLogo';
 import { useAppStore } from '@/store/useAppStore';
-import { ButtonFollow } from '@/components/ButtonFollow';
 import { LOGO_PLACEHOLDER } from '@/constants';
+import { ProfileHeader } from '@/components/ProfileHeader';
 import { useGetProject } from '../../orbis/useGetProject';
-import { useUsername } from '../../hooks/useUsername';
 
 const Project = () => {
   const {
@@ -30,8 +28,6 @@ const Project = () => {
 
   // current login user
   const user = useAppStore((state) => state.user);
-
-  const { username } = useUsername(project?.data?.creator_details);
 
   if (error) {
     return <Error statusCode={404} />;
@@ -152,20 +148,7 @@ const Project = () => {
               </Card>
             </GridItemEight>
             <GridItemFour>
-              <Card padded className="md:sticky top-[154px]">
-                <Link href={`/profile/${project?.data?.creator_details?.did}`}>
-                  <div className="flex items-center justify-center gap-2">
-                    <AvatarUser
-                      details={project?.data?.creator_details}
-                      size="32"
-                    />
-                    <div className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</div>
-                  </div>
-                </Link>
-                <div className="flex items-center justify-center gap-2">
-                  <ButtonFollow creator={project?.data?.creator_details?.did || ''} />
-                </div>
-              </Card>
+              <ProfileHeader profiledid={project?.data?.creator_details?.did} />
             </GridItemFour>
           </>
           )}

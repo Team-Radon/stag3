@@ -8,12 +8,17 @@ import Card from './UI/Card';
 import { LoadingSpinner } from './UI/LoadingSpinner';
 import { Button } from './UI/Button';
 import { AvatarUser } from './AvatarUser';
+import { ButtonFollow } from './ButtonFollow';
 
-export const ProfileHeader = () => {
-  const {
+interface Props {
+  profiledid?: string
+}
+export const ProfileHeader = ({ profiledid }: Props) => {
+  let {
     query: { did },
     push
   } = useRouter();
+  did = did || profiledid;
 
   const {
     data: profile,
@@ -53,8 +58,8 @@ export const ProfileHeader = () => {
                 </div>
                 )
               : (
-                <div className="flex flex-grow items-start gap-x-2 lg:mb-4 justify-center mt-2">
-                  <Button>Follow</Button>
+                <div className="flex flex-grow items-center gap-x-2 lg:mb-4 justify-center mt-2">
+                  <ButtonFollow creator={profile?.data?.did || ''} />
                 </div>
                 )}
             <div className="flex items-center justify-center gap-4 mt-6">
