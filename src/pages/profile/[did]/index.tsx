@@ -55,11 +55,11 @@ const Profile = () => {
                   </div>
                   )}
               <div className="flex items-center justify-center gap-4 mt-6">
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs" onClick={async () => push(`/profile/${profile?.data?.did}/follower`)}>
                   <span className="font-semibold">{profile?.data?.count_followers}</span>
                   <span className="uppercase">Followers</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs" onClick={async () => push(`/profile/${profile?.data?.did}/following`)}>
                   <span className="font-semibold">{profile?.data?.count_following}</span>
                   <span className="uppercase">Following</span>
                 </div>
