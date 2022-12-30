@@ -19,8 +19,8 @@ export const AddDiscussion = () => {
 
   const form = useForm<DiscussionInput>({
     defaultValues: {
-      body: 'What is your project about?',
-      title: 'Best Project Ever'
+      body: '',
+      title: ''
     }
   });
 
@@ -36,8 +36,8 @@ export const AddDiscussion = () => {
     }
 
     if (res.status === 200) {
-      console.log(res);
       toast.success('saved');
+      form.reset({ body: '', title: '' })
     }
   }
 
@@ -49,10 +49,11 @@ export const AddDiscussion = () => {
         <div className="space-y-8">
           <div className="details">
             <div className="inputs flex flex-col gap-4 my-6">
-              <Input label="Topic" {...form.register('title')} />
+              <Input label="Topic" {...form.register('title', { required: true })} placeholder="specific title" />
               <MarkdownEditor
-                label="Text"
-                {...form.register('body')}
+                label="Content"
+                placeholder="Tell me more about the topic"
+                {...form.register('body', { required: true })}
                 imageUploaded={(injectedBody) => form.setValue('body', injectedBody)}
                 count={body.length}
               />
@@ -64,6 +65,8 @@ export const AddDiscussion = () => {
           <Button
             primary
             type="submit"
+            disabled={!form.formState.isDirty}
+            className="disabled:opacity-70"
           >
             Post
           </Button>
