@@ -40,6 +40,12 @@ const Discussion = () => {
           <>
             <GridItemEight className="space-y-4">
               <Card padded>
+                <div className="flex justify-end">
+                  {discussion?.data?.creator_details?.did === user?.did &&
+                  (
+                  <Button onClick={async () => push(`${discussion?.data?.stream_id}/edit` || '#')} size="sm" icon={<PencilIcon className="w-3 h-3" />}>Edit</Button>
+                  )}
+                </div>
                 <div className="relative flex gap-4">
                   <ButtonReaction creator={discussion?.data?.creator || ''} stream_id={discussion?.data?.stream_id || ''} count_downvotes={discussion?.data?.count_downvotes || 0} count_likes={discussion?.data?.count_likes || 0} />
                   <div>
@@ -60,13 +66,6 @@ const Discussion = () => {
                       <Markdown source={discussion?.data?.content?.body} />
                     </div>
                   </div>
-                </div>
-
-                <div className="flex justify-end">
-                  {discussion?.data?.creator_details?.did === user?.did &&
-                  (
-                  <Button onClick={async () => push(`${discussion?.data?.stream_id}/edit` || '#')} size="sm" icon={<PencilIcon className="w-3 h-3" />}>Edit</Button>
-                  )}
                 </div>
               </Card>
               <Card>
