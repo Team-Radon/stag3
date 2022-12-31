@@ -35,6 +35,7 @@
 		"@heroicons/react": "^2.0.13",
 		"@hookform/resolvers": "^2.9.10",
 		"@orbisclub/orbis-sdk": "^0.4.9",
+		"@tailwindcss/line-clamp": "^0.4.2",
 		"@tanstack/react-query": "^4.19.1",
 		"@tanstack/react-query-devtools": "^4.19.1",
 		"@types/node": "18.11.11",

@@ -20,7 +20,7 @@ export const ButtonRounded = forwardRef<HTMLButtonElement, Props>(
     <button
       ref={ref}
       className={clsx(
-        'flex h-[44px] w-[44px] cursor-pointer select-none items-center justify-center rounded-full border border-skin-border hover:border-skin-text',
+        'flex h-[44px] w-[44px] cursor-pointer select-none items-center justify-center rounded-full border border-skin-border hover:border-accent',
         className
       )}
       {...rest}

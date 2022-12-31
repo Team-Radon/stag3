@@ -16,7 +16,7 @@ const NotificationsItem = ({ notification }: { notification: Notification }) => 
 
   return (
     <Popover.Button as="div">
-      <div className="flex w-full cursor-pointer px-3 pt-3 pb-2 hover:bg-skin-border">
+      <div className="flex w-full cursor-pointer px-4 py-4 hover:bg-gray-100">
         <div className="hidden w-[78px] sm:block">
           <AvatarUser
             details={notification?.user_notifiying_details}
@@ -26,12 +26,12 @@ const NotificationsItem = ({ notification }: { notification: Notification }) => 
         </div>
         <div className="w-full">
           <div className="flex leading-tight">
-            <div className="max-w-[110px] truncate text-skin-link">
+            <div className="max-w-[110px] truncate text-sm font-semibold">
               {username}
             </div>
           </div>
           <div className="leading-normal text-skin-text">
-            <span>
+            <span className="text-sm">
               {notification?.family === 'follow'
                 ? 'is following you'
                 : notification?.family === 'reaction'
@@ -43,7 +43,7 @@ const NotificationsItem = ({ notification }: { notification: Notification }) => 
                       : null}
             </span>
           </div>
-          <div className="whitespace-normal truncate leading-tight text-skin-link line-clamp-2">
+          <div className="whitespace-normal truncate leading-tight text-gray-700 text-sm line-clamp-2">
             {notification?.post_details?.content?.body && (
               <>
                 &ldquo;
@@ -91,7 +91,7 @@ export const Notifications = () => {
         ref={panelRef}
       >
         <ButtonRounded
-          className="text-skin-text hover:text-skin-link"
+          className="hover:text-accent"
           onClick={() => setShow(!show)}
         >
           <BellAlertIcon className="h-[1.2em] w-[1.2em]" />
@@ -101,8 +101,8 @@ export const Notifications = () => {
           <div className="overflow-hidden rounded-lg border border-skin-border bg-skin-header-bg shadow-lg outline-none">
             <div className="no-scrollbar max-h-[85vh] overflow-y-auto overscroll-contain">
               <div className="my-2 w-full">
-                <div className="mb-3 flex items-center justify-between px-3">
-                  <h4>Notifications</h4>
+                <div className="mb-3 flex items-center justify-between px-4 pt-2">
+                  <div>Notifications</div>
                 </div>
 
                 {!notifications && isLoading
@@ -110,7 +110,7 @@ export const Notifications = () => {
                     <LoadingSpinner />
                     )
                   : (
-                    <>
+                    <div className="divide-y divide-skin-divider">
                       {notifications?.data?.map(
                         (notification, i: number) => (
                           <NotificationsItem
@@ -119,7 +119,7 @@ export const Notifications = () => {
                           />
                         )
                       )}
-                    </>
+                    </div>
                     )}
               </div>
             </div>
