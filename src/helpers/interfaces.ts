@@ -94,3 +94,19 @@ export interface Discussion extends Post {
     tags: Tag[]
   }
 }
+
+export interface Notification {
+  user_notifiying_details: Details
+  type: string
+  family: string
+  content: {
+    did: string
+    active: boolean
+  }
+  post_details: Post & {
+    content: {
+      body: string
+    }
+  }
+  status: string
+}
