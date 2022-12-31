@@ -13,11 +13,13 @@ import { ProjectLogo } from '@/components/ProjectLogo';
 import { useAppStore } from '@/store/useAppStore';
 import { LOGO_PLACEHOLDER } from '@/constants';
 import { ProfileHeader } from '@/components/ProfileHeader';
+import { Button } from '@/components/UI/Button';
 import { useGetProject } from '../../orbis/useGetProject';
 
 const Project = () => {
   const {
-    query: { stream_id }
+    query: { stream_id },
+    push
   } = useRouter();
 
   const {
@@ -75,10 +77,15 @@ const Project = () => {
                   </div>
                   { project?.data?.creator_details?.did === user?.did
                     ? (
-                      <Link href={`${project?.data?.stream_id}/edit` || '#'} title={project?.data?.content?.title} className="top-20 md:top-4 right-4 absolute flex items-center border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-2 py-1 text-sm gap-2 rounded-md">
-                        <PencilIcon className="w-3 h-3" />
+                      <Button
+                        onClick={async () => push(`${project?.data?.stream_id}/edit` || '#')}
+                        size="sm"
+                        icon={<PencilIcon className="w-3 h-3" />}
+                        className="absolute top-20 md:top-4 right-4"
+                      >
                         Edit
-                      </Link>
+
+                      </Button>
                       )
                     : null }
                 </div>
