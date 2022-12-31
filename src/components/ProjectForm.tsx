@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -177,62 +178,6 @@ export const ProjectForm = ({
           </div>
         </div>
       </div>
-      Only verified credentials owners can submit project.
-      <div className="flex justify-start">
-        <Link href="#" title="Twitter followers > 100" className="px-4 py-2 rounded-lg bg-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="min-w-0 truncate flex-1 text-sm font-medium text-gray-900">
-              TwitterFollowerGT100
-            </div>
-            {iconCheck}
-          </div>
-        </Link>
-        or
-        <Link href="#" title="Has a GitHub account" className="px-4 py-2 rounded-lg bg-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="min-w-0 truncate flex-1 text-sm font-medium text-gray-900">
-              Github
-            </div>
-            {iconCheck}
-          </div>
-        </Link>
-        or
-        <Link href="#" title="Is Human in proof of Humanity" className="px-4 py-2 rounded-lg bg-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="min-w-0 truncate flex-1 text-sm font-medium text-gray-900">
-              ProofOfHumanity
-            </div>
-            {iconCheck}
-          </div>
-        </Link>
-      </div>
-      {!isVerified
-        ? (
-          <div className="flex justify-start">
-            <a
-              className="flex justify-center items-center mt-4 border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-3 py-2 text-sm space-x-2 rounded-lg"
-              href="https://passport.gitcoin.co/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>Connect Gitcoin Passport</span>
-              <svg className="w-5 h-5" fill="currentColor" stroke="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-              </svg>
-            </a>
-          </div>
-          )
-        : (
-          <a className="flex justify-center items-center mt-4 border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-3 py-2 text-sm space-x-2 rounded-lg" href="https://passport.gitcoin.co/" target="_blank" rel="noreferrer">
-            <span>View Stamps</span>
-            <svg className="w-5 h-5" fill="currentColor" stroke="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg>
-          </a>
-          ) }
-
       <div className="flex justify-end">
         <Button
           loading={loading}
