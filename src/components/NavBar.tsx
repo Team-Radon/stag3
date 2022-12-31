@@ -4,9 +4,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Button } from './UI/Button'
 import { NavBarAccount } from './NavBarAccount';
+import { Notifications } from './Notifications';
 
 const NavBar = () => {
   const { push } = useRouter();
+
   return (
     <div className="sticky top-0 z-40 flex shrink-0 items-center w-full h-16 bg-[#e5e7eb]/70 sm:h-auto p-4 sm:p-6 backdrop-blur">
       <Link href="/" title="Home">
@@ -46,7 +48,8 @@ const NavBar = () => {
             Submit
           </Button>
         </div>
-        <div className="flex relative">
+        <div className="flex relative space-x-3">
+          <Notifications />
           <NavBarAccount />
         </div>
       </div>
