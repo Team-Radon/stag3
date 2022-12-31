@@ -10,10 +10,12 @@ import { ProfileHeader } from '@/components/ProfileHeader';
 import { useAppStore } from '@/store/useAppStore';
 import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
+import { Button } from '@/components/UI/Button';
 
 const Discussion = () => {
   const {
-    query: { stream_id }
+    query: { stream_id },
+    push
   } = useRouter();
   const user = useAppStore((state) => state.user)
 
@@ -63,12 +65,9 @@ const Discussion = () => {
 
                 <div className="flex justify-end">
                   {discussion?.data?.creator_details?.did === user?.did &&
-                (
-                  <Link href={`${discussion?.data?.stream_id}/edit` || '#'} title={discussion?.data?.content?.title} className="mt-4 inline-flex items-center border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-2 py-1 text-sm gap-2 rounded-md">
-                    <PencilIcon className="w-3 h-3" />
-                    Edit
-                  </Link>
-                )}
+                  (
+                  <Button onClick={async () => push(`${discussion?.data?.stream_id}/edit` || '#')} size="sm" icon={<PencilIcon className="w-3 h-3" />}>Edit</Button>
+                  )}
                 </div>
               </Card>
               <Card>
