@@ -164,7 +164,7 @@ export const ProjectForm = ({
         </div>
         <div className="socials pt-8">
           <h3 className="text-lg font-medium leading-6 text-gray-900">Social Links</h3>
-          <p className="mt-1 text-sm text-gray-500">{`Add links to your project's social accounts to keep supporters updated`}</p>
+          <p className="mt-1 text-sm text-gray-500">{'Add links to your project\'s social accounts to keep supporters updated'}</p>
           <div className="flex flex-col gap-4 my-6 md:w-3/5">
             <Input label="Twitter" {...form.register('twitter')} placeholder="stag3_orbis" />
             <Input
