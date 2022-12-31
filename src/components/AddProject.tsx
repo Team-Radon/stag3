@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useQueryClient } from '@tanstack/react-query'
+import router from 'next/router';
 import { useOrbis } from '../orbis/useOrbis';
 import { ProjectForm } from './ProjectForm';
 
@@ -68,6 +69,10 @@ export const AddProject = () => {
       toast.success('saved');
       // invalidate cached projects
       queryClient.invalidateQueries({ queryKey: ['projects', null] });
+      // redirect to project page
+      setTimeout(() => {
+        router.push(`/${res.doc}`);
+      }, 1500);
     }
   }
 
