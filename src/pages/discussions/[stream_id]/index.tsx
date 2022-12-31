@@ -8,7 +8,6 @@ import { ButtonReaction } from '@/components/ButtonReaction';
 import { Markdown } from '@/components/Markdown';
 import { ProfileHeader } from '@/components/ProfileHeader';
 import { useAppStore } from '@/store/useAppStore';
-import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/UI/Button';
 
