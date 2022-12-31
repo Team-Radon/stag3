@@ -74,7 +74,7 @@ export const Notifications = () => {
   }
 
   return (
-    <Popover>
+    <Popover className="hidden lg:block">
       <Float
         show={show}
         enter="transition ease-out duration-100"
@@ -97,7 +97,7 @@ export const Notifications = () => {
           <BellAlertIcon className="h-[1.2em] w-[1.2em]" />
         </ButtonRounded>
 
-        <Popover.Panel static className="w-screen outline-none sm:max-w-sm">
+        <Popover.Panel static className="w-full outline-none sm:max-w-sm">
           <div className="overflow-hidden rounded-lg border border-skin-border bg-skin-header-bg shadow-lg outline-none">
             <div className="no-scrollbar max-h-[85vh] overflow-y-auto overscroll-contain">
               <div className="my-2 w-full">
