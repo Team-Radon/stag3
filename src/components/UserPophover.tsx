@@ -2,12 +2,12 @@
 import { Popover } from '@headlessui/react';
 import { useRef, useState } from 'react';
 import { Float } from '@headlessui-float/react';
-import Link from 'next/link';
 import { shorten } from '@/helpers/utils';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import { Details } from '@/helpers/interfaces';
 import { useUsername } from '@/hooks/useUsername';
 import { useCopy } from '@/hooks/useCopy';
+import { useRouter } from 'next/router';
 import { AvatarUser } from './AvatarUser';
 import { Button } from './UI/Button';
 import { ButtonFollow } from './ButtonFollow';
@@ -31,6 +31,7 @@ export const UserPophover = ({
   const { copyToClipboard } = useCopy();
 
   const { username } = useUsername(details);
+  const { push } = useRouter();
 
   const open = () => {
     if (timerClose.current !== null) {
@@ -111,11 +112,17 @@ export const UserPophover = ({
 
                 <div className="mt-4 flex w-full">
                   <div className="w-1/2 pr-2">
-                    <Link href={`/profile/${details?.did}`}>
-                      <Button primary className="w-full">
-                        View Profile
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        push(`/profile/${details?.did}`)
+                      }}
+                      size="sm"
+                      primary
+                      className="w-full"
+                    >
+                      View Profile
+                    </Button>
                   </div>
                   <div className="w-1/2 pl-2">
                     <ButtonFollow

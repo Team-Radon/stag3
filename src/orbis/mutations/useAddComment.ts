@@ -5,6 +5,7 @@ interface AddCommentVariables {
   body: string
   master: string
   replyTo?: string
+  context: string
 }
 
 export function useAddCommentMutation<
@@ -24,7 +25,7 @@ export function useAddCommentMutation<
       body: variables.body,
       reply_to: variables.replyTo,
       master: variables.master,
-      context: process.env.PROJECT_CONTEXT
+      context: variables.context
     })
 
     return result;

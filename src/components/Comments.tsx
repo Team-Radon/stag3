@@ -115,8 +115,9 @@ export const Comments = ({
     );
   }
 
+  // todo refactor, convert to pure functions
   const addComment = async (body: string, master: string, replyTo?: string) => {
-    addCommentMutation({ body, master, replyTo: replyTo ?? master ?? post?.stream_id })
+    addCommentMutation({ body, master, replyTo: replyTo ?? master ?? post?.stream_id, context })
   }
 
   const updateComment = async (commentId: string, body: string, master?: string) => {
