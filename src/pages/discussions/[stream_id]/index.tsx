@@ -7,11 +7,15 @@ import { useGetDiscussion } from '@/orbis/useGetDiscussion';
 import { ButtonReaction } from '@/components/ButtonReaction';
 import { Markdown } from '@/components/Markdown';
 import { ProfileHeader } from '@/components/ProfileHeader';
+import { useAppStore } from '@/store/useAppStore';
+import Link from 'next/link';
+import { PencilIcon } from '@heroicons/react/24/solid';
 
 const Discussion = () => {
   const {
     query: { stream_id }
   } = useRouter();
+  const user = useAppStore((state) => state.user)
 
   const {
     data: discussion,
@@ -55,6 +59,16 @@ const Discussion = () => {
                       <Markdown source={discussion?.data?.content?.body} />
                     </div>
                   </div>
+                </div>
+
+                <div className="flex justify-end">
+                  {discussion?.data?.creator_details?.did === user?.did &&
+                (
+                  <Link href={`${discussion?.data?.stream_id}/edit` || '#'} title={discussion?.data?.content?.title} className="mt-4 inline-flex items-center border border-skin-border font-medium text-skin-text hover:text-accent hover:border-accent px-2 py-1 text-sm gap-2 rounded-md">
+                    <PencilIcon className="w-3 h-3" />
+                    Edit
+                  </Link>
+                )}
                 </div>
               </Card>
               <Card>
