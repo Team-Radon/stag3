@@ -49,7 +49,7 @@ const Add = () => {
       </GridItemEight>
       <GridItemFour>
         <Card padded className="md:sticky top-[100px]">
-          <div className="text-sm">Project submission is restricted to owners of these verifiable credentials.</div>
+          <div className="text-sm">You must own one of these verifiable credentials to submit a project.</div>
           <div className="flex flex-col gap-2 mt-4">
             <Link href="#" title="Twitter followers > 100" className="px-4 py-2 rounded-lg bg-gray-100">
               <div className="flex items-center gap-4">
