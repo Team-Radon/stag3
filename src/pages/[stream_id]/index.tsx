@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-children-prop */
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout';
@@ -14,6 +15,7 @@ import { useAppStore } from '@/store/useAppStore';
 import { LOGO_PLACEHOLDER } from '@/constants';
 import { ProfileHeader } from '@/components/ProfileHeader';
 import { Button } from '@/components/UI/Button';
+import { ProjectLink } from '@/components/ProjectLink';
 import { useGetProject } from '../../orbis/useGetProject';
 
 const Project = () => {
@@ -115,32 +117,16 @@ const Project = () => {
                 {/* links */}
                 <div className="links flex flex-col md:flex-row md:gap-20 px-4 md:px-6 my-6">
                   <div className="official-sites md:w-1/3">
-                    <Link href={project?.data?.content?.data?.website || '#'} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
-                      <span>Website</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
-                    <Link href={project?.data?.content?.data?.whitepaper || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
-                      <span>Whitepaper / Litepaper</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
-                    <Link href={`https://github.com/${project?.data?.content?.data?.github}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
-                      <span>Github</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
-                    <Link href={`https://gitcoin.com/${project?.data?.content?.data?.gitcoin}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
-                      <span>Gitcoin</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
+                    <ProjectLink url="" social={project?.data?.content?.data?.website} socialType="Whitepaper / Litepaper" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="" social={project?.data?.content?.data?.whitepaper} socialType="Website" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="https://github.com/" social={project?.data?.content?.data?.github} socialType="Github" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="https://gitcoin.com/" social={project?.data?.content?.data?.gitcoin} socialType="Gitcoin" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                   </div>
                   <div className="socials md:w-1/3 mt-4 md:mt-0">
-                    <Link href={`https://discord.com/${project?.data?.content?.data?.discord}` || '#'} className="group flex items-center gap-1 text-sm text-sky-600 hover:underline">
-                      <span>Discord</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
-                    <Link href={`https://twitter.com/${project?.data?.content?.data?.twitter}` || '#'} className="group flex items-center gap-1 mt-4 text-sm text-sky-600 hover:underline">
-                      <span>Twitter</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />
-                    </Link>
+
+                    <ProjectLink url="https://discord.com/" social={project?.data?.content?.data?.discord} socialType="Discord" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+
+                    <ProjectLink url="https://twitter.com" social={project?.data?.content?.data?.twitter} socialType="Twitter" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                   </div>
                 </div>
               </Card>
