@@ -117,8 +117,8 @@ const Project = () => {
                 {/* links */}
                 <div className="links flex flex-col md:flex-row md:gap-20 px-4 md:px-6 my-6">
                   <div className="official-sites md:w-1/3">
-                    <ProjectLink url="" social={project?.data?.content?.data?.website} socialType="Whitepaper / Litepaper" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
-                    <ProjectLink url="" social={project?.data?.content?.data?.whitepaper} socialType="Website" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="" social={project?.data?.content?.data?.website} socialType="Website" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="" social={project?.data?.content?.data?.whitepaper} socialType="Whitepaper / Litepaper" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                     <ProjectLink url="https://github.com/" social={project?.data?.content?.data?.github} socialType="Github" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                     <ProjectLink url="https://gitcoin.com/" social={project?.data?.content?.data?.gitcoin} socialType="Gitcoin" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                   </div>
