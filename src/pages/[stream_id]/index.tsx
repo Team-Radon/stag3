@@ -17,8 +17,8 @@ import { ProfileHeader } from '@/components/ProfileHeader';
 import { Button } from '@/components/UI/Button';
 import { ProjectLink } from '@/components/ProjectLink';
 import Head from 'next/head';
-import { useGetProject } from '../../orbis/useGetProject';
 import { RequiredVCs } from '@/components/RequiredVCs';
+import { useGetProject } from '../../orbis/useGetProject';
 
 const Project = () => {
   const {

@@ -2,9 +2,9 @@
 import Link from 'next/link';
 import { getAddressFromDid } from '@orbisclub/orbis-sdk/utils';
 import { useEffect, useState } from 'react';
-import Card from './UI/Card';
 import { useAppStore } from '@/store/useAppStore';
 import { validateStampsVerified } from '@/helpers/gitcoinPassportUtils';
+import Card from './UI/Card';
 // interface TwitterLinkProps {
 //   url: string
 //   social?: string
