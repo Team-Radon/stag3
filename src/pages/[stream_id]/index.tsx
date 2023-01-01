@@ -126,7 +126,7 @@ const Project = () => {
 
                     <ProjectLink url="https://discord.com/" social={project?.data?.content?.data?.discord} socialType="Discord" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
 
-                    <ProjectLink url="https://twitter.com" social={project?.data?.content?.data?.twitter} socialType="Twitter" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
+                    <ProjectLink url="https://twitter.com/" social={project?.data?.content?.data?.twitter} socialType="Twitter" children={<ArrowTopRightOnSquareIcon className="w-4 h-4 hidden group-hover:block" />} />
                   </div>
                 </div>
               </Card>
