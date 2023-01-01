@@ -57,7 +57,7 @@ export const MenuAccount = ({
                 <div
                   className={clsx(
                     active
-                      ? 'bg-skin-border text-skin-link'
+                      ? 'bg-gray-100 text-accent'
                       : 'bg-skin-header-bg text-skin-text',
                     'cursor-pointer whitespace-nowrap px-3 py-2'
                   )}
@@ -72,7 +72,7 @@ export const MenuAccount = ({
                 <div
                   className={clsx(
                     active
-                      ? 'bg-skin-border text-skin-link'
+                      ? 'bg-gray-100 text-accent'
                       : 'bg-skin-header-bg text-skin-text',
                     'cursor-pointer whitespace-nowrap px-3 py-2'
                   )}
@@ -87,7 +87,7 @@ export const MenuAccount = ({
                 <div
                   className={clsx(
                     active
-                      ? 'bg-skin-border text-skin-link'
+                      ? 'bg-gray-100 text-accent'
                       : 'bg-skin-header-bg text-skin-text',
                     'cursor-pointer whitespace-nowrap px-3 py-2'
                   )}

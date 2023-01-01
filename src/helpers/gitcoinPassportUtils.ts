@@ -26,6 +26,18 @@ export const getStamps = (passport: CeramicPassport | false) => {
   if (!passport) { return [] }
   return passport?.stamps?.map((stamp) => stamp.provider);
 }
+
+export const validateStampsVerified = async (address: string, requiredVC: string[]) => {
+  // requiredVC= ['TwitterFollowerGT100', 'Github', 'Brightid']
+  const passport: CeramicPassport | false = await getGitPassportCredentials(address);
+  if (!passport) {
+    return false
+  }
+  const stamps: string[] = passport?.stamps?.map((stamp) => stamp.provider);
+  if (stamps.some((x) => requiredVC.includes(x))) {
+    return true
+  } return false
+}
 /**
  * Export Ceramic Passport types in utils
  * To reduce the need to import the @gitcoinco/passport-sdk-reader module in multiple components, we can export the relevant types from the utils module and you can import them in a single file.

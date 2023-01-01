@@ -7,11 +7,16 @@ import { useGetDiscussion } from '@/orbis/useGetDiscussion';
 import { ButtonReaction } from '@/components/ButtonReaction';
 import { Markdown } from '@/components/Markdown';
 import { ProfileHeader } from '@/components/ProfileHeader';
+import { useAppStore } from '@/store/useAppStore';
+import { PencilIcon } from '@heroicons/react/24/solid';
+import { Button } from '@/components/UI/Button';
 
 const Discussion = () => {
   const {
-    query: { stream_id }
+    query: { stream_id },
+    push
   } = useRouter();
+  const user = useAppStore((state) => state.user)
 
   const {
     data: discussion,
@@ -35,6 +40,12 @@ const Discussion = () => {
           <>
             <GridItemEight className="space-y-4">
               <Card padded>
+                <div className="flex justify-end">
+                  {discussion?.data?.creator_details?.did === user?.did &&
+                  (
+                  <Button onClick={async () => push(`${discussion?.data?.stream_id}/edit` || '#')} size="sm" icon={<PencilIcon className="w-3 h-3" />}>Edit</Button>
+                  )}
+                </div>
                 <div className="relative flex gap-4">
                   <ButtonReaction creator={discussion?.data?.creator || ''} stream_id={discussion?.data?.stream_id || ''} count_downvotes={discussion?.data?.count_downvotes || 0} count_likes={discussion?.data?.count_likes || 0} />
                   <div>
