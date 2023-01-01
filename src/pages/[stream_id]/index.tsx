@@ -18,6 +18,7 @@ import { Button } from '@/components/UI/Button';
 import { ProjectLink } from '@/components/ProjectLink';
 import Head from 'next/head';
 import { useGetProject } from '../../orbis/useGetProject';
+import { RequiredVCs } from '@/components/RequiredVCs';
 
 const Project = () => {
   const {
@@ -147,6 +148,7 @@ const Project = () => {
             </GridItemEight>
             <GridItemFour>
               <ProfileHeader profiledid={project?.data?.creator_details?.did} />
+              <RequiredVCs />
             </GridItemFour>
           </>
           )}
