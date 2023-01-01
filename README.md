@@ -21,7 +21,7 @@ npm install
 Production [https://stag3.xyz](https://stag3.xyz) with your browser to see the demo.
 
 
-Beta Version [ https://stag3.vercel.app/](https://stag3.vercel.app/) where you can test and play around with any info, less restriction.
+Beta Version [ https://stag3.vercel.app/](https://stag3.vercel.app/) where you can test the functionalities and play around with any info, less restriction.
 
 ## Learn More
 
