@@ -16,6 +16,7 @@ import { LOGO_PLACEHOLDER } from '@/constants';
 import { ProfileHeader } from '@/components/ProfileHeader';
 import { Button } from '@/components/UI/Button';
 import { ProjectLink } from '@/components/ProjectLink';
+import Head from 'next/head';
 import { useGetProject } from '../../orbis/useGetProject';
 
 const Project = () => {
@@ -49,6 +50,11 @@ const Project = () => {
           <>
             <GridItemEight>
               <Card>
+                <Head>
+                  <title>
+                    {project?.data?.content?.title || 'stag3'}
+                  </title>
+                </Head>
                 {/* cover image */}
                 {project?.data?.content?.data?.cover && (
                   <div className="relative aspect-[5/2] md:aspect-[3/1] overflow-hidden">

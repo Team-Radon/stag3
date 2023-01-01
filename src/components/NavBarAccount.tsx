@@ -81,7 +81,7 @@ export const NavBarAccount = () => {
                 }}
               >
                 <div className="flex items-center gap-2">
-                  <img className="w-6 h-6" src="./metamask.svg" alt="MetaMask" />
+                  <img className="w-6 h-6" src="/metamask.svg" alt="MetaMask" />
                   <span>Connect with MetaMask</span>
                 </div>
               </Login>
@@ -92,7 +92,7 @@ export const NavBarAccount = () => {
                 }}
               >
                 <div className="flex items-center gap-2">
-                  <img className="w-6 h-6" src="./phantom.svg" alt="MetaMask" />
+                  <img className="w-6 h-6" src="/phantom.svg" alt="MetaMask" />
                   <span>Connect with Phantom</span>
                 </div>
               </Login>

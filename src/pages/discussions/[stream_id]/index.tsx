@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
+import { PencilIcon } from '@heroicons/react/24/solid';
+import Head from 'next/head';
 import { GridItemEight, GridItemFour, GridLayout } from '@/components/GridLayout';
 import Card from '@/components/UI/Card';
 import { Comments } from '@/components/Comments';
@@ -8,7 +10,6 @@ import { ButtonReaction } from '@/components/ButtonReaction';
 import { Markdown } from '@/components/Markdown';
 import { ProfileHeader } from '@/components/ProfileHeader';
 import { useAppStore } from '@/store/useAppStore';
-import { PencilIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/UI/Button';
 
 const Discussion = () => {
@@ -39,6 +40,11 @@ const Discussion = () => {
         : (
           <>
             <GridItemEight className="space-y-4">
+              <Head>
+                <title>
+                  {`${discussion?.data?.content?.title} discussion`}
+                </title>
+              </Head>
               <Card padded>
                 <div className="flex justify-end">
                   {discussion?.data?.creator_details?.did === user?.did &&
