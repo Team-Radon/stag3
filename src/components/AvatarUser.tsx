@@ -41,12 +41,9 @@ export const AvatarUser = ({
     <div
       className={clsx('flex shrink-0 items-center justify-center', className)}
     >
-      <div className="relative">
+      <div className={`relative w-[${size}px] h-[${size}px] rounded-full overflow-hidden`}>
         <Image
-          className={clsx(
-            'rounded-full bg-skin-border',
-            `w-[${size}px] h-[${size}px]`
-          )}
+          className="w-full h-full bg-skin-border"
           src={src}
           alt="avatar"
           width={Number(size)}
