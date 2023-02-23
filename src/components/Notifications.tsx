@@ -20,7 +20,7 @@ const NotificationsItem = ({ notification }: { notification: Notification }) => 
         <div className="hidden w-[78px] sm:block">
           <AvatarUser
             details={notification?.user_notifiying_details}
-            size="44"
+            size="md"
             className="-ml-2"
           />
         </div>

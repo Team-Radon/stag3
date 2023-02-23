@@ -47,7 +47,7 @@ export const ProfileHeader = ({ profiledid }: Props) => {
           <Card padded className="md:sticky top-[154px]">
             <AvatarUser
               details={profile?.data?.details}
-              size="80"
+              size="xl"
             />
             <div className="mt-2 text-center">
               <Link href={`/profile/${profile?.data?.details?.did}`} className="truncate font-semibold hover:text-accent duration-100" title="View Profile">
