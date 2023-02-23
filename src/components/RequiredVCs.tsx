@@ -37,7 +37,7 @@ export const RequiredVCs = () => {
     </svg>
   )
   return (
-    <Card padded className="md:sticky top-[100px] mt-4">
+    <Card padded>
       <div className="text-sm">You must own one of these verifiable credentials to comment.</div>
       <div className="flex flex-col gap-2 mt-4">
         <Link href="#" title="Twitter followers > 100" className="px-4 py-2 rounded-lg bg-gray-100">

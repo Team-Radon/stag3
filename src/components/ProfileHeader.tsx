@@ -44,7 +44,7 @@ export const ProfileHeader = ({ profiledid }: Props) => {
       {profile && isLoading
         ? <div>loading</div>
         : (
-          <Card padded className="md:sticky top-[154px]">
+          <Card padded>
             <AvatarUser
               details={profile?.data?.details}
               size="xl"

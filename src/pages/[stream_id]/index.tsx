@@ -147,8 +147,10 @@ const Project = () => {
               </Card>
             </GridItemEight>
             <GridItemFour>
-              <ProfileHeader profiledid={project?.data?.creator_details?.did} />
-              <RequiredVCs />
+              <div className="sticky top-[154px] space-y-6">
+                <ProfileHeader profiledid={project?.data?.creator_details?.did} />
+                <RequiredVCs />
+              </div>
             </GridItemFour>
           </>
           )}
