@@ -13,7 +13,7 @@ export const AvatarUser = ({
   previewFile = undefined
 }: {
   details?: Details
-  size?: string
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   className?: string
   previewFile?: File | undefined
 }) => {
@@ -41,13 +41,21 @@ export const AvatarUser = ({
     <div
       className={clsx('flex shrink-0 items-center justify-center', className)}
     >
-      <div className={`relative w-[${size}px] h-[${size}px] rounded-full overflow-hidden`}>
+      <div className={clsx(
+        'relative rounded-full overflow-hidden',
+        { 'w-6 h-6': size === 'xs' },
+        { 'w-8 h-8': size === 'sm' },
+        { 'w-10 h-10': size === 'md' },
+        { 'w-12 h-12': size === 'lg' },
+        { 'w-20 h-20': size === 'xl' }
+      )}
+      >
         <Image
           className="w-full h-full bg-skin-border"
           src={src}
           alt="avatar"
-          width={Number(size)}
-          height={Number(size)}
+          width={100}
+          height={100}
           onError={() => setSrc(makeBlockie(address || ''))}
         />
       </div>

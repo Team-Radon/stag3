@@ -75,7 +75,7 @@ export const UserPophover = ({
           onMouseLeave={delayClose}
         >
           {iconUser && <BaseUser details={details} />}
-          {iconOnly && <AvatarUser details={details} size="32" />}
+          {iconOnly && <AvatarUser details={details} size="sm" />}
           {userOnly && <div className="text-sm font-semibold">{username}</div>}
         </Popover.Button>
         <Popover.Panel
@@ -89,7 +89,7 @@ export const UserPophover = ({
               <div className="p-4">
                 <div className="flex">
                   <div>
-                    <AvatarUser details={details} size="80" />
+                    <AvatarUser details={details} size="xl" />
                   </div>
                   <div>
                     <div className="truncate px-3 text-lg font-semibold leading-10 text-skin-heading">

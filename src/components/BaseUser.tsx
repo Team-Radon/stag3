@@ -7,7 +7,7 @@ export const BaseUser = ({ details }: { details: Details }) => {
 
   return (
     <div className="flex gap-1 items-center">
-      <AvatarUser details={details} size="24" />
+      <AvatarUser details={details} size="xs" />
       <div className="text-sm">{username}</div>
     </div>
   )

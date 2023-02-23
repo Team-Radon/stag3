@@ -12,7 +12,7 @@ export const UserProfileItem = ({ details }: { details: Details }) => {
     <div className="py-4">
       <div className="flex items-center space-x-4">
         <div className="flex-shrink-0">
-          <AvatarUser details={details} size="32" />
+          <AvatarUser details={details} size="sm" />
         </div>
         <Link href={`/profile/${details?.did}`} title={username} className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium text-gray-900 hover:text-accent">{username}</p>

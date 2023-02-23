@@ -43,7 +43,7 @@ export const InputUploadAvatar = forwardRef<HTMLInputElement, Props>(
         <div className="relative" onClick={onFilePicker} ref={handleRef}>
           <AvatarUser
             details={details}
-            size="80"
+            size="xl"
             previewFile={
               uploadSuccess.current ? previewFile.current : undefined
             }

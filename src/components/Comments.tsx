@@ -139,7 +139,7 @@ export const Comments = ({
         <AvatarUser
           className="!inline-flex shrink-0 !items-start py-2"
           details={user?.details}
-          size="32"
+          size="sm"
         />
         <CommentForm
           focus={router.asPath.split('#')[1] === 'discussions'}

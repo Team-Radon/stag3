@@ -53,7 +53,7 @@ export const NavBarAccount = () => {
           <div className="flex items-center gap-2">
             <AvatarUser
               details={user?.details}
-              size="24"
+              size="xs"
             />
             <span>{username}</span>
           </div>
